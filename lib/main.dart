@@ -3,6 +3,7 @@ import 'dart:convert';
 // import 'dart:html';
 import 'package:best_folk_medicine/card.dart';
 import 'package:best_folk_medicine/controlbox.dart';
+import 'package:best_folk_medicine/detail.dart';
 import 'package:best_folk_medicine/imagedata.dart';
 import 'package:best_folk_medicine/row.dart';
 import 'package:best_folk_medicine/search.dart';
@@ -66,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var demo = jsonDecode(data);
+    var categaryeDetail = jsonDecode(data);
     var article1 = jsonDecode(data1);
     return Scaffold(
       backgroundColor: Kbgcolor,
@@ -94,9 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 100,
                   child: ListView.builder(
                     shrinkWrap: true,
-                    physics: ScrollPhysics(),
                     scrollDirection: Axis.horizontal,
-                    itemCount: demo.length,
+                    itemCount: categaryeDetail.length,
                     itemBuilder: (context, index) => Container(
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Text(
-                            demo[index]["name"],
+                            categaryeDetail[index]["name"],
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                         ),
@@ -122,42 +122,46 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * .4,
-                  // color: Colors.red,
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    physics: ScrollPhysics(),
                     itemCount: article1.length,
                     itemBuilder: (context, index) => SizedBox(
-                      // height: MediaQuery.of(context).size.height*.4,
                       width: MediaQuery.of(context).size.width * .7,
-                      child: Card(
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              article1[index]["image"],
-                              fit: BoxFit.cover,
-                              height: MediaQuery.of(context).size.height * .20,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            RowPage(
-                                title: article1[index]["writer"],
-                                endtitle: article1[index]["pastime"],
-                                link: false),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              article1[index]["title"],
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
-                          ],
+                      child: GestureDetector(
+                        child: Card(
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                article1[index]["image"],
+                                fit: BoxFit.fill,
+                                height: MediaQuery.of(context).size.height * .25,
+                                width: MediaQuery.of(context).size.width * .7,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              RowPage(
+                                  title: article1[index]["writer"],
+                                  endtitle: article1[index]["pastime"],
+                                  link: false),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                article1[index]["title"],
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.headline1,
+                              ),
+                            ],
+                          ),
                         ),
+                        onTap: (){Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => detailPage(image: article1[index]["image"], title: article1[index]["title"], name: article1[index]["writer"], description: article1[index]["description"], time: article1[index]["pastime"])),
+                        );},
                       ),
                     ),
                   ),
@@ -177,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
 
       ),
-      bottomNavigationBar: bottomBar(),
+      // bottomNavigationBar: bottomBar(),
     );
   }
 }
