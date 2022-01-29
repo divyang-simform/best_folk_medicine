@@ -61,10 +61,17 @@ flutter:
   assets:
      - asset/data/category.json
      - asset/data/article.json
+     - asset/data/shop.json
      - asset/photo/a1.jpeg
      - asset/photo/a2.jpg
      - asset/photo/a3.jpeg
      - asset/photo/a4.jpeg
+     - asset/photo/shop/s1.jpeg
+     - asset/photo/shop/s2.png
+     - asset/photo/shop/s3.jpeg
+     - asset/photo/shop/s4.png
+     - asset/photo/shop/s5.png
+     - asset/photo/shop/s6.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
