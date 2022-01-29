@@ -2,6 +2,7 @@
 
 import 'package:best_folk_medicine/alert.dart';
 import 'package:best_folk_medicine/controlbox.dart';
+import 'package:best_folk_medicine/dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,22 +11,6 @@ class settingsPage extends StatefulWidget {
 
   @override
   _settingsPageState createState() => _settingsPageState();
-}
-cupertinoalertButtonfuntion (String title , String content) {
-  CupertinoAlertDialog(
-    title: Text(title),
-    content: Text(content),
-    actions: [
-      CupertinoDialogAction(
-          child: Text("YES"),
-          onPressed: () {}
-      ),
-      CupertinoDialogAction(
-          child: Text("NO"),
-          onPressed: (){}
-      )
-    ],
-  );
 }
 
 class _settingsPageState extends State<settingsPage> {
@@ -40,19 +25,15 @@ class _settingsPageState extends State<settingsPage> {
             Container(
               margin: EdgeInsets.all(25),
               child: MaterialButton(
-                  child: Text(
-                    'Alert Button',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                  onPressed: () => {
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => cupertinoalertButtonfuntion(
-                            "Alert Dialog Box",
-                            "You have raised a Alert Dialog Box"),
-                          ),
-
-                      }),
+                child: Text(
+                  'Alert Button',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => alertPage(title: "delete", content: "helloo")),
+                );},
+              ),
             ),
             Container(
               margin: EdgeInsets.all(25),
@@ -61,9 +42,9 @@ class _settingsPageState extends State<settingsPage> {
                   'Simple Buttom',
                   style: TextStyle(fontSize: 20.0),
                 ),
-                onPressed: () { Navigator.push(
+                onPressed: () {Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const alertButtonPage()),
+                  MaterialPageRoute(builder: (context) => dialogPage(title: "delete", content: "helloo")),
                 );},
               ),
             ),

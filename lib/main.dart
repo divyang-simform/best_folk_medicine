@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MyHomePage(),
+      home: const settingsPage(),
     );
   }
 }
@@ -131,31 +131,33 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: MediaQuery.of(context).size.width * .7,
                       child: GestureDetector(
                         child: Card(
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                article1[index]["image"],
-                                fit: BoxFit.fill,
-                                height: MediaQuery.of(context).size.height * .25,
-                                width: MediaQuery.of(context).size.width * .7,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              RowPage(
-                                  title: article1[index]["writer"],
-                                  endtitle: article1[index]["pastime"],
-                                  link: false),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                article1[index]["title"],
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: Theme.of(context).textTheme.headline1,
-                              ),
-                            ],
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  article1[index]["image"],
+                                  fit: BoxFit.fill,
+                                  height: MediaQuery.of(context).size.height * .25,
+                                  width: MediaQuery.of(context).size.width * .7,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                RowPage(
+                                    title: article1[index]["writer"],
+                                    endtitle: article1[index]["pastime"],
+                                    link: false),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  article1[index]["title"],
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context).textTheme.headline1,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         onTap: (){Navigator.push(
@@ -181,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
 
       ),
-      // bottomNavigationBar: bottomBar(),
+      bottomNavigationBar: bottomBar(),
     );
   }
 }
