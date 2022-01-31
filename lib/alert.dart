@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class alertPage extends StatelessWidget {
-  alertPage({Key? key, required this.title, required this.content })
+  alertPage({Key? key, required this.title, required this.content})
       : super(key: key);
   String title;
   String content;
+
   @override
   Widget build(BuildContext context) {
-
     if (Platform.isIOS) {
       return CupertinoAlertDialog(
         title: Text(title),
@@ -25,8 +25,7 @@ class alertPage extends StatelessWidget {
               }),
         ],
       );
-    }
-    else{
+    } else {
       return AlertDialog(
         title: Text(title),
         content: Text(content),

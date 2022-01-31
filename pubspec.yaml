@@ -61,7 +61,6 @@ flutter:
   assets:
      - asset/data/category.json
      - asset/data/article.json
-     - asset/data/shop.json
      - asset/photo/a1.jpeg
      - asset/photo/a2.jpg
      - asset/photo/a3.jpeg
