@@ -1,5 +1,5 @@
-import 'package:best_folk_medicine/controlbox.dart';
-import 'package:best_folk_medicine/row.dart';
+import 'controlbox.dart';
+import 'row.dart';
 import 'package:flutter/material.dart';
 
 class detailPage extends StatefulWidget {
@@ -25,13 +25,13 @@ class _detailPageState extends State<detailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Kbgcolor,
+      backgroundColor: kBgcolor,
       appBar: AppBar(
         title: Text("Articale" , style: Theme.of(context).textTheme.headline1,),
-        backgroundColor: Kappbarbgcolor,
+        backgroundColor: kappBarBgcolor,
         elevation: 0.0,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
           ),

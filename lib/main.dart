@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 // import 'dart:html';
-import 'package:best_folk_medicine/card.dart';
-import 'package:best_folk_medicine/controlbox.dart';
-import 'package:best_folk_medicine/detail.dart';
-import 'package:best_folk_medicine/imagedata.dart';
-import 'package:best_folk_medicine/row.dart';
-import 'package:best_folk_medicine/search.dart';
-import 'package:best_folk_medicine/settingpage.dart';
+import 'card.dart';
+import 'detail.dart';
+import 'imagedata.dart';
+import 'row.dart';
+import 'search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -94,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SearchBar(),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               (categary == null)
                   ? CircularProgressIndicator(
                       value: controller?.value,

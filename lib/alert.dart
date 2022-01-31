@@ -17,9 +17,9 @@ class alertPage extends StatelessWidget {
         title: Text(title),
         content: Text(content),
         actions: [
-          CupertinoDialogAction(child: Text("YES"), onPressed: () {}),
+          CupertinoDialogAction(child: const Text("YES"), onPressed: () {}),
           CupertinoDialogAction(
-              child: Text("NO"),
+              child: const Text("NO"),
               onPressed: () {
                 Navigator.of(context).pop();
               }),

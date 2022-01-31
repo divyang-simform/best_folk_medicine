@@ -1,14 +1,11 @@
 // import 'dart:js';
 
-import 'package:best_folk_medicine/alert.dart';
-import 'package:best_folk_medicine/controlbox.dart';
-import 'package:best_folk_medicine/demo.dart';
-import 'package:best_folk_medicine/dialog.dart';
+import 'alert.dart';
+import 'dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Bottomsheet.dart';
-import 'bottomnavigationbar.dart';
 
 class settingsPage extends StatefulWidget {
   const settingsPage({Key? key}) : super(key: key);
@@ -25,9 +22,9 @@ class _settingsPageState extends State<settingsPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.all(25),
+            margin: const EdgeInsets.all(25),
             child: MaterialButton(
-              child: Text(
+              child: const Text(
                 'Alert Button',
                 style: TextStyle(fontSize: 20.0),
               ),
@@ -41,9 +38,9 @@ class _settingsPageState extends State<settingsPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.all(25),
+            margin: const EdgeInsets.all(25),
             child: MaterialButton(
-              child: Text(
+              child:const Text(
                 'Simple Buttom',
                 style: TextStyle(fontSize: 20.0),
               ),
@@ -55,11 +52,13 @@ class _settingsPageState extends State<settingsPage> {
               },
             ),
           ),
+          // Scaffold.of(context).showBottomSheet<void>(
+          //     (BuildContext context)
+          //     },
           Container(
-            margin: EdgeInsets.all(25),
+            margin: const EdgeInsets.all(25),
             child: MaterialButton(
-              // bottomSheet
-              child: Text(
+              child:const Text(
                 'Bottom Button',
                 style: TextStyle(fontSize: 20.0),
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
 
-const Kbgcolor = Colors.white;
-const Kappbarbgcolor = Colors.white;
-const Ktitlecolor = Colors.black;
+const kBgcolor = Colors.white;
+const kappBarBgcolor = Colors.white;
+const kTitleColor = Colors.black;

@@ -1,5 +1,5 @@
-import 'package:best_folk_medicine/settingpage.dart';
-import 'package:best_folk_medicine/textcontrolbox.dart';
+import 'settingpage.dart';
+import 'textcontrolbox.dart';
 
 import 'package:flutter/material.dart';
 
@@ -15,8 +15,6 @@ class bottomBar extends StatefulWidget {
 
 class _bottomBarState extends State<bottomBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
     settingsPage(),
@@ -32,8 +30,8 @@ class _bottomBarState extends State<bottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Kappbarbgcolor,
-          title: Text( _selectedIndex == 0 ? Kforntpageapptitle : Ksettingpageapptitle ,
+          backgroundColor: kappBarBgcolor,
+          title: Text( _selectedIndex == 0 ? kForntPageAppTitle : kSettingPageAppTitle ,
               style: Theme.of(context).textTheme.headline1),
           elevation: 0.0),
       body: Center(
