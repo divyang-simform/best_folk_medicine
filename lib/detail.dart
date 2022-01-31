@@ -27,14 +27,14 @@ class _detailPageState extends State<detailPage> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
-        title: Text("Articale" , style: Theme.of(context).textTheme.headline1,),
+        title: Text(
+          "Articale",
+          style: Theme.of(context).textTheme.headline1,
+        ),
         backgroundColor: kappBarBgcolor,
         elevation: 0.0,
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -46,14 +46,8 @@ class _detailPageState extends State<detailPage> {
           child: Column(
             children: [
               Image.asset(widget.image),
-              RowPage(
-                  title: widget.name,
-                  endtitle: widget.time,
-                  link: false),
-              Text(
-                widget.title,
-                style: Theme.of(context).textTheme.headline1,
-              ),
+              RowPage(title: widget.name, endtitle: widget.time, link: false),
+              Text(widget.title, style: Theme.of(context).textTheme.headline1),
               Text(widget.description)
             ],
           ),

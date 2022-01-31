@@ -17,7 +17,7 @@ class _bottomBarState extends State<bottomBar> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
-    settingsPage(),
+    settingsPage()
   ];
 
   void _onItemTapped(int index) {
@@ -31,27 +31,19 @@ class _bottomBarState extends State<bottomBar> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: kappBarBgcolor,
-          title: Text( _selectedIndex == 0 ? kForntPageAppTitle : kSettingPageAppTitle ,
+          title: Text(
+              _selectedIndex == 0 ? kForntPageAppTitle : kSettingPageAppTitle,
               style: Theme.of(context).textTheme.headline1),
           elevation: 0.0),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'shop',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        onTap: _onItemTapped,
-      ),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.business), label: 'shop'),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.black,
+          onTap: _onItemTapped),
     );
   }
 }

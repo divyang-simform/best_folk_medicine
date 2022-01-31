@@ -15,7 +15,7 @@ class dialogPage extends StatelessWidget {
     if (Platform.isIOS) {
       return CupertinoDialogAction(
         child: Text(title),
-        onPressed: (){
+        onPressed: () {
           Navigator.of(context).pop();
         },
       );
@@ -24,13 +24,15 @@ class dialogPage extends StatelessWidget {
         title: Text(title),
         children: <Widget>[
           SimpleDialogOption(
-            onPressed: () { Navigator.pop(context); },
-            child: const Text('Done'),
-          ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Done')),
           SimpleDialogOption(
-            onPressed: () { Navigator.pop(context); },
-            child: const Text('Done by today'),
-          ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Done by today')),
         ],
       );
     }

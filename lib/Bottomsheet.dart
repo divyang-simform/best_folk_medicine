@@ -43,7 +43,6 @@ class bottomSheet extends StatelessWidget {
     } else {
       return Container(
         height: 200,
-        color: Colors.amber,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
