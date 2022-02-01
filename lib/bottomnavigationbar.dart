@@ -1,10 +1,10 @@
+import 'package:best_folk_medicine/shop.dart';
+
+import 'frontPage.dart';
 import 'settingpage.dart';
 import 'textcontrolbox.dart';
-
 import 'package:flutter/material.dart';
-
 import 'controlbox.dart';
-import 'main.dart';
 
 class bottomBar extends StatefulWidget {
   const bottomBar({Key? key}) : super(key: key);
@@ -17,6 +17,7 @@ class _bottomBarState extends State<bottomBar> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
+    ShopingPage(),
     settingsPage()
   ];
 
@@ -39,6 +40,7 @@ class _bottomBarState extends State<bottomBar> {
       bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Shop'),
             BottomNavigationBarItem(icon: Icon(Icons.business), label: 'shop'),
           ],
           currentIndex: _selectedIndex,
