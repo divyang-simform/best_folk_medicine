@@ -1,12 +1,6 @@
-import 'dart:convert';
 
 // import 'dart:html';
-import 'card.dart';
-import 'detail.dart';
-import 'row.dart';
-import 'search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'bottomnavigationbar.dart';
 
 void main() {

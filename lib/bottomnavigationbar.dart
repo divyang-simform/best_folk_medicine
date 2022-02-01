@@ -41,7 +41,8 @@ class _bottomBarState extends State<bottomBar> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Shop'),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.black,
