@@ -13,11 +13,9 @@ class dialogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (Platform.isIOS) {
-      return CupertinoDialogAction(
-        child: Text(title),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+      return CupertinoAlertDialog(
+        title: Text(title),
+        content: Text(content),
       );
     } else {
       return SimpleDialog(

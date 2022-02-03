@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 // import 'dart:html';
+import 'package:best_folk_medicine/parsingdata.dart';
+
 import 'card.dart';
 import 'detail.dart';
 import 'row.dart';
@@ -99,14 +101,19 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: SingleChildScrollView(
                                 child: Column(
                                   children: [
-                                    Image.asset(article1[index]["image"],
-                                        fit: BoxFit.fill,
-                                        height:
-                                            MediaQuery.of(context).size.height *
+                                    Hero(
+                                        tag: article1[index]["id"],
+                                        child: Image.asset(
+                                            article1[index]["image"],
+                                            fit: BoxFit.fill,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
                                                 .25,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .7),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .7)),
                                     const SizedBox(height: 10),
                                     RowPage(
                                         title: article1[index]["writer"],
@@ -124,18 +131,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ),
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => detailPage(
+                              Navigator.pushNamed(
+                                  context, detailPage.detailPagedata,
+                                  arguments: Product(
+                                      id: article1[index]["id"],
                                       image: article1[index]["image"],
-                                      title: article1[index]["title"],
                                       name: article1[index]["writer"],
                                       description: article1[index]
                                           ["description"],
-                                      time: article1[index]["pastime"]),
-                                ),
-                              );
+                                      title: article1[index]["title"],
+                                      time: article1[index]["pastime"]));
                             },
                           ),
                         ),
@@ -159,17 +164,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               description: article1[index]["description"],
                               time: article1[index]["pastime"]),
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => detailPage(
+                            Navigator.pushNamed(
+                                context, detailPage.detailPagedata,
+                                // arguments: Product(id: article1[index]["id"]),
+                                arguments: Product(
+                                    id: article1[index]["id"],
                                     image: article1[index]["image"],
-                                    title: article1[index]["title"],
                                     name: article1[index]["writer"],
                                     description: article1[index]["description"],
-                                    time: article1[index]["pastime"]),
-                              ),
-                            );
+                                    title: article1[index]["title"],
+                                    time: article1[index]["pastime"]));
                           },
                         ),
                       ),

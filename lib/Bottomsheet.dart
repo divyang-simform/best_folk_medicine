@@ -43,14 +43,15 @@ class bottomSheet extends StatelessWidget {
     } else {
       return Container(
         height: 200,
+        color: Colors.white,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const Text('BottomSheet'),
+              Text(title),
               ElevatedButton(
-                  child: const Text('Close BottomSheet'),
+                  child: Text(button1),
                   onPressed: () {
                     Navigator.pop(context);
                   })

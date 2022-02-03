@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class cardPage extends StatefulWidget {
   cardPage({
     Key? key,
+
     required this.image,
     required this.title,
     required this.description,

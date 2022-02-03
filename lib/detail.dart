@@ -1,10 +1,14 @@
+
 import 'controlbox.dart';
 import 'row.dart';
 import 'package:flutter/material.dart';
 
 class detailPage extends StatefulWidget {
+  static const detailPagedata = '/detailpage';
+
   detailPage({
     Key? key,
+    required this.id,
     required this.image,
     required this.title,
     required this.name,
@@ -16,6 +20,7 @@ class detailPage extends StatefulWidget {
   String time;
   String description;
   String name;
+  String id;
 
   @override
   _detailPageState createState() => _detailPageState();
@@ -24,6 +29,7 @@ class detailPage extends StatefulWidget {
 class _detailPageState extends State<detailPage> {
   @override
   Widget build(BuildContext context) {
+    // final args = ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
@@ -45,10 +51,11 @@ class _detailPageState extends State<detailPage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Image.asset(widget.image),
+              Hero(tag: widget.id, child: Image.asset(widget.image)),
               RowPage(title: widget.name, endtitle: widget.time, link: false),
               Text(widget.title, style: Theme.of(context).textTheme.headline1),
-              Text(widget.description)
+              Text(widget.description),
+
             ],
           ),
         ),

@@ -38,6 +38,7 @@ class _bottomBarState extends State<bottomBar> {
           elevation: 0.0),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
+          showUnselectedLabels: false,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Shop'),
@@ -45,7 +46,7 @@ class _bottomBarState extends State<bottomBar> {
                 icon: Icon(Icons.settings), label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
+          selectedItemColor:   Colors.black,
           onTap: _onItemTapped),
     );
   }
