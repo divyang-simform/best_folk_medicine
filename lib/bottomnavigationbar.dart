@@ -1,3 +1,4 @@
+import 'package:best_folk_medicine/IncrementPage.dart';
 import 'package:best_folk_medicine/shop.dart';
 
 import 'frontPage.dart';
@@ -18,6 +19,7 @@ class _bottomBarState extends State<bottomBar> {
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
     ShopingPage(),
+    incrementScreen(),
     settingsPage()
   ];
 
@@ -42,11 +44,13 @@ class _bottomBarState extends State<bottomBar> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Shop'),
+            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Increment'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor:   Colors.black,
+          selectedItemColor:   KbottomNavigationBarSelectedColor,
+          unselectedItemColor: KbottomNavigationBarUnSelectedColor,
           onTap: _onItemTapped),
     );
   }
