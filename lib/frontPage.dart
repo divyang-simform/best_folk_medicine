@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 // import 'dart:html';
 import 'parsingdata.dart';
 import 'card.dart';
@@ -153,7 +154,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           onTap: () {
                             Navigator.pushNamed(
                                 context, detailPage.detailPagedata,
-                                // arguments: Product(id: article1[index]["id"]),
                                 arguments: Product(
                                     id: article1[index]["id"],
                                     image: article1[index]["image"],
