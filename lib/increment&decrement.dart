@@ -1,8 +1,6 @@
 import 'utils.dart';
-
 import 'transition.dart';
 import 'package:flutter/material.dart';
-
 import 'DecrementPage.dart';
 import 'IncrementPage.dart';
 

@@ -15,33 +15,34 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          textTheme: const TextTheme(
-            headline1: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
-            bodyText1: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-          ),
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          headline1: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
+          bodyText1: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        home: const bottomBar(),
-        routes: {
-          showAllArticales.showArticalesdata: (context) =>
-              const showAllArticales(),
-        },
-        onGenerateRoute: (RouteSettings settings) {
-          if (settings.name == detailPage.detailPagedata) {
-            final args = settings.arguments as Product;
-            return MaterialPageRoute(
-                builder: (context) => detailPage(
-                    id: args.id,
-                    image: args.image,
-                    title: args.title,
-                    name: args.name,
-                    description: args.description,
-                    time: args.time));
-          }
-        });
+      ),
+      home: const bottomBar(),
+      routes: {
+        showAllArticales.showArticalesdata: (context) =>
+            const showAllArticales(),
+      },
+      onGenerateRoute: (RouteSettings settings) {
+        if (settings.name == detailPage.detailPagedata) {
+          final args = settings.arguments as Product;
+          return MaterialPageRoute(
+              builder: (context) => detailPage(
+                  id: args.id,
+                  image: args.image,
+                  title: args.title,
+                  name: args.name,
+                  description: args.description,
+                  time: args.time));
+        }
+      },
+    );
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 // import 'dart:html';
 import 'parsingdata.dart';
 import 'card.dart';
@@ -37,7 +36,6 @@ class _MyHomePageState extends State<MyHomePage> {
     loadJson();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -50,8 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SearchBar(),
               const SizedBox(height: 30),
               (categary == null)
-                  ? CircularProgressIndicator(
-                      strokeWidth: 4)
+                  ? CircularProgressIndicator(strokeWidth: 4)
                   : Container(
                       height: 100,
                       child: ListView.builder(
@@ -77,8 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               RowPage(
                   title: "Main Articles", endtitle: "show more", link: true),
               (article == null)
-                  ? CircularProgressIndicator(
-                      strokeWidth: 4)
+                  ? CircularProgressIndicator(strokeWidth: 4)
                   : Container(
                       height: MediaQuery.of(context).size.height * .4,
                       padding: EdgeInsets.only(left: 10, right: 10),
@@ -143,8 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   endtitle: "show more",
                   link: true),
               (article == null)
-                  ? CircularProgressIndicator(
-                      strokeWidth: 4)
+                  ? CircularProgressIndicator(strokeWidth: 4)
                   : Container(
                       child: ListView.builder(
                         shrinkWrap: true,

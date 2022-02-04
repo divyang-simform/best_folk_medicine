@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'controlbox.dart';
 import 'detail.dart';
 import 'parsingdata.dart';
 import 'search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'card.dart';
 
 class showAllArticales extends StatefulWidget {

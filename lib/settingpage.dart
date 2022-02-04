@@ -1,10 +1,8 @@
 // import 'dart:js';
-
 import 'alert.dart';
 import 'dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'Bottomsheet.dart';
 
 class settingsPage extends StatefulWidget {
@@ -28,7 +26,6 @@ class _settingsPageState extends State<settingsPage> {
                 'Alert Button',
                 style: TextStyle(fontSize: 20.0),
               ),
-              // onPressed: () =>  alertPage(title: "title", content: "content")
               onPressed: () {
                 showDialog(
                     context: context,
@@ -40,7 +37,7 @@ class _settingsPageState extends State<settingsPage> {
           Container(
             margin: const EdgeInsets.all(25),
             child: MaterialButton(
-              child:const Text(
+              child: const Text(
                 'Simple Buttom',
                 style: TextStyle(fontSize: 20.0),
               ),
@@ -52,13 +49,10 @@ class _settingsPageState extends State<settingsPage> {
               },
             ),
           ),
-          // Scaffold.of(context).showBottomSheet<void>(
-          //     (BuildContext context)
-          //     },
           Container(
             margin: const EdgeInsets.all(25),
             child: MaterialButton(
-              child:const Text(
+              child: const Text(
                 'Bottom Button',
                 style: TextStyle(fontSize: 20.0),
               ),

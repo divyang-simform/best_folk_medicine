@@ -1,3 +1,5 @@
+import 'controlbox.dart';
+
 import 'IncrementPage.dart';
 import 'utils.dart';
 import 'package:flutter/material.dart';
@@ -24,18 +26,17 @@ class _decrementPageState extends State<decrementPage> {
         children: [
           Text("Counter: $Counter"),
           MaterialButton(
-            color: Colors.black,
+            color: KbuttonColor,
             onPressed: () => _decrementCounter(),
-            child: Text("Decrement", style: TextStyle(color: Colors.white)),
+            child: Text("Decrement", style: TextStyle(color: KbuttonTextColor)),
           ),
           MaterialButton(
-            color: Colors.black,
+            color: KbuttonColor,
             onPressed: () {
               NavKey.currentState?.pushNamed('/');
-              // Navigator.pushNamed(context, '/');
             },
-            child:
-                Text("Increment Page", style: TextStyle(color: Colors.white)),
+            child: Text("Increment Page",
+                style: TextStyle(color: KbuttonTextColor)),
           ),
         ],
       ),
