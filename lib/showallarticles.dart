@@ -22,7 +22,6 @@ class _showAllArticalesState extends State<showAllArticales> {
 
   loadJson() async {
     article = await rootBundle.loadString('asset/data/article.json');
-
     article1 = await jsonDecode(article!);
     setState(() {});
   }
@@ -39,9 +38,10 @@ class _showAllArticalesState extends State<showAllArticales> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
-          backgroundColor: kappBarBgcolor,
+          iconTheme: IconThemeData(color: Colors.black),
           title: Text("All Articales",
               style: Theme.of(context).textTheme.headline1),
+          backgroundColor: kappBarBgcolor,
           elevation: 0.0),
       body: SingleChildScrollView(
         child: Padding(

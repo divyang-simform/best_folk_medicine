@@ -28,7 +28,6 @@ class detailPage extends StatefulWidget {
 class _detailPageState extends State<detailPage> {
   @override
   Widget build(BuildContext context) {
-    // final args = ModalRoute.of(context)!.settings.arguments as Product;
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
@@ -54,7 +53,6 @@ class _detailPageState extends State<detailPage> {
               RowPage(title: widget.name, endtitle: widget.time, link: false),
               Text(widget.title, style: Theme.of(context).textTheme.headline1),
               Text(widget.description),
-
             ],
           ),
         ),
