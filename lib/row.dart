@@ -1,3 +1,4 @@
+import 'showallarticles.dart';
 import 'package:flutter/material.dart';
 
 class RowPage extends StatefulWidget {
@@ -27,7 +28,12 @@ class _RowPageState extends State<RowPage> {
         ),
         const Expanded(child: Text("")),
         widget.link == true
-            ? TextButton(onPressed: () {}, child: Text(widget.endtitle))
+            ? TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, showAllArticales.showArticalesdata);
+                },
+                child: Text(widget.endtitle))
             : Text(widget.endtitle),
       ],
     );

@@ -1,5 +1,6 @@
-import 'package:best_folk_medicine/IncrementPage.dart';
-import 'package:best_folk_medicine/shop.dart';
+import 'IncrementPage.dart';
+import 'increment&decrement.dart';
+import 'shop.dart';
 
 import 'frontPage.dart';
 import 'settingpage.dart';
@@ -19,7 +20,7 @@ class _bottomBarState extends State<bottomBar> {
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
     ShopingPage(),
-    incrementScreen(),
+    incrementDecrementPage(),
     settingsPage()
   ];
 

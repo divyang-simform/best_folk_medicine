@@ -1,5 +1,6 @@
 // import 'dart:html';
-import 'package:best_folk_medicine/parsingdata.dart';
+import 'parsingdata.dart';
+import 'showallarticles.dart';
 import 'package:flutter/material.dart';
 import 'bottomnavigationbar.dart';
 import 'detail.dart';
@@ -25,6 +26,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
         home: const bottomBar(),
+        routes: {
+          showAllArticales.showArticalesdata: (context) =>
+              const showAllArticales(),
+        },
         onGenerateRoute: (RouteSettings settings) {
           if (settings.name == detailPage.detailPagedata) {
             final args = settings.arguments as Product;

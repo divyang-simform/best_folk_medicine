@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 // import 'dart:html';
-import 'package:best_folk_medicine/parsingdata.dart';
-
+import 'parsingdata.dart';
 import 'card.dart';
 import 'detail.dart';
 import 'row.dart';
@@ -20,7 +19,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? categary;
   String? article;
-  AnimationController? loading;
   late var categaryDetail;
   late var article1;
 
@@ -39,12 +37,6 @@ class _MyHomePageState extends State<MyHomePage> {
     loadJson();
   }
 
-  @override
-  void dispose() {
-    loading?.dispose();
-    // TODO: implement dispose
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 30),
               (categary == null)
                   ? CircularProgressIndicator(
-                      value: loading?.value, strokeWidth: 4)
+                      strokeWidth: 4)
                   : Container(
                       height: 100,
                       child: ListView.builder(
@@ -86,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: "Main Articles", endtitle: "show more", link: true),
               (article == null)
                   ? CircularProgressIndicator(
-                      value: loading?.value, strokeWidth: 4)
+                      strokeWidth: 4)
                   : Container(
                       height: MediaQuery.of(context).size.height * .4,
                       padding: EdgeInsets.only(left: 10, right: 10),
@@ -152,11 +144,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   link: true),
               (article == null)
                   ? CircularProgressIndicator(
-                      value: loading?.value, strokeWidth: 4)
+                      strokeWidth: 4)
                   : Container(
                       child: ListView.builder(
                         shrinkWrap: true,
-                        itemCount: article1.length,
+                        itemCount: 3,
                         itemBuilder: (context, index) => GestureDetector(
                           child: cardPage(
                               image: article1[index]["image"],
