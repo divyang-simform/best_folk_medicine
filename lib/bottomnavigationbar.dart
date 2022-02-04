@@ -42,14 +42,22 @@ class _bottomBarState extends State<bottomBar> {
       bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: false,
           items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Shop'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined),
+                activeIcon: Icon(Icons.home),
+                label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shop_outlined),
+                activeIcon: Icon(Icons.shop),
+                label: 'Shop'),
             BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Increment'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: 'Settings'),
+                icon: Icon(Icons.settings_outlined),
+                activeIcon: Icon(Icons.settings),
+                label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor:   KbottomNavigationBarSelectedColor,
+          selectedItemColor: KbottomNavigationBarSelectedColor,
           unselectedItemColor: KbottomNavigationBarUnSelectedColor,
           onTap: _onItemTapped),
     );
