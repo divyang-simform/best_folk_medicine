@@ -23,10 +23,10 @@ class _incrementDecrementPageState extends State<incrementDecrementPage> {
             switch(settings.name){
               case '/':
                 return SlideLeftRoute(page: incrementScreen());
-                break;
               case '/decrement':
                 return SlideRightRoute(page: decrementPage());
-                break;
+              default:
+                return SlideLeftRoute(page: incrementScreen());
             };
           },
         ),
