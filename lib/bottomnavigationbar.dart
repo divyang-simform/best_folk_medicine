@@ -1,4 +1,3 @@
-import 'IncrementPage.dart';
 import 'increment&decrement.dart';
 import 'shop.dart';
 

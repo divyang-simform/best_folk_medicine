@@ -1,4 +1,5 @@
 import 'package:best_folk_medicine/DecrementPage.dart';
+import 'package:best_folk_medicine/utils.dart';
 import 'package:flutter/material.dart';
 
 int Counter = 0;
@@ -31,8 +32,12 @@ class _incrementScreenState extends State<incrementScreen> {
           ),
           MaterialButton(
             color: Colors.black,
-            onPressed: () { Navigator.pushNamed(context, '/decrement'); },
-            child: Text("Decrement Page", style: TextStyle(color: Colors.white)),
+            onPressed: () {
+              NavKey.currentState?.pushNamed('/decrement');
+              // Navigator.pushNamed(context, '/decrement');
+            },
+            child:
+                Text("Decrement Page", style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
