@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'DecrementPage.dart';
 import 'IncrementPage.dart';
 
+int Count = 0;
+
 class incrementDecrementPage extends StatefulWidget {
   const incrementDecrementPage({Key? key}) : super(key: key);
 
@@ -20,9 +22,10 @@ class _incrementDecrementPageState extends State<incrementDecrementPage> {
       body: Container(
         child: Navigator(
           key: NavKey,
-          // key:  mainListNav,
           initialRoute: '/',
           onGenerateRoute: (RouteSettings settings) {
+            print(Count);
+            Count++;
             switch (settings.name) {
               case '/':
                 return SlideLeftRoute(page: incrementScreen());
