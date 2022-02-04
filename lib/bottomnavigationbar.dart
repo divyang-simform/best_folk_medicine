@@ -16,6 +16,7 @@ class bottomBar extends StatefulWidget {
 
 class _bottomBarState extends State<bottomBar> {
   int _selectedIndex = 0;
+  String title = kForntPageAppTitle;
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
     ShopingPage(),
@@ -23,10 +24,21 @@ class _bottomBarState extends State<bottomBar> {
     settingsPage()
   ];
 
+
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    if(_selectedIndex == 0){
+      title = kForntPageAppTitle;
+    }else if(_selectedIndex == 1){
+      title = KShopPageAppTitle;
+    }else if(_selectedIndex == 2){
+      title = KInc_decAppTitle;
+    } else if(_selectedIndex == 3){
+      title = kSettingPageAppTitle;
+    }
   }
 
   @override
@@ -34,8 +46,7 @@ class _bottomBarState extends State<bottomBar> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: kappBarBgcolor,
-          title: Text(
-              _selectedIndex == 0 ? kForntPageAppTitle : kSettingPageAppTitle,
+          title: Text( title ,
               style: Theme.of(context).textTheme.headline1),
           elevation: 0.0),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
