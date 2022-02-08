@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 // import 'dart:html';
+import 'app_config.dart';
+
 import 'parsingdata.dart';
 import 'card.dart';
 import 'detail.dart';
@@ -39,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var config = AppConfig.of(context);
     return SingleChildScrollView(
       child: Center(
         child: Padding(
@@ -75,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               RowPage(
                   title: "Main Articles", endtitle: "show more", link: true),
               (article == null)
-                  ? CircularProgressIndicator(strokeWidth: 4)
+                  ? const CircularProgressIndicator(strokeWidth: 4)
                   : Container(
                       height: MediaQuery.of(context).size.height * .4,
                       padding: EdgeInsets.only(left: 10, right: 10),
@@ -135,35 +138,45 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-              RowPage(
-                  title: "You have not finished reading",
-                  endtitle: "show more",
-                  link: true),
-              (article == null)
-                  ? CircularProgressIndicator(strokeWidth: 4)
-                  : Container(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 3,
-                        itemBuilder: (context, index) => GestureDetector(
-                          child: cardPage(
-                              image: article1[index]["image"],
-                              title: article1[index]["title"],
-                              description: article1[index]["description"],
-                              time: article1[index]["pastime"]),
-                          onTap: () {
-                            Navigator.pushNamed(
-                                context, detailPage.detailPagedata,
-                                arguments: Product(
-                                    id: article1[index]["id"],
-                                    image: article1[index]["image"],
-                                    name: article1[index]["writer"],
-                                    description: article1[index]["description"],
-                                    title: article1[index]["title"],
-                                    time: article1[index]["pastime"]));
-                          },
-                        ),
-                      ),
+              (config!.appInternalId == 1)
+                  ? SizedBox()
+                  : Column(
+                      children: [
+                        RowPage(
+                            title: "You have not finished reading",
+                            endtitle: "show more",
+                            link: true),
+                        (article == null)
+                            ? CircularProgressIndicator(strokeWidth: 4)
+                            : Container(
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: 3,
+                                  itemBuilder: (context, index) =>
+                                      GestureDetector(
+                                    child: cardPage(
+                                        image: article1[index]["image"],
+                                        title: article1[index]["title"],
+                                        description: article1[index]
+                                            ["description"],
+                                        time: article1[index]["pastime"]),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, detailPage.detailPagedata,
+                                          arguments: Product(
+                                              id: article1[index]["id"],
+                                              image: article1[index]["image"],
+                                              name: article1[index]["writer"],
+                                              description: article1[index]
+                                                  ["description"],
+                                              title: article1[index]["title"],
+                                              time: article1[index]
+                                                  ["pastime"]));
+                                    },
+                                  ),
+                                ),
+                              ),
+                      ],
                     ),
             ],
           ),

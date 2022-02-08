@@ -1,7 +1,7 @@
 import 'showallarticles.dart';
 import 'package:flutter/material.dart';
 
-class RowPage extends StatefulWidget {
+class RowPage extends StatelessWidget {
   RowPage(
       {Key? key,
       required this.title,
@@ -12,29 +12,29 @@ class RowPage extends StatefulWidget {
   String title;
   String endtitle;
   bool link;
+//
+//   @override
+//   _RowPageState createState() => _RowPageState();
+// }
 
-  @override
-  _RowPageState createState() => _RowPageState();
-}
-
-class _RowPageState extends State<RowPage> {
+// class _RowPageState extends State<RowPage> {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Text(
-          widget.title,
+          title,
           style: Theme.of(context).textTheme.bodyText1,
         ),
         const Expanded(child: Text("")),
-        widget.link == true
+        link == true
             ? TextButton(
                 onPressed: () {
                   Navigator.pushNamed(
                       context, showAllArticales.showArticalesdata);
                 },
-                child: Text(widget.endtitle))
-            : Text(widget.endtitle),
+                child: Text(endtitle))
+            : Text(endtitle),
       ],
     );
   }

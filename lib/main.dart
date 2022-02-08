@@ -1,4 +1,6 @@
 // import 'dart:html';
+import 'app_config.dart';
+
 import 'controlbox.dart';
 import 'parsingdata.dart';
 import 'showallarticles.dart';
@@ -6,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'bottomnavigationbar.dart';
 import 'detail.dart';
 
-void main() {
-  runApp(const MyApp());
+void mainCommon() {
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,9 +17,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var config = AppConfig.of(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: config!.appDisplayName,
       theme: ThemeData(
         textTheme: const TextTheme(
           headline1: TextStyle(

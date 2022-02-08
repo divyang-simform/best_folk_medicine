@@ -1,3 +1,5 @@
+import 'app_config.dart';
+
 import 'increment&decrement.dart';
 import 'shop.dart';
 
@@ -24,30 +26,29 @@ class _bottomBarState extends State<bottomBar> {
     settingsPage()
   ];
 
-
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    if(_selectedIndex == 0){
+    if (_selectedIndex == 0) {
       title = kForntPageAppTitle;
-    }else if(_selectedIndex == 1){
+    } else if (_selectedIndex == 1) {
       title = KShopPageAppTitle;
-    }else if(_selectedIndex == 2){
+    } else if (_selectedIndex == 2) {
       title = KInc_decAppTitle;
-    } else if(_selectedIndex == 3){
+    } else if (_selectedIndex == 3) {
       title = kSettingPageAppTitle;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    var Config = AppConfig.of(context);
     return Scaffold(
       appBar: AppBar(
+          centerTitle: true,
           backgroundColor: kappBarBgcolor,
-          title: Text( title ,
-              style: Theme.of(context).textTheme.headline1),
+          title: Text(title, style: Theme.of(context).textTheme.headline1),
           elevation: 0.0),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
@@ -68,7 +69,7 @@ class _bottomBarState extends State<bottomBar> {
                 label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: KbottomNavigationBarSelectedColor,
+          selectedItemColor: Config!.color,
           unselectedItemColor: KbottomNavigationBarUnSelectedColor,
           onTap: _onItemTapped),
     );

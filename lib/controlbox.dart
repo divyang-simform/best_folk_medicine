@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 const kBgcolor = Colors.white;
 const kappBarBgcolor = Colors.white;
 const kHeadBody1Color = Colors.black;

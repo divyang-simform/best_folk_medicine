@@ -43,11 +43,26 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.best_folk_medicine"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        minSdkVersion 16
+        targetSdkVersion 27
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    flavorDimensions "app"
+    productFlavors {
+
+        app1 {
+            dimension "app"
+            applicationId "com.example.flavorsexample.app1"
+            versionCode 1
+            versionName "1.0"
+        }
+
+        app2 {
+            dimension "app"
+            applicationId "com.example.flavorsexample.app2"
+            versionCode 1
+            versionName "1.0"
+        }
     }
 
     buildTypes {

@@ -13,7 +13,6 @@ class ShopingPage extends StatefulWidget {
 
 class _ShopingPageState extends State<ShopingPage> {
   String? shopData;
-  AnimationController? loader1;
   late var sData;
 
   loadJson() async {
@@ -32,7 +31,7 @@ class _ShopingPageState extends State<ShopingPage> {
   @override
   Widget build(BuildContext context) {
     if (shopData == null) {
-      return CircularProgressIndicator(value: loader1?.value, strokeWidth: 4);
+      return CircularProgressIndicator(strokeWidth: 4);
     } else {
       return Container(
         child: GridView.builder(
