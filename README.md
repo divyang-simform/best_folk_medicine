@@ -8,6 +8,7 @@ ScreenShot :
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-02-01 at 10 02 27](https://user-images.githubusercontent.com/97151860/151913207-1e72e5d6-c2a7-42f7-8115-74e7f832827a.png)
 ![Simulator Screen Shot - iPhone 13 Pro Max - 2022-02-01 at 10 02 30](https://user-images.githubusercontent.com/97151860/151913209-2ddbb260-eb37-413e-892c-0f6edf75e473.png)
 Flavors:
+
  => prod Screen:
  
  Iphone Screen :
