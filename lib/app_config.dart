@@ -10,7 +10,7 @@ class AppConfig extends InheritedWidget {
 
   final String appDisplayName;
   final int appInternalId;
-  final MaterialColor color;
+  final Color color;
 
   static AppConfig? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<AppConfig>();
