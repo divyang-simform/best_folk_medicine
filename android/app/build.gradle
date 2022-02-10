@@ -50,16 +50,16 @@ android {
     flavorDimensions "app"
     productFlavors {
 
-        app1 {
+        prod {
             dimension "app"
-            applicationId "com.example.flavorsexample.app1"
+            applicationId "com.example.flavorsexample."
             versionCode 1
             versionName "1.0"
         }
 
-        app2 {
+        dev {
             dimension "app"
-            applicationId "com.example.flavorsexample.app2"
+            applicationId "com.example.flavorsexample.dev"
             versionCode 1
             versionName "1.0"
         }
