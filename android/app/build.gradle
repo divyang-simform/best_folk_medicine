@@ -52,7 +52,7 @@ android {
 
         prod {
             dimension "app"
-            applicationId "com.example.flavorsexample."
+            applicationId "com.example.flavorsexample.prod"
             versionCode 1
             versionName "1.0"
         }

@@ -1,4 +1,4 @@
-import 'controlbox.dart';
+import '../setting/controlbox.dart';
 import 'row.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,6 @@ class detailPage extends StatefulWidget {
 
   detailPage({
     Key? key,
-    required this.id,
     required this.image,
     required this.title,
     required this.name,
@@ -19,7 +18,6 @@ class detailPage extends StatefulWidget {
   String time;
   String description;
   String name;
-  String id;
 
   @override
   _detailPageState createState() => _detailPageState();
@@ -49,10 +47,14 @@ class _detailPageState extends State<detailPage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Hero(tag: widget.id, child: Image.asset(widget.image)),
+              Image.network(widget.image),
+              SizedBox(height: 20),
               RowPage(title: widget.name, endtitle: widget.time, link: false),
+              SizedBox(height: 20),
               Text(widget.title, style: Theme.of(context).textTheme.headline1),
-              Text(widget.description),
+              SizedBox(height: 20),
+              Text(widget.description,
+                  style: Theme.of(context).textTheme.bodyText1),
             ],
           ),
         ),

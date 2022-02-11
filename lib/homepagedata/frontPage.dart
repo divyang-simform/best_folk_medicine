@@ -1,9 +1,14 @@
 import 'dart:convert';
 
 // import 'dart:html';
-import 'app_config.dart';
+import 'package:best_folk_medicine/data_fetching/api_calling.dart';
+import 'package:chopper/chopper.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
-import 'parsingdata.dart';
+import '../Flavors/app_config.dart';
+
+import '../data_fetching/parsingdata.dart';
 import 'card.dart';
 import 'detail.dart';
 import 'row.dart';
@@ -82,61 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   : Container(
                       height: MediaQuery.of(context).size.height * .4,
                       padding: EdgeInsets.only(left: 10, right: 10),
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: article1.length,
-                        itemBuilder: (context, index) => SizedBox(
-                          width: MediaQuery.of(context).size.width * .7,
-                          child: GestureDetector(
-                            child: Card(
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    Hero(
-                                        tag: article1[index]["id"],
-                                        child: Image.asset(
-                                            article1[index]["image"],
-                                            fit: BoxFit.fill,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .25,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .7)),
-                                    const SizedBox(height: 10),
-                                    RowPage(
-                                        title: article1[index]["writer"],
-                                        endtitle: article1[index]["pastime"],
-                                        link: false),
-                                    const SizedBox(height: 10),
-                                    Text(article1[index]["title"],
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1)
-                                  ],
-                                ),
-                              ),
-                            ),
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, detailPage.detailPagedata,
-                                  arguments: Product(
-                                      id: article1[index]["id"],
-                                      image: article1[index]["image"],
-                                      name: article1[index]["writer"],
-                                      description: article1[index]
-                                          ["description"],
-                                      title: article1[index]["title"],
-                                      time: article1[index]["pastime"]));
-                            },
-                          ),
-                        ),
-                      ),
+                      child: buildCard(context),
                     ),
               (config!.appInternalId == 1)
                   ? SizedBox()
@@ -147,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             endtitle: "show more",
                             link: true),
                         (article == null)
-                            ? CircularProgressIndicator(strokeWidth: 4)
+                            ? CircularProgressIndicator()
                             : Container(
                                 child: ListView.builder(
                                   shrinkWrap: true,
@@ -164,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       Navigator.pushNamed(
                                           context, detailPage.detailPagedata,
                                           arguments: Product(
-                                              id: article1[index]["id"],
+                                              // id: article1[index]["id"],
                                               image: article1[index]["image"],
                                               name: article1[index]["writer"],
                                               description: article1[index]
@@ -183,5 +134,78 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  FutureBuilder<Response> buildCard(BuildContext context) {
+    return FutureBuilder<Response>(
+        future: Provider.of<ApiService>(context).getPost(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            Map<String, dynamic> map = jsonDecode(snapshot.data!.bodyString);
+            List<dynamic> posts = map["articles"];
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: posts.length,
+              itemBuilder: (context, index) => SizedBox(
+                width: MediaQuery.of(context).size.width * .7,
+                child: GestureDetector(
+                  child: Card(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Image.network(posts[index]["urlToImage"],
+                              fit: BoxFit.fill,
+                              height: MediaQuery.of(context).size.height * .25,
+                              width: MediaQuery.of(context).size.width * .7),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              (posts[index]["author"] ==
+                                      "noreply@blogger.com (Unknown)")
+                                  ? Text("")
+                                  : Expanded(
+                                      child: Text(
+                                        posts[index]["author"],
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      ),
+                                    ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            posts[index]["title"],
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.headline1,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, detailPage.detailPagedata,
+                        arguments: Product(
+                            // id: posts[index]["id"],
+                            image: posts[index]["urlToImage"],
+                            name: posts[index]["author"],
+                            description: posts[index]["description"],
+                            title: posts[index]["title"],
+                            time: posts[index]["publishedAt"]));
+                  },
+                ),
+              ),
+            );
+            // return SingleChildScrollView(child: Text(map.toString(), style: Theme.of(context).textTheme.headline1,));
+          } else {
+            return Container(
+                alignment: Alignment.center,
+                child: CircularProgressIndicator());
+          }
+        });
   }
 }

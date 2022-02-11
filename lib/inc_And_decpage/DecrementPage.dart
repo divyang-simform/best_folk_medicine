@@ -1,7 +1,7 @@
-import 'controlbox.dart';
+import '../setting/controlbox.dart';
 
 import 'IncrementPage.dart';
-import 'utils.dart';
+import '../setting/utils.dart';
 import 'package:flutter/material.dart';
 
 class decrementPage extends StatefulWidget {

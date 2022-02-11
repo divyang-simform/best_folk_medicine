@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'controlbox.dart';
+import '../setting/controlbox.dart';
 import 'detail.dart';
-import 'parsingdata.dart';
+import '../data_fetching/parsingdata.dart';
 import 'search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -67,7 +67,7 @@ class _showAllArticalesState extends State<showAllArticales> {
                               context,
                               detailPage.detailPagedata,
                               arguments: Product(
-                                  id: article1[index]["id"],
+                                  // id: article1[index]["id"],
                                   image: article1[index]["image"],
                                   name: article1[index]["writer"],
                                   description: article1[index]["description"],

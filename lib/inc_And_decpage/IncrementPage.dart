@@ -1,5 +1,5 @@
-import 'controlbox.dart';
-import 'utils.dart';
+import '../setting/controlbox.dart';
+import '../setting/utils.dart';
 import 'package:flutter/material.dart';
 
 int Counter = 0;

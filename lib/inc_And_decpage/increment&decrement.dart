@@ -1,5 +1,5 @@
-import 'utils.dart';
-import 'transition.dart';
+import '../setting/utils.dart';
+import '../setting/transition.dart';
 import 'package:flutter/material.dart';
 import 'DecrementPage.dart';
 import 'IncrementPage.dart';

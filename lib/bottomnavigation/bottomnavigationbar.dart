@@ -1,13 +1,13 @@
-import 'app_config.dart';
+import '../Flavors/app_config.dart';
 
-import 'increment&decrement.dart';
-import 'shop.dart';
+import '../inc_And_decpage/increment&decrement.dart';
+import '../shoppage/shop.dart';
 
-import 'frontPage.dart';
-import 'settingpage.dart';
-import 'textcontrolbox.dart';
+import '../homepagedata/frontPage.dart';
+import '../Settingpagedata/settingpage.dart';
+import '../setting/textcontrolbox.dart';
 import 'package:flutter/material.dart';
-import 'controlbox.dart';
+import '../setting/controlbox.dart';
 
 class bottomBar extends StatefulWidget {
   const bottomBar({Key? key}) : super(key: key);
