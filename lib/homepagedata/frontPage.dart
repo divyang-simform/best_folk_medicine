@@ -2,6 +2,7 @@ import 'dart:convert';
 
 // import 'dart:html';
 import 'package:best_folk_medicine/data_fetching/api_calling.dart';
+import 'package:best_folk_medicine/data_fetching/data.dart';
 import 'package:chopper/chopper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -59,76 +60,83 @@ class _MyHomePageState extends State<MyHomePage> {
               (categary == null)
                   ? CircularProgressIndicator(strokeWidth: 4)
                   : Container(
-                      height: 100,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categaryDetail.length,
-                        itemBuilder: (context, index) => Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(10)),
-                          margin: const EdgeInsets.only(
-                              top: 20, right: 10, bottom: 20),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(categaryDetail[index]["name"],
-                                  style: Theme.of(context).textTheme.bodyText1),
-                            ),
+                height: 100,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categaryDetail.length,
+                  itemBuilder: (context, index) =>
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10)),
+                        margin: const EdgeInsets.only(
+                            top: 20, right: 10, bottom: 20),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(categaryDetail[index]["name"],
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .bodyText1),
                           ),
                         ),
                       ),
-                    ),
+                ),
+              ),
               RowPage(
                   title: "Main Articles", endtitle: "show more", link: true),
               (article == null)
                   ? const CircularProgressIndicator(strokeWidth: 4)
                   : Container(
-                      height: MediaQuery.of(context).size.height * .4,
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: buildCard(context),
-                    ),
-              (config!.appInternalId == 1)
-                  ? SizedBox()
-                  : Column(
-                      children: [
-                        RowPage(
-                            title: "You have not finished reading",
-                            endtitle: "show more",
-                            link: true),
-                        (article == null)
-                            ? CircularProgressIndicator()
-                            : Container(
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: 3,
-                                  itemBuilder: (context, index) =>
-                                      GestureDetector(
-                                    child: cardPage(
-                                        image: article1[index]["image"],
-                                        title: article1[index]["title"],
-                                        description: article1[index]
-                                            ["description"],
-                                        time: article1[index]["pastime"]),
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, detailPage.detailPagedata,
-                                          arguments: Product(
-                                              // id: article1[index]["id"],
-                                              image: article1[index]["image"],
-                                              name: article1[index]["writer"],
-                                              description: article1[index]
-                                                  ["description"],
-                                              title: article1[index]["title"],
-                                              time: article1[index]
-                                                  ["pastime"]));
-                                    },
-                                  ),
-                                ),
-                              ),
-                      ],
-                    ),
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .height * .4,
+                padding: EdgeInsets.only(left: 10, right: 10),
+                child: buildCard(context),
+              ),
+              // (config!.appInternalId == 1)
+              //     ? SizedBox()
+              //     : Column(
+              //         children: [
+              //           RowPage(
+              //               title: "You have not finished reading",
+              //               endtitle: "show more",
+              //               link: true),
+              //           (article == null)
+              //               ? CircularProgressIndicator()
+              //               : Container(
+              //                   child: ListView.builder(
+              //                     shrinkWrap: true,
+              //                     itemCount: 3,
+              //                     itemBuilder: (context, index) =>
+              //                         GestureDetector(
+              //                       child: cardPage(
+              //                           image: article1[index]["image"],
+              //                           title: article1[index]["title"],
+              //                           description: article1[index]
+              //                               ["description"],
+              //                           time: article1[index]["pastime"]),
+              //                       onTap: () {
+              //                         Navigator.pushNamed(
+              //                             context, detailPage.detailPagedata,
+              //                             arguments: Product(
+              //                                 // id: article1[index]["id"],
+              //                                 image: article1[index]["image"],
+              //                                 name: article1[index]["writer"],
+              //                                 description: article1[index]
+              //                                     ["description"],
+              //                                 title: article1[index]["title"],
+              //                                 time: article1[index]
+              //                                     ["pastime"]));
+              //                       },
+              //                     ),
+              //                   ),
+              //                 ),
+              //         ],
+              //       ),
             ],
           ),
         ),
@@ -136,69 +144,98 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  FutureBuilder<Response> buildCard(BuildContext context) {
-    return FutureBuilder<Response>(
+  FutureBuilder<Response<Postt>> buildCard(BuildContext context) {
+    return FutureBuilder<Response<Postt>>(
         future: Provider.of<ApiService>(context).getPost(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            Map<String, dynamic> map = jsonDecode(snapshot.data!.bodyString);
-            List<dynamic> posts = map["articles"];
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(
+                  snapshot.error.toString(),
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 1.3,
+                ),
+              );
+            }
+            // Map<String, dynamic> map = jsonDecode(snapshot.data!.bodyString);
+            final posts = snapshot.data?.body;
             return ListView.builder(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: posts.length,
-              itemBuilder: (context, index) => SizedBox(
-                width: MediaQuery.of(context).size.width * .7,
-                child: GestureDetector(
-                  child: Card(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Image.network(posts[index]["urlToImage"],
-                              fit: BoxFit.fill,
-                              height: MediaQuery.of(context).size.height * .25,
-                              width: MediaQuery.of(context).size.width * .7),
-                          const SizedBox(height: 10),
-                          Row(
+              itemCount: 5,
+              itemBuilder: (context, index) =>
+                  SizedBox(
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * .7,
+                    child: GestureDetector(
+                      child: Card(
+                        child: SingleChildScrollView(
+                          child: Column(
                             children: [
-                              (posts[index]["author"] ==
+                              Image.network(posts?.articles[index].urlToImage ??
+                                  "https://region4.uaw.org/sites/default/files/styles/large_square/public/bio/10546i3dac5a5993c8bc8c_5.jpg?itok=KqaqPMDL&c=2e7651912d133fd4368c0dce602cd839",
+                                  fit: BoxFit.fill,
+                                  height: MediaQuery
+                                      .of(context)
+                                      .size
+                                      .height * .25,
+                                  width: MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width * .7),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  (posts?.articles[index].author ==
                                       "noreply@blogger.com (Unknown)")
-                                  ? Text("")
-                                  : Expanded(
-                                      child: Text(
-                                        posts[index]["author"],
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
-                                      ),
+                                      ? Text("")
+                                      : Expanded(
+                                    child: Text(
+                                      posts?.articles[index].author ??
+                                          "Divyang",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .bodyText1,
                                     ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                posts?.articles[index].title ?? "No Title",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .headline1,
+                              )
                             ],
                           ),
-                          const SizedBox(height: 10),
-                          Text(
-                            posts[index]["title"],
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context).textTheme.headline1,
-                          )
-                        ],
+                        ),
                       ),
+                      onTap: () {
+                        Navigator.pushNamed(context, detailPage.detailPagedata,
+                            arguments: Product(
+                              // id: posts[index]["id"],
+                                image: posts?.articles[index].urlToImage ?? "https://region4.uaw.org/sites/default/files/styles/large_square/public/bio/10546i3dac5a5993c8bc8c_5.jpg?itok=KqaqPMDL&c=2e7651912d133fd4368c0dce602cd839",
+                                name: posts?.articles[index].author ??
+                                    "Divyang",
+                                description: posts?.articles[index]
+                                    .description ?? "No Description",
+                                title: posts?.articles[index].title ??
+                                    'No Title',
+                                time: posts?.articles[index].publishedAt ??
+                                    "Today"));
+                      },
                     ),
                   ),
-                  onTap: () {
-                    Navigator.pushNamed(context, detailPage.detailPagedata,
-                        arguments: Product(
-                            // id: posts[index]["id"],
-                            image: posts[index]["urlToImage"],
-                            name: posts[index]["author"],
-                            description: posts[index]["description"],
-                            title: posts[index]["title"],
-                            time: posts[index]["publishedAt"]));
-                  },
-                ),
-              ),
             );
             // return SingleChildScrollView(child: Text(map.toString(), style: Theme.of(context).textTheme.headline1,));
           } else {

@@ -1,3 +1,5 @@
+import 'package:best_folk_medicine/data_fetching/convertor.dart';
+import 'package:best_folk_medicine/data_fetching/data.dart';
 import 'package:chopper/chopper.dart';
 
 part 'api_calling.chopper.dart';
@@ -6,7 +8,7 @@ part 'api_calling.chopper.dart';
     baseUrl: "/v2/everything?q=bitcoin&apiKey=5377d5133c384339aa839c6bcdfe9d6f")
 abstract class ApiService extends ChopperService {
   @Get()
-  Future<Response> getPost();
+  Future<Response<Postt>> getPost();
 
   static ApiService create() {
     final client = ChopperClient(
@@ -14,7 +16,11 @@ abstract class ApiService extends ChopperService {
       services: [
         _$ApiService(),
       ],
-      converter: JsonConverter(),
+      converter: ApiConvertor(),
+      errorConverter: JsonConverter(),
+      // converter: JsonConverter(),
+
+
     );
     return _$ApiService(client);
   }

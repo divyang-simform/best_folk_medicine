@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class cardPage extends StatefulWidget {
   cardPage({
     Key? key,
-    required this.image,
-    required this.title,
-    required this.description,
-    required this.time,
+    this.image,
+    this.title,
+    this.description,
+    this.time,
   }) : super(key: key);
-  String image;
-  String title;
-  String time;
-  String description;
+  String? image;
+  String? title;
+  String? time;
+  String? description;
 
   @override
   _cardPageState createState() => _cardPageState();
@@ -25,7 +25,7 @@ class _cardPageState extends State<cardPage> {
         Card(
           child: Row(
             children: [
-              Image.asset(widget.image,
+              Image.network(widget.image!,
                   fit: BoxFit.fill,
                   height: MediaQuery.of(context).size.height * .11,
                   width: MediaQuery.of(context).size.width * .3),
@@ -35,12 +35,12 @@ class _cardPageState extends State<cardPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.title,
+                      Text(widget.title!,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodyText1),
-                      Text(widget.time),
-                      Text(widget.description, overflow: TextOverflow.ellipsis),
+                      Text(widget.time!),
+                      Text(widget.description!, overflow: TextOverflow.ellipsis),
                     ],
                   ),
                 ),
