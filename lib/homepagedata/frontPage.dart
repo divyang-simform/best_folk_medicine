@@ -149,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,
-            itemCount: 5, //posts?.articles.length,
+            itemCount: 5,//posts?.articles.length,
             itemBuilder: (context, index) => SizedBox(
               width: MediaQuery.of(context).size.width * .8,
               child: GestureDetector(
