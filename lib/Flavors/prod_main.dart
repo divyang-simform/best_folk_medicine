@@ -9,7 +9,7 @@ void main() {
     appDisplayName: "Prod",
     appInternalId: 1,
     color: KbottomNavigationBarSelectedColorinprod,
-    child: MyApp(),
+    child: const MyApp(),
   );
 
   mainCommon();

@@ -16,7 +16,7 @@ abstract class ApiService extends ChopperService {
         baseUrl: 'https://newsapi.org',
         services: [_$ApiService()],
         converter: ApiConvertor(),
-        errorConverter: JsonConverter());
+        errorConverter: const JsonConverter());
     return _$ApiService(client);
   }
 }

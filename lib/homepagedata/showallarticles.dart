@@ -1,4 +1,3 @@
-import 'dart:convert';
 import '../setting/image_control_box.dart';
 import 'card.dart';
 import '../setting/textcontrolbox.dart';
@@ -28,7 +27,7 @@ class _showAllArticalesState extends State<showAllArticales> {
       backgroundColor: kBgcolor,
       appBar: AppBar(
           centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
           title: Text(kAllArticalesPageAppTitle,
               style: Theme.of(context).textTheme.headline1),
           backgroundColor: kappBarBgcolor,
@@ -56,7 +55,7 @@ class _showAllArticalesState extends State<showAllArticales> {
         if (snapshot.connectionState == ConnectionState.done) {
           final List<Articles> post = snapshot.data!.articles;
           return ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: post.length,
             itemBuilder: (context, index) => Column(
@@ -85,7 +84,7 @@ class _showAllArticalesState extends State<showAllArticales> {
             ),
           );
         } else {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         }
       },
     );

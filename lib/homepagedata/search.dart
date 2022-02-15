@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SearchBar extends StatefulWidget {
+class SearchBar extends StatelessWidget {
   const SearchBar({Key? key}) : super(key: key);
 
-  @override
-  _SearchBarState createState() => _SearchBarState();
-}
-
-class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
