@@ -1,3 +1,4 @@
+import '../setting/textcontrolbox.dart';
 import '../setting/controlbox.dart';
 import 'row.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +27,13 @@ class detailPage extends StatefulWidget {
 class _detailPageState extends State<detailPage> {
   @override
   Widget build(BuildContext context) {
+    List<String>? time1 = widget.time.split('T');
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
-        title: Text(
-          "Articale",
-          style: Theme.of(context).textTheme.headline1,
-        ),
+        centerTitle: true,
+        title: Text(kDetailPageAppTitle,
+            style: Theme.of(context).textTheme.headline1),
         backgroundColor: kappBarBgcolor,
         elevation: 0.0,
         leading: IconButton(
@@ -49,7 +50,7 @@ class _detailPageState extends State<detailPage> {
             children: [
               Image.network(widget.image),
               SizedBox(height: 20),
-              RowPage(title: widget.name, endtitle: widget.time, link: false),
+              RowPage(title: widget.name, endtitle: time1[0], link: false),
               SizedBox(height: 20),
               Text(widget.title, style: Theme.of(context).textTheme.headline1),
               SizedBox(height: 20),

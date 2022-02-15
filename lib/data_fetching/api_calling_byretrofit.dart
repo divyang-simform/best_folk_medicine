@@ -1,5 +1,4 @@
-import 'package:best_folk_medicine/data_fetching/data.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'data.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 

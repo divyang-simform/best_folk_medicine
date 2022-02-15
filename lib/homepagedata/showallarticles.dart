@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:best_folk_medicine/homepagedata/card.dart';
-
+import '../setting/image_control_box.dart';
+import 'card.dart';
+import '../setting/textcontrolbox.dart';
 import '../data_fetching/Articles.dart';
 import '../data_fetching/api_calling_byretrofit.dart';
 import '../data_fetching/data.dart';
-
 import '../setting/controlbox.dart';
 import 'detail.dart';
 import '../data_fetching/parsingdata.dart';
@@ -27,8 +27,9 @@ class _showAllArticalesState extends State<showAllArticales> {
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
+          centerTitle: true,
           iconTheme: IconThemeData(color: Colors.black),
-          title: Text("All Articales",
+          title: Text(kAllArticalesPageAppTitle,
               style: Theme.of(context).textTheme.headline1),
           backgroundColor: kappBarBgcolor,
           elevation: 0.0),
@@ -62,55 +63,20 @@ class _showAllArticalesState extends State<showAllArticales> {
               children: [
                 GestureDetector(
                   child: cardPage(
-                    image: post[index].urlToImage,
-                    title: post[index].title,
-                    description: post[index].description,
-                    time: post[index].publishedAt,
-                  ),
-                  // Card(
-                  //   child: Row(
-                  //     children: [
-                  //       Image.network(
-                  //           post[index].urlToImage ??
-                  //               "https://region4.uaw.org/sites/default/files/styles/large_square/public/bio/10546i3dac5a5993c8bc8c_5.jpg?itok=KqaqPMDL&c=2e7651912d133fd4368c0dce602cd839",
-                  //           fit: BoxFit.fill,
-                  //           height: MediaQuery.of(context).size.height * .11,
-                  //           width: MediaQuery.of(context).size.width * .3),
-                  //       Flexible(
-                  //         child: Padding(
-                  //           padding: const EdgeInsets.all(8.0),
-                  //           child: Column(
-                  //             crossAxisAlignment: CrossAxisAlignment.start,
-                  //             children: [
-                  //               Text(post[index].title ?? "No Title",
-                  //                   maxLines: 2,
-                  //                   overflow: TextOverflow.ellipsis,
-                  //                   style:
-                  //                       Theme.of(context).textTheme.bodyText1),
-                  //               Text(post[index].publishedAt ?? "today"),
-                  //               Text(
-                  //                   post[index].description ?? "No description",
-                  //                   overflow: TextOverflow.ellipsis),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+                      image: post[index].urlToImage,
+                      title: post[index].title,
+                      description: post[index].description,
+                      time: post[index].publishedAt),
                   onTap: () {
                     Navigator.pushNamed(
                       context,
                       detailPage.detailPagedata,
                       arguments: Product(
-                        image: post[index].urlToImage ??
-                            "https://region4.uaw.org/sites/default/files/styles/large_square/public/bio/10546i3dac5a5993c8bc8c_5.jpg?itok=KqaqPMDL&c=2e7651912d133fd4368c0dce602cd839",
-                        name: post[index].author ?? "No Name",
-                        description:
-                            post[index].description ?? "No Description",
-                        title: post[index].title ?? "No Title",
-                        time: post[index].publishedAt ?? "Today",
-                      ),
+                          image: post[index].urlToImage ?? kUrlToImage,
+                          name: post[index].author ?? kAuthorName,
+                          description: post[index].description ?? kDescription,
+                          title: post[index].title ?? kTitle,
+                          time: post[index].publishedAt ?? kPublishedAt),
                     );
                   },
                 ),

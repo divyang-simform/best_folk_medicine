@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'Source.dart';
 
 part 'Articles.g.dart';

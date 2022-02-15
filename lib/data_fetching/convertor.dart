@@ -1,19 +1,12 @@
-// import 'dart:async';
 import 'dart:convert';
-
-import 'package:best_folk_medicine/data_fetching/data.dart';
+import 'data.dart';
 import 'package:chopper/chopper.dart';
 
 class ApiConvertor extends Converter {
   @override
   Request convertRequest(Request request) {
-    final req = applyHeader(
-      request,
-      contentTypeKey,
-      jsonHeaders,
-      override: false,
-    );
-
+    final req =
+        applyHeader(request, contentTypeKey, jsonHeaders, override: false);
     return encodeJson(req);
   }
 
@@ -27,7 +20,7 @@ class ApiConvertor extends Converter {
 
   @override
   Response<BodyType> convertResponse<BodyType, InnerType>(Response response) {
-    return decodeJson<BodyType,InnerType>(response);
+    return decodeJson<BodyType, InnerType>(response);
   }
 
   Response<BodyType> decodeJson<BodyType, InnerType>(Response response) {

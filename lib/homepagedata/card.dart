@@ -20,9 +20,11 @@ class cardPage extends StatefulWidget {
 class _cardPageState extends State<cardPage> {
   @override
   Widget build(BuildContext context) {
+    List<String>? time1 = widget.time?.split('T');
     return Column(
       children: [
         Card(
+          elevation: 10,
           child: Row(
             children: [
               Image.network(widget.image!,
@@ -39,8 +41,9 @@ class _cardPageState extends State<cardPage> {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodyText1),
-                      Text(widget.time!),
-                      Text(widget.description!, overflow: TextOverflow.ellipsis),
+                      Text(time1![0]),
+                      Text(widget.description!,
+                          overflow: TextOverflow.ellipsis),
                     ],
                   ),
                 ),
@@ -48,7 +51,6 @@ class _cardPageState extends State<cardPage> {
             ],
           ),
         ),
-        const Divider(thickness: 2)
       ],
     );
   }
