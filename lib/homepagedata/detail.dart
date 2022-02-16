@@ -49,11 +49,11 @@ class _detailPageState extends State<detailPage> {
           child: Column(
             children: [
               Image.network(widget.image),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               RowPage(title: widget.name, endtitle: time1[0], link: false),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(widget.title, style: Theme.of(context).textTheme.headline1),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(widget.description,
                   style: Theme.of(context).textTheme.bodyText1),
             ],

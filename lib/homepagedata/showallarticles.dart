@@ -1,15 +1,11 @@
-import '../setting/image_control_box.dart';
-import 'card.dart';
+import '../Flavors/app_config.dart';
+import 'retrofit_listbuilder.dart';
+
 import '../setting/textcontrolbox.dart';
-import '../data_fetching/Articles.dart';
-import '../data_fetching/api_calling_byretrofit.dart';
-import '../data_fetching/data.dart';
 import '../setting/controlbox.dart';
-import 'detail.dart';
-import '../data_fetching/parsingdata.dart';
+import 'chopper_listbuilder.dart';
 import 'search.dart';
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 
 class showAllArticales extends StatefulWidget {
   static const showArticalesdata = '/showarticalespage';
@@ -23,6 +19,7 @@ class showAllArticales extends StatefulWidget {
 class _showAllArticalesState extends State<showAllArticales> {
   @override
   Widget build(BuildContext context) {
+    var config = AppConfig.of(context);
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
@@ -39,54 +36,13 @@ class _showAllArticalesState extends State<showAllArticales> {
             children: [
               const SearchBar(),
               const SizedBox(height: 30),
-              buildAllArticles(context),
+              (config?.appInternalId == 1)
+                  ? buildCard(context, 2)
+                  : buildAllArticles(context, 2),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  FutureBuilder<Postt> buildAllArticles(BuildContext context) {
-    final client = ApiCalling(Dio(BaseOptions()));
-    return FutureBuilder<Postt>(
-      future: client.getPost(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          final List<Articles> post = snapshot.data!.articles;
-          return ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: post.length,
-            itemBuilder: (context, index) => Column(
-              children: [
-                GestureDetector(
-                  child: cardPage(
-                      image: post[index].urlToImage,
-                      title: post[index].title,
-                      description: post[index].description,
-                      time: post[index].publishedAt),
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      detailPage.detailPagedata,
-                      arguments: Product(
-                          image: post[index].urlToImage ?? kUrlToImage,
-                          name: post[index].author ?? kAuthorName,
-                          description: post[index].description ?? kDescription,
-                          title: post[index].title ?? kTitle,
-                          time: post[index].publishedAt ?? kPublishedAt),
-                    );
-                  },
-                ),
-                const Divider(thickness: 2)
-              ],
-            ),
-          );
-        } else {
-          return const CircularProgressIndicator();
-        }
-      },
     );
   }
 }

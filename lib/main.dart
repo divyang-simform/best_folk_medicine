@@ -22,10 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var config = AppConfig.of(context);
     return Provider(
-      // builder: (_) => ApiService.create(),
-      // dispose: (_ , ApiService service) => service.client.dispose(),
       create: (context) => ApiService.create(),
-
+      dispose: (_ , ApiService service) => service.client.dispose(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: config!.appDisplayName,

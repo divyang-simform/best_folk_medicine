@@ -1,13 +1,9 @@
 import 'dart:convert';
-import '../setting/image_control_box.dart';
-import '../data_fetching/api_calling.dart';
-import '../data_fetching/data.dart';
-import '../setting/textcontrolbox.dart';
-import 'package:chopper/chopper.dart';
-import 'package:provider/provider.dart';
+import 'retrofit_listbuilder.dart';
 import '../Flavors/app_config.dart';
 import '../data_fetching/parsingdata.dart';
 import 'card.dart';
+import 'chopper_listbuilder.dart';
 import 'detail.dart';
 import 'row.dart';
 import 'search.dart';
@@ -80,144 +76,56 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
               RowPage(
                   title: "Main Articles", endtitle: "show more", link: true),
-              Container(
-                height: MediaQuery.of(context).size.height * .4,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: buildCard(context),
-              ),
               (config!.appInternalId == 1)
-                  ? const SizedBox()
-                  : Column(
-                      children: [
-                        RowPage(
-                            title: "You have not finished reading",
-                            endtitle: "show more",
-                            link: true),
-                        (article == null)
-                            ? const CircularProgressIndicator()
-                            : Container(
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: 3,
-                                  itemBuilder: (context, index) =>
-                                      GestureDetector(
-                                    child: cardPage(
+                  ? Container(
+                      height: MediaQuery.of(context).size.height * .4,
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: buildCard(context, 1),
+                    )
+                  : Container(
+                      height: MediaQuery.of(context).size.height * .4,
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: buildAllArticles(context, 1),
+                    ),
+              Column(
+                children: [
+                  RowPage(
+                      title: "You have not finished reading",
+                      endtitle: "show more",
+                      link: true),
+                  (article == null)
+                      ? const CircularProgressIndicator()
+                      : Container(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: 3,
+                            itemBuilder: (context, index) => GestureDetector(
+                              child: cardPage(
+                                  image: article1[index]["image"],
+                                  title: article1[index]["title"],
+                                  description: article1[index]["description"],
+                                  time: article1[index]["pastime"],
+                                  name: 'no name'),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, detailPage.detailPagedata,
+                                    arguments: Product(
                                         image: article1[index]["image"],
-                                        title: article1[index]["title"],
+                                        name: article1[index]["writer"],
                                         description: article1[index]
                                             ["description"],
-                                        time: article1[index]["pastime"]),
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, detailPage.detailPagedata,
-                                          arguments: Product(
-                                              image: article1[index]["image"],
-                                              name: article1[index]["writer"],
-                                              description: article1[index]
-                                                  ["description"],
-                                              title: article1[index]["title"],
-                                              time: article1[index]
-                                                  ["pastime"]));
-                                    },
-                                  ),
-                                ),
-                              ),
-                      ],
-                    ),
+                                        title: article1[index]["title"],
+                                        time: article1[index]["pastime"]));
+                              },
+                            ),
+                          ),
+                        ),
+                ],
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  FutureBuilder<Response<Postt>> buildCard(BuildContext context) {
-    return FutureBuilder<Response<Postt>>(
-      future: Provider.of<ApiService>(context).getPost(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                snapshot.error.toString(),
-                textAlign: TextAlign.center,
-                textScaleFactor: 1.3,
-              ),
-            );
-          }
-          final posts = snapshot.data?.body;
-          return ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemCount: 5,//posts?.articles.length,
-            itemBuilder: (context, index) => SizedBox(
-              width: MediaQuery.of(context).size.width * .8,
-              child: GestureDetector(
-                child: Card(
-                  elevation: 10,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Image.network(
-                            posts?.articles[index].urlToImage ?? kUrlToImage,
-                            fit: BoxFit.fill,
-                            height: MediaQuery.of(context).size.height * .24,
-                            width: MediaQuery.of(context).size.width * .8),
-                        const SizedBox(height: 10),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  (posts?.articles[index].author ==
-                                          "noreply@blogger.com (Unknown)")
-                                      ? const Text("")
-                                      : Expanded(
-                                          child: Text(
-                                              posts?.articles[index].author ??
-                                                  kAuthorName,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1),
-                                        ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Text(posts?.articles[index].title ?? kTitle,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.headline1)
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pushNamed(context, detailPage.detailPagedata,
-                      arguments: Product(
-                          image:
-                              posts?.articles[index].urlToImage ?? kUrlToImage,
-                          name: posts?.articles[index].author ?? kAuthorName,
-                          description: posts?.articles[index].description ??
-                              kDescription,
-                          title: posts?.articles[index].title ?? kTitle,
-                          time: posts?.articles[index].publishedAt ??
-                              kPublishedAt));
-                },
-              ),
-            ),
-          );
-        } else {
-          return Container(
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator());
-        }
-      },
     );
   }
 }
