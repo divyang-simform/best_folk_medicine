@@ -1,5 +1,4 @@
-import 'package:best_folk_medicine/setting/image_control_box.dart';
-import 'package:best_folk_medicine/setting/textcontrolbox.dart';
+import '../setting/resources.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'Source.dart';
 
@@ -12,10 +11,10 @@ class Articles {
       this.publishedAt = kPublishedAt,
       this.title = kTitle,
       this.urlToImage = kUrlToImage,
-      this.content = 'No Content',
+      this.content = kContent,
       this.author = kAuthorName,
       required this.source,
-      this.url = 'No Url'});
+      this.url = kUrl});
 
   String? author;
   String? title;

@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               const SearchBar(),
               const SizedBox(height: 30),
-              (categary == null)
-                  ? const CircularProgressIndicator(strokeWidth: 4)
+              (categary == null || categaryDetail == null)
+                  ? const CircularProgressIndicator.adaptive(strokeWidth: 4)
                   : Container(
                       height: 100,
                       child: ListView.builder(
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       endtitle: "show more",
                       link: true),
                   (article == null)
-                      ? const CircularProgressIndicator()
+                      ? const CircularProgressIndicator.adaptive()
                       : Container(
                           child: ListView.builder(
                             shrinkWrap: true,

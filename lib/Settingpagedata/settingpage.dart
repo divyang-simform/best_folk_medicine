@@ -1,18 +1,12 @@
-// import 'dart:js';
 import 'alert.dart';
 import 'dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'Bottomsheet.dart';
 
-class settingsPage extends StatefulWidget {
+class settingsPage extends StatelessWidget {
   const settingsPage({Key? key}) : super(key: key);
 
-  @override
-  _settingsPageState createState() => _settingsPageState();
-}
-
-class _settingsPageState extends State<settingsPage> {
   @override
   Widget build(BuildContext context) {
     return Center(

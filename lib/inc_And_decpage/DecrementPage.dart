@@ -1,41 +1,34 @@
-import '../setting/controlbox.dart';
-
-import 'IncrementPage.dart';
+import '../setting/resources.dart';
+import 'counter.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import '../setting/utils.dart';
 import 'package:flutter/material.dart';
 
-class decrementPage extends StatefulWidget {
+class decrementPage extends StatelessWidget {
   const decrementPage({Key? key}) : super(key: key);
 
   @override
-  _decrementPageState createState() => _decrementPageState();
-}
-
-class _decrementPageState extends State<decrementPage> {
-  void _decrementCounter() {
-    setState(() {
-      Counter--;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final _counter = Provider.of<Counter>(context);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Counter: $Counter"),
+          Observer(builder: (context) {
+            return Text("Counter: ${_counter.count}");
+          }),
           MaterialButton(
             color: KbuttonColor,
-            onPressed: () => _decrementCounter(),
-            child: Text("Decrement", style: TextStyle(color: KbuttonTextColor)),
+            onPressed: () => _counter.decrement(),
+            child: const Text("Decrement", style: TextStyle(color: KbuttonTextColor)),
           ),
           MaterialButton(
             color: KbuttonColor,
             onPressed: () {
               NavKey.currentState?.pushNamed('/');
             },
-            child: Text("Increment Page",
+            child: const Text("Increment Page",
                 style: TextStyle(color: KbuttonTextColor)),
           ),
         ],

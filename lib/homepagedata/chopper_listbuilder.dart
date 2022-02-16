@@ -1,7 +1,5 @@
 import '../data_fetching/api_calling.dart';
 import '../data_fetching/data.dart';
-import '../setting/image_control_box.dart';
-import '../setting/textcontrolbox.dart';
 import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +22,7 @@ FutureBuilder<Response<Postt>> buildCard(BuildContext context, int page) {
           );
         }
         final posts = snapshot.data?.body;
+        print(posts?.articles);
         return ListView.builder(
           scrollDirection: (page == 1) ? Axis.horizontal : Axis.vertical,
           physics: (page == 2) ? const NeverScrollableScrollPhysics() : null,
@@ -31,25 +30,22 @@ FutureBuilder<Response<Postt>> buildCard(BuildContext context, int page) {
           itemCount: (page == 1) ? 5 : posts?.articles.length ?? 5,
           itemBuilder: (context, index) => (page == 1)
               ? MyCardPage(
-                  urlToImage: posts?.articles[index].urlToImage ?? kUrlToImage,
-                  title: posts?.articles[index].title ?? kTitle,
-                  description:
-                      posts?.articles[index].description ?? kDescription,
-                  author: posts?.articles[index].author ?? kAuthorName,
-                  publishedAt:
-                      posts?.articles[index].publishedAt ?? kPublishedAt)
+                  urlToImage: (posts?.articles[index].urlToImage).toString(),
+                  title: (posts?.articles[index].title).toString(),
+                  description: (posts?.articles[index].description).toString(),
+                  author: (posts?.articles[index].author).toString(),
+                  publishedAt: (posts?.articles[index].publishedAt).toString())
               : cardPage(
-                  image: posts?.articles[index].urlToImage ?? kUrlToImage,
-                  title: posts?.articles[index].title ?? kTitle,
-                  description:
-                      posts?.articles[index].description ?? kDescription,
-                  time: posts?.articles[index].publishedAt ?? kPublishedAt,
-                  name: posts?.articles[index].author ?? kAuthorName),
+                  image: (posts?.articles[index].urlToImage).toString(),
+                  title: (posts?.articles[index].title).toString(),
+                  description: (posts?.articles[index].description).toString(),
+                  time: (posts?.articles[index].publishedAt).toString(),
+                  name: (posts?.articles[index].author).toString()),
         );
       } else {
         return Container(
             alignment: Alignment.center,
-            child: const CircularProgressIndicator());
+            child: const CircularProgressIndicator.adaptive());
       }
     },
   );

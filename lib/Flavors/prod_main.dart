@@ -1,7 +1,7 @@
+import '../setting/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'app_config.dart';
-import '../setting/controlbox.dart';
 import '../main.dart';
 
 void main() {

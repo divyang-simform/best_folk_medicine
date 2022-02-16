@@ -2,15 +2,15 @@ import '../data_fetching/parsingdata.dart';
 import 'detail.dart';
 import 'package:flutter/material.dart';
 
-class cardPage extends StatefulWidget {
-  cardPage({
-    Key? key,
-    required this.image,
-    required this.title,
-    required this.description,
-    required this.time,
-    required this.name
-  }) : super(key: key);
+class cardPage extends StatelessWidget {
+  cardPage(
+      {Key? key,
+      required this.image,
+      required this.title,
+      required this.description,
+      required this.time,
+      required this.name})
+      : super(key: key);
   String image;
   String title;
   String time;
@@ -18,13 +18,8 @@ class cardPage extends StatefulWidget {
   String name;
 
   @override
-  _cardPageState createState() => _cardPageState();
-}
-
-class _cardPageState extends State<cardPage> {
-  @override
   Widget build(BuildContext context) {
-    List<String>? time1 = widget.time.split('T');
+    List<String>? time1 = time.split('T');
     return Column(
       children: [
         GestureDetector(
@@ -32,7 +27,7 @@ class _cardPageState extends State<cardPage> {
             elevation: 10,
             child: Row(
               children: [
-                Image.network(widget.image,
+                Image.network(image,
                     fit: BoxFit.fill,
                     height: MediaQuery.of(context).size.height * .11,
                     width: MediaQuery.of(context).size.width * .3),
@@ -42,13 +37,12 @@ class _cardPageState extends State<cardPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(widget.title,
+                        Text(title,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.bodyText1),
                         Text(time1[0]),
-                        Text(widget.description,
-                            overflow: TextOverflow.ellipsis),
+                        Text(description, overflow: TextOverflow.ellipsis),
                       ],
                     ),
                   ),
@@ -58,12 +52,13 @@ class _cardPageState extends State<cardPage> {
           ),
           onTap: () {
             Navigator.pushNamed(
-              context,detailPage.detailPagedata,
+              context,
+              detailPage.detailPagedata,
               arguments: Product(
-                  image: widget.image,
-                  name: widget.name,
-                  description: widget.description,
-                  title: widget.title,
+                  image: image,
+                  name: name,
+                  description: description,
+                  title: title,
                   time: time1[0]),
             );
           },

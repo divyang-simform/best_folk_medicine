@@ -1,10 +1,11 @@
+import '../setting/resources.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'Source.g.dart';
 
 @JsonSerializable()
 class Source {
-  Source({this.id = '1', this.name = 'divyang'});
+  Source({this.id = kId, this.name = kName});
 
   String? id;
   String? name;

@@ -1,8 +1,6 @@
 import '../data_fetching/Articles.dart';
 import '../data_fetching/data.dart';
 import 'main_articles_card.dart';
-import '../setting/image_control_box.dart';
-import '../setting/textcontrolbox.dart';
 import 'package:flutter/material.dart';
 import '../data_fetching/api_calling_byretrofit.dart';
 import 'package:dio/dio.dart';
@@ -23,22 +21,22 @@ FutureBuilder<Postt> buildAllArticles(BuildContext context, int page) {
           itemCount: (page == 1) ? 5 : post?.length ?? 5,
           itemBuilder: (context, index) => (page == 1)
               ? MyCardPage(
-                  urlToImage: post?[index].urlToImage ?? kUrlToImage,
-                  title: post?[index].title ?? kTitle,
-                  description: post?[index].description ?? kDescription,
-                  publishedAt: post?[index].publishedAt ?? kPublishedAt,
-                  author: post?[index].author ?? kAuthorName)
+                  urlToImage: (post?[index].urlToImage).toString(),
+                  title: (post?[index].title).toString(),
+                  description: (post?[index].description).toString(),
+                  publishedAt: (post?[index].publishedAt).toString(),
+                  author: (post?[index].author).toString())
               : cardPage(
-                  image: post?[index].urlToImage ?? kUrlToImage,
-                  title: post?[index].title ?? kTitle,
-                  description: post?[index].description ?? kDescription,
-                  time: post?[index].publishedAt ?? kPublishedAt,
-                  name: post?[index].author ?? kAuthorName),
+                  image: (post?[index].urlToImage).toString(),
+                  title: (post?[index].title).toString(),
+                  description: (post?[index].description).toString(),
+                  time: (post?[index].publishedAt).toString(),
+                  name: (post?[index].author).toString()),
         );
       } else {
         return Container(
             alignment: Alignment.center,
-            child: const CircularProgressIndicator());
+            child: const CircularProgressIndicator.adaptive());
       }
     },
   );

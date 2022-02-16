@@ -1,9 +1,8 @@
-import '../setting/textcontrolbox.dart';
-import '../setting/controlbox.dart';
+import '../setting/resources.dart';
 import 'row.dart';
 import 'package:flutter/material.dart';
 
-class detailPage extends StatefulWidget {
+class detailPage extends StatelessWidget {
   static const detailPagedata = '/detailpage';
 
   detailPage({
@@ -21,13 +20,8 @@ class detailPage extends StatefulWidget {
   String name;
 
   @override
-  _detailPageState createState() => _detailPageState();
-}
-
-class _detailPageState extends State<detailPage> {
-  @override
   Widget build(BuildContext context) {
-    List<String>? time1 = widget.time.split('T');
+    List<String>? time1 = time.split('T');
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
@@ -48,14 +42,13 @@ class _detailPageState extends State<detailPage> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Image.network(widget.image),
+              Hero(tag: time, child: Image.network(image)),
               const SizedBox(height: 20),
-              RowPage(title: widget.name, endtitle: time1[0], link: false),
+              RowPage(title: name, endtitle: time1[0], link: false),
               const SizedBox(height: 20),
-              Text(widget.title, style: Theme.of(context).textTheme.headline1),
+              Text(title, style: Theme.of(context).textTheme.headline1),
               const SizedBox(height: 20),
-              Text(widget.description,
-                  style: Theme.of(context).textTheme.bodyText1),
+              Text(description, style: Theme.of(context).textTheme.bodyText1),
             ],
           ),
         ),

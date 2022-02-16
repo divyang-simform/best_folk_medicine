@@ -1,22 +1,15 @@
+import '../setting/resources.dart';
 import '../Flavors/app_config.dart';
 import 'retrofit_listbuilder.dart';
-
-import '../setting/textcontrolbox.dart';
-import '../setting/controlbox.dart';
 import 'chopper_listbuilder.dart';
 import 'search.dart';
 import 'package:flutter/material.dart';
 
-class showAllArticales extends StatefulWidget {
+class showAllArticales extends StatelessWidget {
   static const showArticalesdata = '/showarticalespage';
 
   const showAllArticales({Key? key}) : super(key: key);
 
-  @override
-  _showAllArticalesState createState() => _showAllArticalesState();
-}
-
-class _showAllArticalesState extends State<showAllArticales> {
   @override
   Widget build(BuildContext context) {
     var config = AppConfig.of(context);

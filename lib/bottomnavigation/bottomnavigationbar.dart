@@ -1,13 +1,10 @@
+import '../setting/resources.dart';
 import '../Flavors/app_config.dart';
-
 import '../inc_And_decpage/increment&decrement.dart';
 import '../shoppage/shop.dart';
-
 import '../homepagedata/frontPage.dart';
 import '../Settingpagedata/settingpage.dart';
-import '../setting/textcontrolbox.dart';
 import 'package:flutter/material.dart';
-import '../setting/controlbox.dart';
 
 class bottomBar extends StatefulWidget {
   const bottomBar({Key? key}) : super(key: key);
@@ -43,7 +40,7 @@ class _bottomBarState extends State<bottomBar> {
 
   @override
   Widget build(BuildContext context) {
-    var Config = AppConfig.of(context);
+    var config = AppConfig.of(context);
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -69,7 +66,7 @@ class _bottomBarState extends State<bottomBar> {
                 label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Config!.color,
+          selectedItemColor: config!.color,
           unselectedItemColor: KbottomNavigationBarUnSelectedColor,
           onTap: _onItemTapped),
     );

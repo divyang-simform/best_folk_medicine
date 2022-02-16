@@ -1,14 +1,11 @@
-// import 'dart:html';
+import 'setting/resources.dart';
 import 'bottomnavigation/bottomnavigationbar.dart';
 import 'data_fetching/api_calling.dart';
 import 'data_fetching/parsingdata.dart';
 import 'homepagedata/showallarticles.dart';
-
 import 'Flavors/app_config.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-
-import 'setting/controlbox.dart';
 import 'homepagedata/detail.dart';
 
 void mainCommon() {
@@ -43,7 +40,6 @@ class MyApp extends StatelessWidget {
             final args = settings.arguments as Product;
             return MaterialPageRoute(
               builder: (context) => detailPage(
-                  // id: args.id,
                   image: args.image,
                   title: args.title,
                   name: args.name,
