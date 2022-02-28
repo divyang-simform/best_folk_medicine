@@ -10,7 +10,7 @@ part 'api_calling.chopper.dart';
 
 @ChopperApi(
     baseUrl:
-        "/v2/everything?q=apple&sortBy=popularity&apiKey=5377d5133c384339aa839c6bcdfe9d6f")
+        "/v2/everything?q=nato&sortBy=popularity&apiKey=5377d5133c384339aa839c6bcdfe9d6f")
 abstract class ApiService extends ChopperService {
   @Get()
   Future<Response<Postt>> getPost();
@@ -41,7 +41,7 @@ abstract class ApiService extends ChopperService {
 }
 
 class AllException implements Exception {
-  final message = "Error :( " ;
+  final message = "Error :( ";
 
   @override
   String toString() => message;

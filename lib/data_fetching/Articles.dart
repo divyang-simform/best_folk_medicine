@@ -5,7 +5,7 @@ import 'Source.dart';
 part 'Articles.g.dart';
 
 @JsonSerializable()
-class Articles {
+class Articles  {
   Articles(
       {this.description = kDescription,
       this.publishedAt = kPublishedAt,

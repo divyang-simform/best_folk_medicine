@@ -21,7 +21,8 @@ class decrementPage extends StatelessWidget {
           MaterialButton(
             color: KbuttonColor,
             onPressed: () => _counter.decrement(),
-            child: const Text("Decrement", style: TextStyle(color: KbuttonTextColor)),
+            child: const Text("Decrement",
+                style: TextStyle(color: KbuttonTextColor)),
           ),
           MaterialButton(
             color: KbuttonColor,

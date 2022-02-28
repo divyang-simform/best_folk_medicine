@@ -31,7 +31,7 @@ class _ShopingPageState extends State<ShopingPage> {
   @override
   Widget build(BuildContext context) {
     if (shopData == null) {
-      return CircularProgressIndicator(strokeWidth: 4);
+      return const CircularProgressIndicator(strokeWidth: 4);
     } else {
       return Container(
         child: GridView.builder(
