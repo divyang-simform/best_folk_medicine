@@ -1,6 +1,4 @@
-
-import 'package:best_folk_medicine/Settingpagedata/bottomsheet.dart';
-
+import 'bottomsheet.dart';
 import 'alert.dart';
 import 'dialog.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,7 +53,7 @@ class SettingsPage extends StatelessWidget {
               onPressed: () {
                 showCupertinoModalPopup<void>(
                     context: context,
-                    builder: (BuildContext context) => bottomSheet(
+                    builder: (BuildContext context) => BottomSheets(
                         title: "title",
                         message: "testing purpose",
                         button1: "thanks",

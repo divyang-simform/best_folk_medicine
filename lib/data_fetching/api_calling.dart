@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
 import 'convertor.dart';
 import 'data.dart';
 import 'package:chopper/chopper.dart';
@@ -29,7 +27,7 @@ abstract class ApiService extends ChopperService {
         RequestsInterceptor(),
         (Response response) async {
           if (response.statusCode != 200) {
-            throw AllException();
+            throw AllException(code: response.statusCode);
           }
           return response;
         },
@@ -41,10 +39,11 @@ abstract class ApiService extends ChopperService {
 }
 
 class AllException implements Exception {
-  final message = "Error :( ";
+  AllException({ required this.code});
+  int? code;
 
   @override
-  String toString() => message;
+  String toString() => "${code.toString()} Error :(";
 }
 
 class MobileDataInterceptor implements RequestInterceptor {

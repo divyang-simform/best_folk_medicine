@@ -2,8 +2,8 @@ import '../data_fetching/parsingdata.dart';
 import 'detail.dart';
 import 'package:flutter/material.dart';
 
-class cardPage extends StatelessWidget {
-  cardPage(
+class CardPage extends StatelessWidget {
+  CardPage(
       {Key? key,
       required this.image,
       required this.title,
@@ -53,7 +53,7 @@ class cardPage extends StatelessWidget {
           onTap: () {
             Navigator.pushNamed(
               context,
-              detailPage.detailPagedata,
+              DetailPage.detailPagedata,
               arguments: Product(
                   image: image,
                   name: name,
@@ -63,7 +63,7 @@ class cardPage extends StatelessWidget {
             );
           },
         ),
-        Divider(thickness: 2)
+        const Divider(thickness: 2)
       ],
     );
   }

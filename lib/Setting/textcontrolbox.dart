@@ -1,8 +1,8 @@
 part of 'resources.dart';
 
-const String kForntPageAppTitle = "Best Folk Medicine";
-const String KShopPageAppTitle = "Shop";
-const String KInc_decAppTitle = "Increment & decrement";
+const String kFrontPageAppTitle = "Best Folk Medicine";
+const String kShopPageAppTitle = "Shop";
+const String kIncDecAppTitle = "Increment & decrement";
 const String kSettingPageAppTitle = "Settings";
 const String kDetailPageAppTitle = "Articale";
 const String kAllArticalesPageAppTitle = "All Articale";

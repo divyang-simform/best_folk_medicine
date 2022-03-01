@@ -2,11 +2,11 @@ import '../Setting/resources.dart';
 import 'counter.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import '../setting/utils.dart';
+import '../Setting/utils.dart';
 import 'package:flutter/material.dart';
 
-class incrementScreen extends StatelessWidget {
-  const incrementScreen({Key? key}) : super(key: key);
+class IncrementScreen extends StatelessWidget {
+  const IncrementScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,18 +19,18 @@ class incrementScreen extends StatelessWidget {
             return Text("Counter: ${_counter.count}");
           }),
           MaterialButton(
-            color: KbuttonColor,
+            color: kButtonColor,
             onPressed: () => _counter.increment(),
             child: const Text("Increment",
-                style: TextStyle(color: KbuttonTextColor)),
+                style: TextStyle(color: kButtonTextColor)),
           ),
           MaterialButton(
-            color: KbuttonColor,
+            color: kButtonColor,
             onPressed: () {
-              NavKey.currentState?.pushNamed('/decrement');
+              navKey.currentState?.pushNamed('/decrement');
             },
             child: const Text("Decrement Page",
-                style: TextStyle(color: KbuttonTextColor)),
+                style: TextStyle(color: kButtonTextColor)),
           ),
         ],
       ),

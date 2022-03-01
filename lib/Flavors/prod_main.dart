@@ -1,4 +1,4 @@
-import '../setting/resources.dart';
+import '../Setting/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'app_config.dart';
@@ -8,7 +8,7 @@ void main() {
   var configuredApp = AppConfig(
     appDisplayName: "Prod",
     appInternalId: 1,
-    color: KbottomNavigationBarSelectedColorinprod,
+    color: kBottomNavigationBarSelectedColorInProd,
     child: const MyApp(),
   );
   _setupLogging();

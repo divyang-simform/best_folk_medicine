@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             shrinkWrap: true,
                             itemCount: 3,
                             itemBuilder: (context, index) => GestureDetector(
-                              child: cardPage(
+                              child: CardPage(
                                   image: article1[index]["image"],
                                   title: article1[index]["title"],
                                   description: article1[index]["description"],
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   name: 'no name'),
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, detailPage.detailPagedata,
+                                    context, DetailPage.detailPagedata,
                                     arguments: Product(
                                         image: article1[index]["image"],
                                         name: article1[index]["writer"],

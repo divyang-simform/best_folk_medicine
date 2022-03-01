@@ -2,7 +2,7 @@ import 'package:best_folk_medicine/Setting/resources.dart';
 import 'counter.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import '../setting/utils.dart';
+import '../Setting/utils.dart';
 import 'package:flutter/material.dart';
 
 class DecrementPage extends StatelessWidget {
@@ -19,18 +19,18 @@ class DecrementPage extends StatelessWidget {
             return Text("Counter: ${_counter.count}");
           }),
           MaterialButton(
-            color: KbuttonColor,
+            color: kButtonColor,
             onPressed: () => _counter.decrement(),
             child: const Text("Decrement",
-                style: TextStyle(color: KbuttonTextColor)),
+                style: TextStyle(color: kButtonTextColor)),
           ),
           MaterialButton(
-            color: KbuttonColor,
+            color: kButtonColor,
             onPressed: () {
-              NavKey.currentState?.pushNamed('/');
+              navKey.currentState?.pushNamed('/');
             },
             child: const Text("Increment Page",
-                style: TextStyle(color: KbuttonTextColor)),
+                style: TextStyle(color: kButtonTextColor)),
           ),
         ],
       ),

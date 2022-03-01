@@ -66,7 +66,7 @@ class MyCardPage extends StatelessWidget {
           ),
         ),
         onTap: () {
-          Navigator.pushNamed(context, detailPage.detailPagedata,
+          Navigator.pushNamed(context, DetailPage.detailPagedata,
               arguments: Product(
                   image: urlToImage,
                   name: author,

@@ -1,4 +1,4 @@
 
 import 'package:flutter/cupertino.dart';
 
-GlobalKey<NavigatorState> NavKey = GlobalKey();
+GlobalKey<NavigatorState> navKey = GlobalKey();

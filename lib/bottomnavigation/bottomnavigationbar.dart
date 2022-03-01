@@ -1,6 +1,6 @@
 import 'package:best_folk_medicine/Inc_And_DecPage/increment&decrement.dart';
 
-import '../setting/resources.dart';
+import '../Setting/resources.dart';
 import '../Flavors/app_config.dart';
 import '../shoppage/shop.dart';
 import '../homepagedata/frontPage.dart';
@@ -16,7 +16,7 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
-  String title = kForntPageAppTitle;
+  String title = kFrontPageAppTitle;
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
     ShopingPage(),
@@ -29,11 +29,11 @@ class _BottomBarState extends State<BottomBar> {
       _selectedIndex = index;
     });
     if (_selectedIndex == 0) {
-      title = kForntPageAppTitle;
+      title = kFrontPageAppTitle;
     } else if (_selectedIndex == 1) {
-      title = KShopPageAppTitle;
+      title = kShopPageAppTitle;
     } else if (_selectedIndex == 2) {
-      title = KInc_decAppTitle;
+      title = kIncDecAppTitle;
     } else if (_selectedIndex == 3) {
       title = kSettingPageAppTitle;
     }
@@ -68,7 +68,7 @@ class _BottomBarState extends State<BottomBar> {
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: config!.color,
-          unselectedItemColor: KbottomNavigationBarUnSelectedColor,
+          unselectedItemColor: kBottomNavigationBarUnSelectedColor,
           onTap: _onItemTapped),
     );
   }

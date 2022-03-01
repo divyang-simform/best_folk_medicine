@@ -1,11 +1,11 @@
-import '../setting/resources.dart';
+import '../Setting/resources.dart';
 import 'row.dart';
 import 'package:flutter/material.dart';
 
-class detailPage extends StatelessWidget {
+class DetailPage extends StatelessWidget {
   static const detailPagedata = '/detailpage';
 
-  detailPage({
+  DetailPage({
     Key? key,
     required this.image,
     required this.title,

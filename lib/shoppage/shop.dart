@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-// import 'dart:html';
 import 'package:best_folk_medicine/shoppage/shopcard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +22,6 @@ class _ShopingPageState extends State<ShopingPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadJson();
   }

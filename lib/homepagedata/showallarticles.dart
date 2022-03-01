@@ -1,4 +1,4 @@
-import '../setting/resources.dart';
+import '../Setting/resources.dart';
 import '../Flavors/app_config.dart';
 import 'retrofit_listbuilder.dart';
 import 'chopper_listbuilder.dart';

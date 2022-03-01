@@ -20,7 +20,7 @@ class RowPage extends StatelessWidget {
         Expanded(
           child: Text(title, style: Theme.of(context).textTheme.bodyText1),
         ),
-        Spacer(),
+        const Spacer(),
         link == true
             ? Expanded(
                 child: TextButton(

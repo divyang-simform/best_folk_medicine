@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import '../Setting/utils.dart';
 import '../Setting/transition.dart';
 import 'package:flutter/material.dart';
-import 'IncrementPage.dart';
+import 'incrementPage.dart';
 
-int Count = 0;
+int count = 0;
 
 class IncrementDecrementPage extends StatefulWidget {
   const IncrementDecrementPage({Key? key}) : super(key: key);
@@ -22,18 +22,18 @@ class _IncrementDecrementPageState extends State<IncrementDecrementPage> {
       create: (context) => Counter(),
       child: Scaffold(
         body: Navigator(
-          key: NavKey,
+          key: navKey,
           initialRoute: '/',
           onGenerateRoute: (RouteSettings settings) {
-            print(Count);
-            Count++;
+            print(count);
+            count++;
             switch (settings.name) {
               case '/':
-                return SlideLeftRoute(page: const incrementScreen());
+                return SlideLeftRoute(page: const IncrementScreen());
               case '/decrement':
                 return SlideRightRoute(page: const DecrementPage());
               default:
-                return SlideLeftRoute(page: const incrementScreen());
+                return SlideLeftRoute(page: const IncrementScreen());
             }
           },
         ),
