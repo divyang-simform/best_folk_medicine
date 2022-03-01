@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'homepagedata/detail.dart';
 
 void mainCommon() {
-  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
                 color: kBody1Color, fontWeight: FontWeight.bold, fontSize: 15),
           ),
         ),
-        home: const bottomBar(),
+        home: const BottomBar(),
         onGenerateRoute: (RouteSettings settings) {
           if (settings.name == detailPage.detailPagedata) {
             final args = settings.arguments as Product;
@@ -46,9 +45,9 @@ class MyApp extends StatelessWidget {
                   description: args.description,
                   time: args.time),
             );
-          } else if (settings.name == showAllArticales.showArticalesdata) {
+          } else if (settings.name == ShowAllArticales.showArticalesdata) {
             return MaterialPageRoute(
-                builder: (context) => const showAllArticales());
+                builder: (context) => const ShowAllArticales());
           }
         },
       ),

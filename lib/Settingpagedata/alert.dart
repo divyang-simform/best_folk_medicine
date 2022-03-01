@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class alertPage extends StatelessWidget {
-  alertPage({Key? key, required this.title, required this.content})
+class AlertPage extends StatelessWidget {
+  AlertPage({Key? key, required this.title, required this.content})
       : super(key: key);
   String title;
   String content;

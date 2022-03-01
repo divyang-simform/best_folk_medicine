@@ -1,6 +1,3 @@
-import 'package:best_folk_medicine/data_fetching/api_calling.dart';
-import 'package:provider/provider.dart';
-
 import '../data_fetching/parsingdata.dart';
 import 'detail.dart';
 import 'package:flutter/material.dart';

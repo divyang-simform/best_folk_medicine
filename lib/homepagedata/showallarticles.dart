@@ -1,5 +1,3 @@
-import 'package:best_folk_medicine/state_management/mobx.dart';
-
 import '../setting/resources.dart';
 import '../Flavors/app_config.dart';
 import 'retrofit_listbuilder.dart';
@@ -7,18 +5,16 @@ import 'chopper_listbuilder.dart';
 import 'search.dart';
 import 'package:flutter/material.dart';
 
-class showAllArticales extends StatefulWidget {
+class ShowAllArticales extends StatefulWidget {
   static const showArticalesdata = '/showarticalespage';
 
-  const showAllArticales({Key? key}) : super(key: key);
+  const ShowAllArticales({Key? key}) : super(key: key);
 
   @override
-  _showAllArticalesState createState() => _showAllArticalesState();
+  _ShowAllArticalesState createState() => _ShowAllArticalesState();
 }
 
-class _showAllArticalesState extends State<showAllArticales> {
-  Data data = Data();
-
+class _ShowAllArticalesState extends State<ShowAllArticales> {
   @override
   Widget build(BuildContext context) {
     var config = AppConfig.of(context);
@@ -39,7 +35,7 @@ class _showAllArticalesState extends State<showAllArticales> {
               const SearchBar(),
               const SizedBox(height: 30),
               (config?.appInternalId == 1)
-                  ? buildCard(context, 2)
+                  ? buildCards(context)
                   : buildAllArticles(context, 2),
             ],
           ),

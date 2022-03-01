@@ -1,26 +1,27 @@
+import 'package:best_folk_medicine/Inc_And_DecPage/increment&decrement.dart';
+
 import '../setting/resources.dart';
 import '../Flavors/app_config.dart';
-import '../inc_And_decpage/increment&decrement.dart';
 import '../shoppage/shop.dart';
 import '../homepagedata/frontPage.dart';
 import '../Settingpagedata/settingpage.dart';
 import 'package:flutter/material.dart';
 
-class bottomBar extends StatefulWidget {
-  const bottomBar({Key? key}) : super(key: key);
+class BottomBar extends StatefulWidget {
+  const BottomBar({Key? key}) : super(key: key);
 
   @override
-  _bottomBarState createState() => _bottomBarState();
+  _BottomBarState createState() => _BottomBarState();
 }
 
-class _bottomBarState extends State<bottomBar> {
+class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
   String title = kForntPageAppTitle;
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
     ShopingPage(),
-    incrementDecrementPage(),
-    settingsPage()
+    IncrementDecrementPage(),
+    SettingsPage()
   ];
 
   void _onItemTapped(int index) {

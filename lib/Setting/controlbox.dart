@@ -1,4 +1,3 @@
-// import 'package:flutter/material.dart';
 part of 'resources.dart';
 
 const kBgcolor = Colors.white;
@@ -9,4 +8,4 @@ const KbottomNavigationBarSelectedColorinprod = Colors.black;
 const KbottomNavigationBarSelectedColorindev = Colors.red;
 const KbottomNavigationBarUnSelectedColor = Colors.grey;
 const KbuttonColor = Colors.black;
-const KbuttonTextColor = Colors.white;
+const  KbuttonTextColor = Colors.white;

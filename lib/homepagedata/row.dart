@@ -26,7 +26,7 @@ class RowPage extends StatelessWidget {
                 child: TextButton(
                     onPressed: () {
                       Navigator.pushNamed(
-                          context, showAllArticales.showArticalesdata);
+                          context, ShowAllArticales.showArticalesdata);
                     },
                     child: Text(endtitle)),
               )

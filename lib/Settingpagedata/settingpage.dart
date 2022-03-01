@@ -1,11 +1,13 @@
+
+import 'package:best_folk_medicine/Settingpagedata/bottomsheet.dart';
+
 import 'alert.dart';
 import 'dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Bottomsheet.dart';
 
-class settingsPage extends StatelessWidget {
-  const settingsPage({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class settingsPage extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (ctx) =>
-                        alertPage(title: "title", content: "content"));
+                        AlertPage(title: "title", content: "content"));
               },
             ),
           ),
@@ -39,7 +41,7 @@ class settingsPage extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (ctx) =>
-                        dialogPage(title: "delete", content: "helloo"));
+                        DialogPage(title: "delete", content: "helloo"));
               },
             ),
           ),

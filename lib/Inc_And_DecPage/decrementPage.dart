@@ -1,4 +1,4 @@
-import '../setting/resources.dart';
+import 'package:best_folk_medicine/Setting/resources.dart';
 import 'counter.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';

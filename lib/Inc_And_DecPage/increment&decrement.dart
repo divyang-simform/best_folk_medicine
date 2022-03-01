@@ -1,24 +1,21 @@
-import 'dart:developer';
-
-import 'package:best_folk_medicine/inc_And_decpage/counter.dart';
+import 'decrementPage.dart';
+import 'counter.dart';
 import 'package:provider/provider.dart';
-
-import '../setting/utils.dart';
-import '../setting/transition.dart';
+import '../Setting/utils.dart';
+import '../Setting/transition.dart';
 import 'package:flutter/material.dart';
-import 'DecrementPage.dart';
 import 'IncrementPage.dart';
 
 int Count = 0;
 
-class incrementDecrementPage extends StatefulWidget {
-  const incrementDecrementPage({Key? key}) : super(key: key);
+class IncrementDecrementPage extends StatefulWidget {
+  const IncrementDecrementPage({Key? key}) : super(key: key);
 
   @override
-  _incrementDecrementPageState createState() => _incrementDecrementPageState();
+  _IncrementDecrementPageState createState() => _IncrementDecrementPageState();
 }
 
-class _incrementDecrementPageState extends State<incrementDecrementPage> {
+class _IncrementDecrementPageState extends State<IncrementDecrementPage> {
   @override
   Widget build(BuildContext context) {
     return Provider<Counter>(
@@ -33,11 +30,11 @@ class _incrementDecrementPageState extends State<incrementDecrementPage> {
               Count++;
               switch (settings.name) {
                 case '/':
-                  return SlideLeftRoute(page: incrementScreen());
+                  return SlideLeftRoute(page: const incrementScreen());
                 case '/decrement':
-                  return SlideRightRoute(page: decrementPage());
+                  return SlideRightRoute(page: const decrementPage());
                 default:
-                  return SlideLeftRoute(page: incrementScreen());
+                  return SlideLeftRoute(page: const incrementScreen());
               }
             },
           ),

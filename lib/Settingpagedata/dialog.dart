@@ -2,8 +2,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class dialogPage extends StatelessWidget {
-  dialogPage({Key? key, required this.title, required this.content})
+class DialogPage extends StatelessWidget {
+  DialogPage({Key? key, required this.title, required this.content})
       : super(key: key);
   String title;
   String content;

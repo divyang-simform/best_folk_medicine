@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:best_folk_medicine/state_management/mobx.dart';
-
 import 'retrofit_listbuilder.dart';
 import '../Flavors/app_config.dart';
 import '../data_fetching/parsingdata.dart';
@@ -24,7 +22,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String? article;
   late var categaryDetail;
   late var article1;
-  Data data = Data();
 
   loadJson() async {
     categary = await rootBundle.loadString('asset/data/category.json');
@@ -36,10 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadJson();
-    data.onData();
   }
 
   @override
@@ -84,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ? Container(
                       height: MediaQuery.of(context).size.height * .4,
                       padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: buildCard(context, 1),
+                      child: buildCard(context),
                     )
                   : Container(
                       height: MediaQuery.of(context).size.height * .4,
