@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 // import 'dart:html';
 import 'package:best_folk_medicine/shoppage/shopcard.dart';
 import 'package:flutter/material.dart';
@@ -36,9 +37,9 @@ class _ShopingPageState extends State<ShopingPage> {
       return Container(
         child: GridView.builder(
             itemCount: sData.length,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, index) => shopCardPage(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2),
+            itemBuilder: (context, index) => ShopCardPage(
                 image: sData[index]["image"], name: sData[index]["name"])),
       );
     }

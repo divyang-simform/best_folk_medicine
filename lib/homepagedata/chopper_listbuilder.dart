@@ -24,16 +24,7 @@ FutureBuilder<Postt> buildCard(BuildContext context) {
           );
         }
         final posts = snapshot.data;
-        return ListView.builder(
-            scrollDirection:  Axis.horizontal ,
-            shrinkWrap: true,
-            itemCount: 5,
-            itemBuilder: (context, index) => MyCardPage(
-                urlToImage: (posts?.articles[index].urlToImage).toString(),
-                title: (posts?.articles[index].title).toString(),
-                description: (posts?.articles[index].description).toString(),
-                author: (posts?.articles[index].author).toString(),
-                publishedAt: (posts?.articles[index].publishedAt).toString()));
+        return _buildPosts(context, posts, 1);
       } else {
         return Container(
             alignment: Alignment.center,
@@ -60,7 +51,7 @@ buildCards(BuildContext context) {
       } else if (data.response?.status == FutureStatus.rejected) {
         return const Text("error :(");
       } else {
-        return _buildPosts(context, data);
+        return _buildPosts(context, data, 2);
       }
     } catch (exe) {
       return Text(exe.toString());
@@ -68,18 +59,25 @@ buildCards(BuildContext context) {
   });
 }
 
-ListView _buildPosts(BuildContext context, Data data) {
+ListView _buildPosts(BuildContext context, dynamic data, int page) {
   return ListView.builder(
-    scrollDirection: Axis.vertical,
-    physics: const NeverScrollableScrollPhysics(),
+    scrollDirection: (page == 1) ? Axis.horizontal : Axis.vertical,
+    physics: (page == 2) ? const NeverScrollableScrollPhysics() : null,
     shrinkWrap: true,
-    itemCount: data.getData?.body?.articles.length ?? 5,
-    itemBuilder: (context, index) => cardPage(
-        image: (data.getData?.body?.articles[index].urlToImage).toString(),
-        title: (data.getData?.body?.articles[index].title).toString(),
-        description:
-            (data.getData?.body?.articles[index].description).toString(),
-        time: (data.getData?.body?.articles[index].publishedAt).toString(),
-        name: (data.getData?.body?.articles[index].author).toString()),
+    itemCount: (page == 1) ? 4 : data.getData?.body?.articles.length,
+    itemBuilder: (context, index) => (page == 1)
+        ? MyCardPage(
+            urlToImage: (data?.articles[index].urlToImage).toString(),
+            title: (data?.articles[index].title).toString(),
+            description: (data?.articles[index].description).toString(),
+            author: (data?.articles[index].author).toString(),
+            publishedAt: (data?.articles[index].publishedAt).toString())
+        : cardPage(
+            image: (data.getData?.body?.articles[index].urlToImage).toString(),
+            title: (data.getData?.body?.articles[index].title).toString(),
+            description:
+                (data.getData?.body?.articles[index].description).toString(),
+            time: (data.getData?.body?.articles[index].publishedAt).toString(),
+            name: (data.getData?.body?.articles[index].author).toString()),
   );
 }

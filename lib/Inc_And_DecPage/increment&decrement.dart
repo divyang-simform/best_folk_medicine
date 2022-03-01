@@ -21,23 +21,21 @@ class _IncrementDecrementPageState extends State<IncrementDecrementPage> {
     return Provider<Counter>(
       create: (context) => Counter(),
       child: Scaffold(
-        body: Container(
-          child: Navigator(
-            key: NavKey,
-            initialRoute: '/',
-            onGenerateRoute: (RouteSettings settings) {
-              print(Count);
-              Count++;
-              switch (settings.name) {
-                case '/':
-                  return SlideLeftRoute(page: const incrementScreen());
-                case '/decrement':
-                  return SlideRightRoute(page: const decrementPage());
-                default:
-                  return SlideLeftRoute(page: const incrementScreen());
-              }
-            },
-          ),
+        body: Navigator(
+          key: NavKey,
+          initialRoute: '/',
+          onGenerateRoute: (RouteSettings settings) {
+            print(Count);
+            Count++;
+            switch (settings.name) {
+              case '/':
+                return SlideLeftRoute(page: const incrementScreen());
+              case '/decrement':
+                return SlideRightRoute(page: const DecrementPage());
+              default:
+                return SlideLeftRoute(page: const incrementScreen());
+            }
+          },
         ),
       ),
     );

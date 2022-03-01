@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import '../setting/utils.dart';
 import 'package:flutter/material.dart';
 
-class decrementPage extends StatelessWidget {
-  const decrementPage({Key? key}) : super(key: key);
+class DecrementPage extends StatelessWidget {
+  const DecrementPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

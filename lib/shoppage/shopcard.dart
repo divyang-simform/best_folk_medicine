@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class shopCardPage extends StatelessWidget {
-  shopCardPage({Key? key, required this.image, required this.name})
+class ShopCardPage extends StatelessWidget {
+  ShopCardPage({Key? key, required this.image, required this.name})
       : super(key: key);
   String name;
   String image;
