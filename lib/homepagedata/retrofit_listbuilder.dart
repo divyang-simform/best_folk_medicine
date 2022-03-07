@@ -1,3 +1,5 @@
+import 'package:best_folk_medicine/data_fetching/Articles.dart';
+
 import '../state_management/mobxretofit.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
@@ -37,17 +39,8 @@ ListView _buildPosts(BuildContext context, DataFile data, int page) {
     shrinkWrap: true,
     itemCount: (page == 1) ? 4 : data.getData?.articles.length,
     itemBuilder: (context, index) => (page == 1)
-        ? MyCardPage(
-            urlToImage: (data.getData?.articles[index].urlToImage).toString(),
-            title: (data.getData?.articles[index].title).toString(),
-            description: (data.getData?.articles[index].description).toString(),
-            author: (data.getData?.articles[index].author).toString(),
-            publishedAt: (data.getData?.articles[index].publishedAt).toString())
+        ? MyCardPage(articles: data.getData?.articles[index] as Articles)
         : CardPage(
-            image: (data.getData?.articles[index].urlToImage).toString(),
-            title: (data.getData?.articles[index].title).toString(),
-            description: (data.getData?.articles[index].description).toString(),
-            time: (data.getData?.articles[index].publishedAt).toString(),
-            name: (data.getData?.articles[index].author).toString()),
+    articles: data.getData?.articles[index] as Articles),
   );
 }

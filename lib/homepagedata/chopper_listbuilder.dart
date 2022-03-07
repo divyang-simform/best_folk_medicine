@@ -15,16 +15,18 @@ FutureBuilder<Postt> buildCard(BuildContext context) {
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         if (snapshot.hasError) {
-          if (snapshot.error.toString() == "404"){
-            return Image.network("https://blog.thomasnet.com/hs-fs/hubfs/shutterstock_774749455.jpg?width=600&name=shutterstock_774749455.jpg");
-          }else{
-          return Center(
-            child: Text(
-              snapshot.error.toString(),
-              textAlign: TextAlign.center,
-              textScaleFactor: 1.3,
-            ),
-          );}
+          if (snapshot.error.toString() == "404") {
+            return Image.network(
+                "https://blog.thomasnet.com/hs-fs/hubfs/shutterstock_774749455.jpg?width=600&name=shutterstock_774749455.jpg");
+          } else {
+            return Center(
+              child: Text(
+                snapshot.error.toString(),
+                textAlign: TextAlign.center,
+                textScaleFactor: 1.3,
+              ),
+            );
+          }
         }
         final posts = snapshot.data;
         return _buildPosts(context, posts, 1);
@@ -51,11 +53,9 @@ buildCards(BuildContext context) {
         return Container(
             alignment: Alignment.center,
             child: const CircularProgressIndicator.adaptive());
-      }
-      else if (data.response?.status == FutureStatus.rejected) {
+      } else if (data.response?.status == FutureStatus.rejected) {
         return const Text("Error :(");
-      }
-      else {
+      } else {
         return _buildPosts(context, data, 2);
       }
     } catch (exe) {
@@ -71,18 +71,9 @@ ListView _buildPosts(BuildContext context, dynamic data, int page) {
     shrinkWrap: true,
     itemCount: (page == 1) ? 5 : data.getData?.body?.articles.length,
     itemBuilder: (context, index) => (page == 1)
-        ? MyCardPage(
-            urlToImage: (data?.articles[index].urlToImage).toString(),
-            title: (data?.articles[index].title).toString(),
-            description: (data?.articles[index].description).toString(),
-            author: (data?.articles[index].author).toString(),
-            publishedAt: (data?.articles[index].publishedAt).toString())
+        ? MyCardPage(articles: data?.articles[index])
         : CardPage(
-            image: (data.getData?.body?.articles[index].urlToImage).toString(),
-            title: (data.getData?.body?.articles[index].title).toString(),
-            description:
-                (data.getData?.body?.articles[index].description).toString(),
-            time: (data.getData?.body?.articles[index].publishedAt).toString(),
-            name: (data.getData?.body?.articles[index].author).toString()),
+            articles: data.getData?.body?.articles[index],
+          ),
   );
 }

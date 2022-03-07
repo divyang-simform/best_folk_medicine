@@ -11,4 +11,6 @@ class Postt {
 
   factory Postt.fromJson(Map<String, dynamic> json) => _$PosttFromJson(json);
 
+  Map<String, dynamic> toJson() => _$PosttToJson(this);
+
 }

@@ -1,25 +1,16 @@
+import '../data_fetching/Articles.dart';
 import '../data_fetching/parsingdata.dart';
 import 'detail.dart';
 import 'package:flutter/material.dart';
 
 class CardPage extends StatelessWidget {
-  CardPage(
-      {Key? key,
-      required this.image,
-      required this.title,
-      required this.description,
-      required this.time,
-      required this.name})
-      : super(key: key);
-  String image;
-  String title;
-  String time;
-  String description;
-  String name;
+  CardPage({Key? key, required this.articles}) : super(key: key);
+
+  Articles articles;
 
   @override
   Widget build(BuildContext context) {
-    List<String>? time1 = time.split('T');
+    List<String>? time1 = articles.publishedAt?.split('T');
     return Column(
       children: [
         GestureDetector(
@@ -27,7 +18,7 @@ class CardPage extends StatelessWidget {
             elevation: 10,
             child: Row(
               children: [
-                Image.network(image,
+                Image.network(articles.urlToImage.toString(),
                     fit: BoxFit.fill,
                     height: MediaQuery.of(context).size.height * .11,
                     width: MediaQuery.of(context).size.width * .3),
@@ -37,12 +28,13 @@ class CardPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(title,
+                        Text(articles.title.toString(),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context).textTheme.bodyText1),
-                        Text(time1[0]),
-                        Text(description, overflow: TextOverflow.ellipsis),
+                        Text(time1![0]),
+                        Text(articles.description.toString(),
+                            overflow: TextOverflow.ellipsis),
                       ],
                     ),
                   ),
@@ -55,11 +47,8 @@ class CardPage extends StatelessWidget {
               context,
               DetailPage.detailPagedata,
               arguments: Product(
-                  image: image,
-                  name: name,
-                  description: description,
-                  title: title,
-                  time: time1[0]),
+                articles: articles,
+              ),
             );
           },
         ),

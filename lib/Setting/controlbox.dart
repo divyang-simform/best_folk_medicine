@@ -7,5 +7,6 @@ const kBody1Color = Colors.black;
 const kBottomNavigationBarSelectedColorInProd = Colors.black;
 const kBottomNavigationBarSelectedColorInDev = Colors.red;
 const kBottomNavigationBarUnSelectedColor = Colors.grey;
+const kBottomNavigationBarFavoriteColor = Colors.red;
 const kButtonColor = Colors.black;
 const kButtonTextColor = Colors.white;

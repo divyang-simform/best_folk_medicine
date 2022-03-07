@@ -1,3 +1,4 @@
+import 'package:best_folk_medicine/Favorite/favoritepage.dart';
 import 'package:best_folk_medicine/Inc_And_DecPage/increment&decrement.dart';
 
 import '../Setting/resources.dart';
@@ -19,6 +20,7 @@ class _BottomBarState extends State<BottomBar> {
   String title = kFrontPageAppTitle;
   static const List<Widget> _widgetOptions = <Widget>[
     MyHomePage(),
+    FavoritePage(),
     ShopingPage(),
     IncrementDecrementPage(),
     SettingsPage()
@@ -31,10 +33,12 @@ class _BottomBarState extends State<BottomBar> {
     if (_selectedIndex == 0) {
       title = kFrontPageAppTitle;
     } else if (_selectedIndex == 1) {
-      title = kShopPageAppTitle;
+      title = kFavoriteAppTitle;
     } else if (_selectedIndex == 2) {
       title = kIncDecAppTitle;
     } else if (_selectedIndex == 3) {
+      title = kSettingPageAppTitle;
+    } else if (_selectedIndex == 4) {
       title = kSettingPageAppTitle;
     }
   }
@@ -57,6 +61,11 @@ class _BottomBarState extends State<BottomBar> {
                 activeIcon: Icon(Icons.home),
                 label: 'Home'),
             BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_border),
+                activeIcon: Icon(Icons.favorite,
+                    color: kBottomNavigationBarFavoriteColor),
+                label: 'Shop'),
+            BottomNavigationBarItem(
                 icon: Icon(Icons.shop_outlined),
                 activeIcon: Icon(Icons.shop),
                 label: 'Shop'),
@@ -67,7 +76,9 @@ class _BottomBarState extends State<BottomBar> {
                 label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: config!.color,
+          selectedItemColor: _selectedIndex == 1
+              ? kBottomNavigationBarFavoriteColor
+              : config!.color,
           unselectedItemColor: kBottomNavigationBarUnSelectedColor,
           onTap: _onItemTapped),
     );

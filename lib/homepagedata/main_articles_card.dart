@@ -1,3 +1,4 @@
+import '../data_fetching/Articles.dart';
 import '../data_fetching/parsingdata.dart';
 import 'detail.dart';
 import 'package:flutter/material.dart';
@@ -5,17 +6,10 @@ import 'package:flutter/material.dart';
 class MyCardPage extends StatelessWidget {
   MyCardPage(
       {Key? key,
-      required this.urlToImage,
-      required this.title,
-      required this.description,
-      required this.author,
-      required this.publishedAt})
+      required this.articles})
       : super(key: key);
-  String urlToImage;
-  String author;
-  String title;
-  String description;
-  String publishedAt;
+
+  Articles articles;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +22,8 @@ class MyCardPage extends StatelessWidget {
             child: Column(
               children: [
                 Hero(
-                  tag: publishedAt,
-                  child: Image.network(urlToImage,
+                  tag: articles.publishedAt as Object,
+                  child: Image.network(articles.urlToImage.toString(),
                       fit: BoxFit.fill,
                       height: MediaQuery.of(context).size.height * .24,
                       width: MediaQuery.of(context).size.width * .8),
@@ -41,10 +35,10 @@ class MyCardPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          (author == "noreply@blogger.com (Unknown)")
+                          (articles.author == "noreply@blogger.com (Unknown)")
                               ? const Text("")
                               : Expanded(
-                                  child: Text(author,
+                                  child: Text(articles.author.toString(),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context)
@@ -54,7 +48,7 @@ class MyCardPage extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      Text(title,
+                      Text(articles.title.toString(),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.headline1)
@@ -68,11 +62,13 @@ class MyCardPage extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(context, DetailPage.detailPagedata,
               arguments: Product(
-                  image: urlToImage,
-                  name: author,
-                  description: description,
-                  title: title,
-                  time: publishedAt));
+                articles: articles,
+                  // image: 'hi.jpg',
+                  // name: 'divyang',
+                  // description: 'done',
+                  // title: 'ok',
+                  // time: 'today'
+              ));
         },
       ),
     );
