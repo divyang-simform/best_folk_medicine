@@ -7,33 +7,41 @@ part 'favoritemobx.g.dart';
 class Favorite = _Favorite with _$Favorite;
 
 abstract class _Favorite with Store {
+
+  @observable
+  bool? check;
+
+  @observable
+  List<Articles>? data;
+
   @observable
   ObservableFuture? response;
 
   @action
-  Future<List<Articles>> getAllData() async {
-    final response =
-        await ObservableFuture(ArticleFavorite.instance.allArticle());
-    return response;
+  getAllData() async {
+    response = ObservableFuture(ArticleFavorite.instance.allArticle());
+    data = await response;
   }
 
   @action
-  Future<Articles> getSingleData(int id) async {
-    final response = await ArticleFavorite.instance.singleArticle(id);
-    return response;
+  getSingleData(int id) {
+    response = ObservableFuture(ArticleFavorite.instance.singleArticle(id));
   }
 
   @action
-  Future<Articles> setData(Articles articles) async {
-    final response =
-        await ObservableFuture(ArticleFavorite.instance.toInsert(articles));
-    return response;
+  getCheckData(String title) async {
+    check = await ArticleFavorite.instance.checkArticle(title);
   }
 
   @action
-  Future<int> getDeleteData(int id) async {
-    final response =
-        await ObservableFuture(ArticleFavorite.instance.deleteArticle(id));
-    return response;
+  setData(Articles articles) async {
+    response = ObservableFuture(ArticleFavorite.instance.toInsert(articles));
+    getAllData();
+  }
+
+  @action
+  getDeleteData(int id) async {
+    await ArticleFavorite.instance.deleteArticle(id);
+    getAllData();
   }
 }

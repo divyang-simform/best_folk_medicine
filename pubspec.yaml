@@ -42,7 +42,9 @@ dependencies:
   mobx: ^2.0.6+1
   flutter_mobx: ^2.0.4
   sqflite: ^2.0.2
+  flutter_slidable: ^1.2.0
   path:
+  badges: ^2.0.2
 
 
 dev_dependencies:

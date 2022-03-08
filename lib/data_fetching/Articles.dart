@@ -5,7 +5,7 @@ import 'Source.dart';
 part 'Articles.g.dart';
 
 class ArticlesFields {
-  static final String id = '_id';
+  static final String id = 'id';
   static final String author = 'author';
   static final String title = 'title';
   static final String description = 'description';
@@ -24,7 +24,7 @@ class Articles {
     this.urlToImage = kUrlToImage,
     this.content = kContent,
     this.author = kAuthorName,
-    required this.source,
+    // this.source,
     this.url = kUrl});
 
   int? id;
@@ -35,7 +35,7 @@ class Articles {
   String? url;
   String? publishedAt;
   String? content;
-  final Source? source;
+  // final Source? source;
 
   Articles copy({
     int? id,
@@ -47,7 +47,7 @@ class Articles {
     String? publishedAt,
     String? content,
   }) =>
-      Articles(id: id ?? this.id,
+      Articles(id: id ,
         author: author ?? this.author,
         publishedAt: publishedAt ?? this.publishedAt,
         title: title ?? this.title,
@@ -55,7 +55,7 @@ class Articles {
         url: url ?? this.url,
         urlToImage: urlToImage ?? this.urlToImage,
         content: content ?? this.content,
-        source: source ?? this.source,
+        // source: source ?? this.source,
       );
 
   factory Articles.fromJson(Map<String, dynamic> json) =>

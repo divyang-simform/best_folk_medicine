@@ -1,3 +1,6 @@
+import 'package:flutter_mobx/flutter_mobx.dart';
+
+import '../state_management/favoritemobx.dart';
 import 'package:provider/provider.dart';
 import '../data_fetching/Articles.dart';
 import '../Setting/resources.dart';
@@ -13,31 +16,35 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _favorite = Provider.of(context);
+    final _favorite = Provider.of<Favorite>(context);
+    _favorite.getCheckData(articles.title.toString());
+    print(_favorite.check);
     List<String>? time1 = articles.publishedAt?.split('T');
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(kDetailPageAppTitle,
-            style: Theme.of(context).textTheme.headline1),
-        backgroundColor: kappBarBgcolor,
-        elevation: 0.0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.favorite_border, color: Colors.black),
+          centerTitle: true,
+          title: Text(kDetailPageAppTitle,
+              style: Theme.of(context).textTheme.headline1),
+          backgroundColor: kappBarBgcolor,
+          elevation: 0.0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
             onPressed: () {
-              _favorite.setData(articles);
+              Navigator.pop(context);
             },
           ),
-        ],
-      ),
+          actions: [
+            // print(_favorite.check),
+            IconButton(
+              icon: _favorite.check!
+                  ? Icon(Icons.favorite_border, color: Colors.red)
+                  : Icon(Icons.favorite_border, color: Colors.black),
+              onPressed: () {
+                _favorite.setData(articles);
+              },
+            ),
+          ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),

@@ -32,14 +32,14 @@ class ArticleFavorite {
         "${ArticlesFields.urlToImage} $textType,"
         "${ArticlesFields.url} $textType,"
         "${ArticlesFields.publishedAt} $textType,"
-        "${ArticlesFields.content} $textType,"
+        "${ArticlesFields.content} $textType"
         ")");
   }
 
   Future<Articles> toInsert(Articles articles) async {
     final db = await instance.database;
-    final id = db.insert("FAVORITE", articles.toJson());
-    return articles.copy(id: int.parse(id.toString()));
+    final id = await db.insert("FAVORITE", articles.toJson());
+    return articles.copy(id: id);
   }
 
   Future<Articles> singleArticle(int id) async {
@@ -49,6 +49,16 @@ class ArticleFavorite {
     return response.isNotEmpty
         ? Articles.fromJson(response.first)
         : throw Exception('Data not Found');
+  }
+
+  Future<bool> checkArticle(String title) async {
+    final db = await instance.database;
+    final check = await db.query("FAVORITE",
+        where: "${ArticlesFields.title} = ?", whereArgs: [title]);
+    return (check.isNotEmpty) ? true : false;
+    // return response.isNotEmpty
+    //     ? Articles.fromJson(response.first)
+    //     : throw Exception('Data not Found');
   }
 
   Future<List<Articles>> allArticle() async {

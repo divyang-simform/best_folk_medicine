@@ -1,12 +1,15 @@
-import 'package:best_folk_medicine/Favorite/favoritepage.dart';
-import 'package:best_folk_medicine/Inc_And_DecPage/increment&decrement.dart';
-
+import '../Favorite/favoritepage.dart';
+import '../Inc_And_DecPage/increment&decrement.dart';
+import 'package:badges/badges.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import '../Setting/resources.dart';
 import '../Flavors/app_config.dart';
 import '../shoppage/shop.dart';
 import '../homepagedata/frontPage.dart';
 import '../Settingpagedata/settingpage.dart';
 import 'package:flutter/material.dart';
+import '../state_management/favoritemobx.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -45,6 +48,7 @@ class _BottomBarState extends State<BottomBar> {
 
   @override
   Widget build(BuildContext context) {
+    final _favorite = Provider.of<Favorite>(context);
     var config = AppConfig.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -55,22 +59,30 @@ class _BottomBarState extends State<BottomBar> {
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
           showUnselectedLabels: false,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
+          items: <BottomNavigationBarItem>[
+            const BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined),
                 activeIcon: Icon(Icons.home),
                 label: 'Home'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border),
-                activeIcon: Icon(Icons.favorite,
+                icon: Observer(
+                  builder: (context) => (_favorite.data?.length == 0)
+                      ? const Icon(Icons.favorite_border)
+                      : Badge(
+                          badgeContent:
+                              Text((_favorite.data?.length).toString()),
+                          child: const Icon(Icons.favorite_border)),
+                ),
+                activeIcon: const Icon(Icons.favorite,
                     color: kBottomNavigationBarFavoriteColor),
                 label: 'Shop'),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
                 icon: Icon(Icons.shop_outlined),
                 activeIcon: Icon(Icons.shop),
                 label: 'Shop'),
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Increment'),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.add), label: 'Increment'),
+            const BottomNavigationBarItem(
                 icon: Icon(Icons.settings_outlined),
                 activeIcon: Icon(Icons.settings),
                 label: 'Settings'),
