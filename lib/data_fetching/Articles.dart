@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import '../setting/resources.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'Source.dart';
@@ -5,16 +6,17 @@ import 'Source.dart';
 part 'Articles.g.dart';
 
 class ArticlesFields {
-  static final String id = 'id';
-  static final String author = 'author';
-  static final String title = 'title';
-  static final String description = 'description';
-  static final String urlToImage = 'urlToImage';
-  static final String url = 'url';
-  static final String publishedAt = 'publishedAt';
-  static final String content = 'content';
+  static const String id = 'id';
+  static const String author = 'author';
+  static const String title = 'title';
+  static const String description = 'description';
+  static const String urlToImage = 'urlToImage';
+  static const String url = 'url';
+  static const String publishedAt = 'publishedAt';
+  static const String content = 'content';
 }
 
+@HiveType(typeId: 0)
 @JsonSerializable()
 class Articles {
   Articles({this.id,
@@ -28,12 +30,19 @@ class Articles {
     this.url = kUrl});
 
   int? id;
+  @HiveField(0)
   String? author;
+  @HiveField(1)
   String? title;
+  @HiveField(2)
   String? description;
+  @HiveField(3)
   String? urlToImage;
+  @HiveField(4)
   String? url;
+  @HiveField(5)
   String? publishedAt;
+  @HiveField(6)
   String? content;
   // final Source? source;
 

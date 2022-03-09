@@ -1,4 +1,5 @@
 import 'package:best_folk_medicine/data_fetching/Articles.dart';
+import 'package:best_folk_medicine/state_management/hivemobx.dart';
 
 import 'state_management/favoritemobx.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var config = AppConfig.of(context);
-    return Provider<Favorite>(
-      create: (context) => Favorite(),
-      // dispose: (_ , ApiService service) => service.client.dispose(),
+    return MultiProvider(
+      providers: [
+        Provider<Favorite>(create: (context) => Favorite()),
+        Provider<FavoriteHive>(create: (context) => FavoriteHive()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: config!.appDisplayName,

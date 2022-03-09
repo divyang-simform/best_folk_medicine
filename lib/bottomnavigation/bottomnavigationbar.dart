@@ -1,3 +1,5 @@
+import 'package:best_folk_medicine/state_management/hivemobx.dart';
+
 import '../Favorite/favoritepage.dart';
 import '../Inc_And_DecPage/increment&decrement.dart';
 import 'package:badges/badges.dart';
@@ -49,7 +51,10 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     final _favorite = Provider.of<Favorite>(context);
-    var config = AppConfig.of(context);
+    final _favoriteHive = Provider.of<FavoriteHive>(context);
+    print(_favoriteHive.response);
+    print(_favorite.data?.length);
+    final config = AppConfig.of(context);
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -64,18 +69,32 @@ class _BottomBarState extends State<BottomBar> {
                 icon: Icon(Icons.home_outlined),
                 activeIcon: Icon(Icons.home),
                 label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Observer(
-                  builder: (context) => (_favorite.data?.length == 0)
-                      ? const Icon(Icons.favorite_border)
-                      : Badge(
-                          badgeContent:
-                              Text((_favorite.data?.length).toString()),
-                          child: const Icon(Icons.favorite_border)),
-                ),
-                activeIcon: const Icon(Icons.favorite,
-                    color: kBottomNavigationBarFavoriteColor),
-                label: 'Shop'),
+            config?.appInternalId == 1
+                ? BottomNavigationBarItem(
+                    icon: Observer(
+                      builder: (context) => (_favorite.data?.isEmpty ?? true)
+                          ? const Icon(Icons.favorite_border)
+                          : Badge(
+                              badgeContent:
+                                  Text((_favorite.data?.length).toString()),
+                              child: const Icon(Icons.favorite_border)),
+                    ),
+                    activeIcon: const Icon(Icons.favorite,
+                        color: kBottomNavigationBarFavoriteColor),
+                    label: 'Shop')
+                : BottomNavigationBarItem(
+                    icon: Observer(
+                      builder: (context) => (_favoriteHive.response?.isEmpty ??
+                              true)
+                          ? const Icon(Icons.favorite_border)
+                          : Badge(
+                              badgeContent: Text(
+                                  (_favoriteHive.response?.length).toString()),
+                              child: const Icon(Icons.favorite_border)),
+                    ),
+                    activeIcon: const Icon(Icons.favorite,
+                        color: kBottomNavigationBarFavoriteColor),
+                    label: 'Shop'),
             const BottomNavigationBarItem(
                 icon: Icon(Icons.shop_outlined),
                 activeIcon: Icon(Icons.shop),

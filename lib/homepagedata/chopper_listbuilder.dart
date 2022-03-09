@@ -53,9 +53,11 @@ buildCards(BuildContext context) {
         return Container(
             alignment: Alignment.center,
             child: const CircularProgressIndicator.adaptive());
-      } else if (data.response?.status == FutureStatus.rejected) {
+      }
+      else if (data.response?.status == FutureStatus.rejected) {
         return const Text("Error :(");
-      } else {
+      }
+      else {
         return _buildPosts(context, data, 2);
       }
     } catch (exe) {
