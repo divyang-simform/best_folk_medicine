@@ -49,50 +49,40 @@ class _MyHomePageState extends State<MyHomePage> {
               (categary == null || categaryDetail == null)
                   ? const CircularProgressIndicator.adaptive(strokeWidth: 4)
                   : Container(
-                height: 100,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categaryDetail.length,
-                  itemBuilder: (context, index) =>
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10)),
-                        margin: const EdgeInsets.only(
-                            top: 20, right: 10, bottom: 20),
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(categaryDetail[index]["name"],
-                                style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .bodyText1),
+                      height: 100,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categaryDetail.length,
+                        itemBuilder: (context, index) => Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(10)),
+                          margin: const EdgeInsets.only(
+                              top: 20, right: 10, bottom: 20),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(categaryDetail[index]["name"],
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ),
                           ),
                         ),
                       ),
-                ),
-              ),
+                    ),
               RowPage(
                   title: "Main Articles", endtitle: "show more", link: true),
               (config!.appInternalId == 1)
                   ? Container(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * .4,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: buildCard(context),
-              )
+                      height: MediaQuery.of(context).size.height * .4,
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: buildCard(context),
+                    )
                   : Container(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * .4,
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: buildAllArticles(context, 1),
-              ),
+                      height: MediaQuery.of(context).size.height * .4,
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: buildAllArticles(context, 1),
+                    ),
               Column(
                 children: [
                   RowPage(
@@ -102,11 +92,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   (article == null)
                       ? const CircularProgressIndicator.adaptive()
                       : Container(
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 3,
-                        itemBuilder: (context, index) =>
-                            Column(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: 3,
+                            itemBuilder: (context, index) => Column(
                               children: [
                                 Card(
                                   elevation: 10,
@@ -114,34 +103,34 @@ class _MyHomePageState extends State<MyHomePage> {
                                     children: [
                                       Image.network(article1[index]["image"],
                                           fit: BoxFit.fill,
-                                          height: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .height * .11,
-                                          width: MediaQuery
-                                              .of(context)
-                                              .size
-                                              .width * .3),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .11,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .3),
                                       Flexible(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment
-                                                .start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(article1[index]["title"],
                                                   maxLines: 2,
-                                                  overflow: TextOverflow
-                                                      .ellipsis,
-                                                  style: Theme
-                                                      .of(context)
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: Theme.of(context)
                                                       .textTheme
                                                       .bodyText1),
                                               Text(article1[index]["pastime"]),
                                               Text(
-                                                  article1[index]["description"],
-                                                  overflow: TextOverflow
-                                                      .ellipsis),
+                                                  article1[index]
+                                                      ["description"],
+                                                  overflow:
+                                                      TextOverflow.ellipsis),
                                             ],
                                           ),
                                         ),
@@ -152,8 +141,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 const Divider(thickness: 2)
                               ],
                             ),
-                    ),
-                  ),
+                          ),
+                        ),
                 ],
               ),
             ],

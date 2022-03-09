@@ -56,9 +56,12 @@ class ArticleFavorite {
     final check = await db.query("FAVORITE",
         where: "${ArticlesFields.title} = ?", whereArgs: [title]);
     return (check.isNotEmpty) ? true : false;
-    // return response.isNotEmpty
-    //     ? Articles.fromJson(response.first)
-    //     : throw Exception('Data not Found');
+  }
+  Future<Articles> checkIdArticle(String title) async {
+    final db = await instance.database;
+    final check = await db.query("FAVORITE",
+        where: "${ArticlesFields.title} = ?", whereArgs: [title]);
+    return Articles.fromJson(check.first);
   }
 
   Future<List<Articles>> allArticle() async {

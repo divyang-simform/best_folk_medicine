@@ -1,3 +1,5 @@
+import '../Setting/resources.dart';
+import '../homepagedata/search.dart';
 import '../state_management/favoritemobx.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -26,46 +28,54 @@ class FavoritePage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: const CircularProgressIndicator.adaptive())
             : (favorite.data?.length == 0)
-                ? Image.network(
-                    "https://www.apnashopping.in/assets/img/payment/Empty-Cart.jpg")
-                : ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: favorite.data?.length,
-                    itemBuilder: (context, index) => Slidable(
-                      startActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: (BuildContext context) {
-                              favorite.getDeleteData(int.parse(
-                                  favorite.data![index].id.toString()));
-                            },
-                            backgroundColor: const Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
+                ? Image.network(kEmptyCartImage)
+                : Column(
+                    children: [
+                      const SearchBar(),
+                      const SizedBox(height: 20),
+                      Container(
+                        alignment: Alignment.topCenter,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: favorite.data?.length,
+                          itemBuilder: (context, index) => Slidable(
+                            startActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (BuildContext context) {
+                                    favorite.getDeleteData(int.parse(
+                                        favorite.data![index].id.toString()));
+                                  },
+                                  backgroundColor: kDeleteButtonBGColor,
+                                  foregroundColor: kDeleteButtonTextColor,
+                                  icon: Icons.delete,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (BuildContext context) {
+                                    favorite.getDeleteData(int.parse(
+                                        favorite.data![index].id.toString()));
+                                  },
+                                  backgroundColor: kDeleteButtonBGColor,
+                                  foregroundColor: kDeleteButtonTextColor,
+                                  icon: Icons.delete,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            child: CardPage(articles: favorite.data![index]),
                           ),
-                        ],
+                        ),
                       ),
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        children: [
-                          SlidableAction(
-                            onPressed: (BuildContext context) {
-                              favorite.getDeleteData(int.parse(
-                                  favorite.data![index].id.toString()));
-                            },
-                            backgroundColor: const Color(0xFFFE4A49),
-                            foregroundColor: Colors.white,
-                            icon: Icons.delete,
-                            label: 'Delete',
-                          ),
-                        ],
-                      ),
-                      child: CardPage(articles: favorite.data![index]),
-                    ),
+                    ],
                   );
       }
     });

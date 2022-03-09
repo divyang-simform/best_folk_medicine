@@ -10,3 +10,5 @@ const kBottomNavigationBarUnSelectedColor = Colors.grey;
 const kBottomNavigationBarFavoriteColor = Colors.red;
 const kButtonColor = Colors.black;
 const kButtonTextColor = Colors.white;
+const kDeleteButtonBGColor = Color(0xFFFE4A49);
+const kDeleteButtonTextColor = Colors.white;

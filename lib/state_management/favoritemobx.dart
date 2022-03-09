@@ -7,9 +7,11 @@ part 'favoritemobx.g.dart';
 class Favorite = _Favorite with _$Favorite;
 
 abstract class _Favorite with Store {
-
   @observable
   bool? check;
+
+  @observable
+  Articles? id;
 
   @observable
   List<Articles>? data;
@@ -31,6 +33,11 @@ abstract class _Favorite with Store {
   @action
   getCheckData(String title) async {
     check = await ArticleFavorite.instance.checkArticle(title);
+    check == true ? getCheckIdData(title) : null;
+  }
+
+  getCheckIdData(String title) async {
+    id = await ArticleFavorite.instance.checkIdArticle(title);
   }
 
   @action

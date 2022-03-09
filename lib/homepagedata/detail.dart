@@ -18,14 +18,16 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _favorite = Provider.of<Favorite>(context);
     _favorite.getCheckData(articles.title.toString());
-    print(_favorite.check);
     List<String>? time1 = articles.publishedAt?.split('T');
     return Scaffold(
       backgroundColor: kBgcolor,
       appBar: AppBar(
           centerTitle: true,
           title: Text(kDetailPageAppTitle,
-              style: Theme.of(context).textTheme.headline1),
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline1),
           backgroundColor: kappBarBgcolor,
           elevation: 0.0,
           leading: IconButton(
@@ -35,15 +37,26 @@ class DetailPage extends StatelessWidget {
             },
           ),
           actions: [
-            // print(_favorite.check),
-            IconButton(
-              icon: _favorite.check!
-                  ? Icon(Icons.favorite_border, color: Colors.red)
-                  : Icon(Icons.favorite_border, color: Colors.black),
-              onPressed: () {
-                _favorite.setData(articles);
-              },
-            ),
+            Observer(
+                builder: (context) =>
+                (_favorite.check!)
+                    ? IconButton(
+                    icon: const Icon(Icons.favorite, color: Colors.red),
+                    onPressed: () {
+                      _favorite.getDeleteData(
+                          int.parse(_favorite.id?.id.toString() ?? "1"));
+                      _favorite.getCheckData(articles.title.toString());
+                    },
+
+                )
+                    : IconButton(
+                  icon: const Icon(Icons.favorite_border,
+                      color: Colors.black),
+                  onPressed: () {
+                    _favorite.setData(articles);
+                    _favorite.getCheckData(articles.title.toString());
+                  },
+                )),
           ]),
       body: SingleChildScrollView(
         child: Padding(
@@ -60,10 +73,16 @@ class DetailPage extends StatelessWidget {
                   link: false),
               const SizedBox(height: 20),
               Text(articles.title.toString(),
-                  style: Theme.of(context).textTheme.headline1),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .headline1),
               const SizedBox(height: 20),
               Text(articles.description.toString(),
-                  style: Theme.of(context).textTheme.bodyText1),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodyText1),
             ],
           ),
         ),
