@@ -82,19 +82,23 @@ class _BottomBarState extends State<BottomBar> {
                     activeIcon: const Icon(Icons.favorite,
                         color: kBottomNavigationBarFavoriteColor),
                     label: 'Shop')
-                : BottomNavigationBarItem(
-                    icon: Observer(
-                      builder: (context) => (_favoriteHive.response?.isEmpty ??
-                              true)
-                          ? const Icon(Icons.favorite_border)
-                          : Badge(
-                              badgeContent: Text(
-                                  (_favoriteHive.response?.length).toString()),
-                              child: const Icon(Icons.favorite_border)),
-                    ),
-                    activeIcon: const Icon(Icons.favorite,
-                        color: kBottomNavigationBarFavoriteColor),
-                    label: 'Shop'),
+                : (config?.appInternalId == 2)
+                    ? BottomNavigationBarItem(
+                        icon: Observer(
+                          builder: (context) =>
+                              (_favoriteHive.response?.isEmpty ?? true)
+                                  ? const Icon(Icons.favorite_border)
+                                  : Badge(
+                                      badgeContent: Text(
+                                          (_favoriteHive.response?.length)
+                                              .toString()),
+                                      child: const Icon(Icons.favorite_border)),
+                        ),
+                        activeIcon: const Icon(Icons.favorite,
+                            color: kBottomNavigationBarFavoriteColor),
+                        label: 'Shop')
+                    : const BottomNavigationBarItem(
+                        icon: Icon(Icons.favorite_border)),
             const BottomNavigationBarItem(
                 icon: Icon(Icons.shop_outlined),
                 activeIcon: Icon(Icons.shop),

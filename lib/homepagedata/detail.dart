@@ -38,38 +38,36 @@ class DetailPage extends StatelessWidget {
           ),
           actions: [
             Observer(builder: (context) {
-              return config?.appInternalId == 1
-                  ? (_favorite.check ?? false)
-                      ? IconButton(
-                          icon: const Icon(Icons.favorite, color: Colors.red),
-                          onPressed: () {
-                            _favorite.getDeleteData(
-                                int.parse(_favorite.id?.id.toString() ?? "1"));
-                            _favorite.getCheckData(articles.title.toString());
-                          },
-                        )
-                      : IconButton(
-                          icon: const Icon(Icons.favorite_border,
-                              color: Colors.black),
-                          onPressed: () {
-                            _favorite.setData(articles);
-                            _favorite.getCheckData(articles.title.toString());
-                          },
-                        )
-                  :
-                  // (_favorite.check ?? false)
-                  //         ? IconButton(
-                  //             icon: const Icon(Icons.favorite, color: Colors.red),
-                  //             onPressed: () {},
-                  //           )
-                  //         :
-                  IconButton(
-                      icon: const Icon(Icons.favorite_border,
-                          color: Colors.black),
-                      onPressed: () {
-                        _favoriteHive.setData(articles);
-                      },
-                    );
+              switch(config?.appInternalId) {
+                case 1: return (_favorite.check ?? false)
+                    ? IconButton(
+                  icon: const Icon(Icons.favorite, color: Colors.red),
+                  onPressed: () {
+                    _favorite.getDeleteData(
+                        int.parse(_favorite.id?.id.toString() ?? "1"));
+                    _favorite.getCheckData(articles.title.toString());
+                  },
+                )
+                    : IconButton(
+                  icon: const Icon(Icons.favorite_border,
+                      color: Colors.black),
+                  onPressed: () {
+                    _favorite.setData(articles);
+                    _favorite.getCheckData(articles.title.toString());
+                  },
+                );
+                case 2: return IconButton(
+                  icon: const Icon(Icons.favorite_border,
+                      color: Colors.black),
+                  onPressed: () {
+                    _favoriteHive.setData(articles);
+                  },
+                );
+                default:
+                  {
+                    return Container();
+                  }
+              }
             }),
           ]),
       body: SingleChildScrollView(

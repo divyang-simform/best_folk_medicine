@@ -45,6 +45,8 @@ dependencies:
   sqflite: ^2.0.2
   flutter_slidable: ^1.2.0
   hive: ^2.0.6
+  moor: ^4.6.1+1
+  moor_flutter: ^4.0.0
   hive_flutter: ^1.1.0
   path:
   badges: ^2.0.2
@@ -55,8 +57,9 @@ dev_dependencies:
     sdk: flutter
   chopper_generator: ^4.0.5
   retrofit_generator: ^4.0.1
+  moor_generator: ^4.6.0+1
 #  hive_generator: ^1.1.2
-  json_serializable: ^6.1.4
+  json_serializable:
   mobx_codegen: ^2.0.5+2
 #  build_runner:
   hive_generator: ^1.1.0

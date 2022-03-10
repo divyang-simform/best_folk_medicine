@@ -18,132 +18,135 @@ class FavoritePage extends StatelessWidget {
     var config = AppConfig.of(context);
     final _favoriteHive = Provider.of<FavoriteHive>(context);
     final favorite = Provider.of<Favorite>(context);
-
-    return config?.appInternalId == 1
-        ? Observer(builder: (_) {
-            favorite.getAllData();
-            if (favorite.response?.status == FutureStatus.pending) {
-              return Container(
-                  alignment: Alignment.center,
-                  child: const CircularProgressIndicator.adaptive());
-            } else if (favorite.response?.status == FutureStatus.rejected) {
-              return const Text("Error :(");
-            } else {
-              return (favorite.data == null)
-                  ? Container(
-                      alignment: Alignment.center,
-                      child: const CircularProgressIndicator.adaptive())
-                  : (favorite.data?.length == null)
-                      ? Image.network(kEmptyCartImage)
-                      : Column(
-                          children: [
-                            const SearchBar(),
-                            const SizedBox(height: 20),
-                            Container(
-                              alignment: Alignment.topCenter,
-                              child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: favorite.data?.length,
-                                itemBuilder: (context, index) => Slidable(
-                                  startActionPane: ActionPane(
-                                    motion: const ScrollMotion(),
-                                    children: [
-                                      SlidableAction(
-                                        onPressed: (BuildContext context) {
-                                          favorite.getDeleteData(int.parse(
-                                              favorite.data![index].id
-                                                  .toString()));
-                                        },
-                                        backgroundColor: kDeleteButtonBGColor,
-                                        foregroundColor: kDeleteButtonTextColor,
-                                        icon: Icons.delete,
-                                        label: 'Delete',
-                                      ),
-                                    ],
-                                  ),
-                                  endActionPane: ActionPane(
-                                    motion: const ScrollMotion(),
-                                    children: [
-                                      SlidableAction(
-                                        onPressed: (BuildContext context) {
-                                          favorite.getDeleteData(int.parse(
-                                              favorite.data![index].id
-                                                  .toString()));
-                                        },
-                                        backgroundColor: kDeleteButtonBGColor,
-                                        foregroundColor: kDeleteButtonTextColor,
-                                        icon: Icons.delete,
-                                        label: 'Delete',
-                                      ),
-                                    ],
-                                  ),
-                                  child:
-                                      CardPage(articles: favorite.data![index]),
+    favorite.getAllData();
+    switch (config?.appInternalId.toString()) {
+      case "1":
+        return Observer(builder: (_) {
+          if (favorite.response?.status == FutureStatus.pending) {
+            return Container(
+                alignment: Alignment.center,
+                child: const CircularProgressIndicator.adaptive());
+          } else if (favorite.response?.status == FutureStatus.rejected) {
+            return const Text("Error :(");
+          } else {
+            return (favorite.data == null)
+                ? Container(
+                    alignment: Alignment.center,
+                    child: const CircularProgressIndicator.adaptive())
+                : (favorite.data?.isEmpty ?? true)
+                    ? Image.network(kEmptyCartImage)
+                    : Column(
+                        children: [
+                          const SearchBar(),
+                          const SizedBox(height: 20),
+                          Container(
+                            alignment: Alignment.topCenter,
+                            child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: favorite.data?.length,
+                              itemBuilder: (context, index) => Slidable(
+                                startActionPane: ActionPane(
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      onPressed: (BuildContext context) {
+                                        favorite.getDeleteData(int.parse(
+                                            favorite.data![index].id
+                                                .toString()));
+                                      },
+                                      backgroundColor: kDeleteButtonBGColor,
+                                      foregroundColor: kDeleteButtonTextColor,
+                                      icon: Icons.delete,
+                                      label: 'Delete',
+                                    ),
+                                  ],
                                 ),
+                                endActionPane: ActionPane(
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      onPressed: (BuildContext context) {
+                                        favorite.getDeleteData(int.parse(
+                                            favorite.data![index].id
+                                                .toString()));
+                                      },
+                                      backgroundColor: kDeleteButtonBGColor,
+                                      foregroundColor: kDeleteButtonTextColor,
+                                      icon: Icons.delete,
+                                      label: 'Delete',
+                                    ),
+                                  ],
+                                ),
+                                child:
+                                    CardPage(articles: favorite.data![index]),
                               ),
                             ),
-                          ],
-                        );
-            }
-          })
-        : Observer(builder: (_) {
-            WidgetsBinding.instance?.addPostFrameCallback((_) {
-              _favoriteHive.getCheckData();
-            });
-            return (_favoriteHive.response?.isEmpty ?? true)
-                ? Image.network(kEmptyCartImage)
-                : Column(
-                    children: [
-                      const SearchBar(),
-                      const SizedBox(height: 20),
-                      Container(
-                        alignment: Alignment.topCenter,
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: _favoriteHive.response?.length,
-                          itemBuilder: (context, index) => Slidable(
-                            startActionPane: ActionPane(
-                              motion: const ScrollMotion(),
-                              children: [
-                                SlidableAction(
-                                  onPressed: (BuildContext context) {
-                                    _favoriteHive.getDeleteData(index);
-                                  },
-                                  backgroundColor: kDeleteButtonBGColor,
-                                  foregroundColor: kDeleteButtonTextColor,
-                                  icon: Icons.delete,
-                                  label: 'Delete',
-                                ),
-                              ],
-                            ),
-                            endActionPane: ActionPane(
-                              motion: const ScrollMotion(),
-                              children: [
-                                SlidableAction(
-                                  onPressed: (BuildContext context) {
-                                    _favoriteHive.getDeleteData(index);
-                                  },
-                                  backgroundColor: kDeleteButtonBGColor,
-                                  foregroundColor: kDeleteButtonTextColor,
-                                  icon: Icons.delete,
-                                  label: 'Delete',
-                                ),
-                              ],
-                            ),
-                            child: CardPage(
-                                articles: _favoriteHive.response![index]),
                           ),
+                        ],
+                      );
+          }
+        });
+      case "2":
+        return Observer(builder: (_) {
+          WidgetsBinding.instance?.addPostFrameCallback((_) {
+            _favoriteHive.getCheckData();
+          });
+          return (_favoriteHive.response?.isEmpty ?? true)
+              ? Image.network(kEmptyCartImage)
+              : Column(
+                  children: [
+                    const SearchBar(),
+                    const SizedBox(height: 20),
+                    Container(
+                      alignment: Alignment.topCenter,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: _favoriteHive.response?.length,
+                        itemBuilder: (context, index) => Slidable(
+                          startActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (BuildContext context) {
+                                  _favoriteHive.getDeleteData(index);
+                                },
+                                backgroundColor: kDeleteButtonBGColor,
+                                foregroundColor: kDeleteButtonTextColor,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                            ],
+                          ),
+                          endActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (BuildContext context) {
+                                  _favoriteHive.getDeleteData(index);
+                                },
+                                backgroundColor: kDeleteButtonBGColor,
+                                foregroundColor: kDeleteButtonTextColor,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                            ],
+                          ),
+                          child: CardPage(
+                              articles: _favoriteHive.response![index]),
                         ),
                       ),
-                    ],
-                  );
-          }
-            // }
-
-            );
+                    ),
+                  ],
+                );
+        });
+      default:
+        {
+          return Container();
+        }
+    }
   }
 }

@@ -18,10 +18,19 @@ class CardPage extends StatelessWidget {
             elevation: 10,
             child: Row(
               children: [
-                Image.network(articles.urlToImage.toString(),
-                    fit: BoxFit.fill,
-                    height: MediaQuery.of(context).size.height * .11,
-                    width: MediaQuery.of(context).size.width * .3),
+                // try{
+                Expanded(
+                  flex: 1,
+                  child: Image.network(articles.urlToImage.toString(),
+                      fit: BoxFit.fill,
+                      height: MediaQuery.of(context).size.height * .11,
+                      width: MediaQuery.of(context).size.width * .3),
+                ),
+                // }
+                //         catch (exe) {
+                // return Text(exe.toString());
+                // }
+
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
