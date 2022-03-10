@@ -18,6 +18,7 @@ class FavoritePage extends StatelessWidget {
     var config = AppConfig.of(context);
     final _favoriteHive = Provider.of<FavoriteHive>(context);
     final favorite = Provider.of<Favorite>(context);
+
     return config?.appInternalId == 1
         ? Observer(builder: (_) {
             favorite.getAllData();
@@ -88,14 +89,9 @@ class FavoritePage extends StatelessWidget {
             }
           })
         : Observer(builder: (_) {
-            _favoriteHive.getCheckData();
-            // if (_favoriteHive.response.status == FutureStatus.pending) {
-            //   return Container(
-            //       alignment: Alignment.center,
-            //       child: const CircularProgressIndicator.adaptive());
-            // } else if (favorite.response?.status == FutureStatus.rejected) {
-            //   return const Text("Error :(");
-            // } else {
+            WidgetsBinding.instance?.addPostFrameCallback((_) {
+              _favoriteHive.getCheckData();
+            });
             return (_favoriteHive.response?.isEmpty ?? true)
                 ? Image.network(kEmptyCartImage)
                 : Column(

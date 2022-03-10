@@ -63,6 +63,12 @@ android {
             versionCode 1
             versionName "1.0"
         }
+        stage {
+            dimension "app"
+            applicationId "com.example.flavorsexample.stage"
+            versionCode 1
+            versionName "1.0"
+        }
     }
 
     buildTypes {
