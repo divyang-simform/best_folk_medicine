@@ -1,32 +1,32 @@
-import '../DataBase/database.dart';
+// import '../DataBase/database.dart';
 import '../DataBase/moor_database.dart';
-import '../data_fetching/Articles.dart';
+// import '../data_fetching/Articles.dart';
 import 'package:mobx/mobx.dart';
 
-part 'favoritemobx.g.dart';
+import '../data_fetching/Articles.dart';
 
-class FavoriteMoor = _FavoriteMoor with _$FavoriteMoor;
+part 'favoritemoor.g.dart';
 
-abstract class _FavoriteMoor with Store {
+class FavoritesMoor = _FavoritesMoor with _$FavoritesMoor;
 
-  final database = FavoriteDataBase()
+abstract class _FavoritesMoor with Store {
+
+  final database = FavoriteDataBase();
   // @observable
   // bool? check;
   //
   // @observable
   // Articles? id;
-
+  //
   @observable
-  List<FavoriteMoorData>? data;
-
+  List? data;
   @observable
-  ObservableStream<List<FavoriteMoorData>>? response;
+  ObservableStream<List>? response;
 
   @action
   getAllData() async {
-
-    response = ObservableStream( database.watchAllTasks());
-    // data = await response;
+    data = await database.getAllTasks();
+    // response = ObservableStream(database.watchAllTasks());
   }
   //
   // @action
@@ -44,15 +44,14 @@ abstract class _FavoriteMoor with Store {
   // //   id = await ArticleFavorite.instance.checkIdArticle(title);
   // // }
   //
-  // @action
-  // setData(Articles articles) async {
-  //   response = ObservableFuture(ArticleFavorite.instance.toInsert(articles));
-  //   getAllData();
-  // }
-  //
-  // @action
-  // getDeleteData(int id) async {
-  //   await ArticleFavorite.instance.deleteArticle(id);
-  //   getAllData();
-  // }
+  @action
+  setData(FavoriteMoorData favoriteMoorData) async {
+    database.insert(favoriteMoorData);
+    getAllData();
+  }
+  @action
+  getDeleteData(FavoriteMoorData favoriteMoorData) async {
+    database.deletedata(favoriteMoorData);
+    getAllData();
+  }
 }

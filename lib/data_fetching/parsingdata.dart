@@ -1,13 +1,12 @@
 import 'package:best_folk_medicine/data_fetching/Articles.dart';
 
+import '../DataBase/moor_database.dart';
+
 class Product {
-  // final String image;
-  // final String title;
-  // final String time;
-  // final String description;
-  // final String name;
-  final Articles articles;
+  Articles? articles;
+  FavoriteMoorData? favoriteMoorData;
+  final int mode;
 
   Product(
-      {required this.articles});
+      {this.articles, this.favoriteMoorData , required this.mode});
 }

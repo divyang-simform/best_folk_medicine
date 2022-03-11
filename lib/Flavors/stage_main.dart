@@ -14,7 +14,7 @@ void main() async {
   await Hive.openBox("Favorite");
   var configuredApp = AppConfig(
     appDisplayName: "stage",
-    appInternalId: 1,
+    appInternalId: 3,
     color: kBottomNavigationBarSelectedColorInDev,
     child: const MyApp(),
   );

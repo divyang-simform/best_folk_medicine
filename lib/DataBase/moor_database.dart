@@ -4,7 +4,7 @@ import 'package:moor/moor.dart';
 part 'moor_database.g.dart';
 
 class FavoriteMoor extends Table {
-  IntColumn get id => integer().autoIncrement()();
+  IntColumn get id => integer().autoIncrement().nullable()();
 
   TextColumn get author => text()();
 

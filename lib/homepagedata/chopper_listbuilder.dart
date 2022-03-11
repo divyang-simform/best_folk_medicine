@@ -15,10 +15,6 @@ FutureBuilder<Postt> buildCard(BuildContext context) {
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
         if (snapshot.hasError) {
-          if (snapshot.error.toString() == "404") {
-            return Image.network(
-                "https://blog.thomasnet.com/hs-fs/hubfs/shutterstock_774749455.jpg?width=600&name=shutterstock_774749455.jpg");
-          } else {
             return Center(
               child: Text(
                 snapshot.error.toString(),
@@ -26,7 +22,6 @@ FutureBuilder<Postt> buildCard(BuildContext context) {
                 textScaleFactor: 1.3,
               ),
             );
-          }
         }
         final posts = snapshot.data;
         return _buildPosts(context, posts, 1);
@@ -75,7 +70,7 @@ ListView _buildPosts(BuildContext context, dynamic data, int page) {
     itemBuilder: (context, index) => (page == 1)
         ? MyCardPage(articles: data?.articles[index])
         : CardPage(
-            articles: data.getData?.body?.articles[index],
+            articles: data.getData?.body?.articles[index],mode: 1
           ),
   );
 }

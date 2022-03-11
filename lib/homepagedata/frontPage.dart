@@ -78,11 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: buildCard(context),
                     )
-                  : (config.appInternalId == 2) ? Container(
+                  : Container(
                       height: MediaQuery.of(context).size.height * .4,
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: buildAllArticles(context, 1) ,
-                    ): Container(),
+                    ),
               Column(
                 children: [
                   RowPage(

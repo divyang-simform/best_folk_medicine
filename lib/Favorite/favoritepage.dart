@@ -1,3 +1,4 @@
+import '../state_management/favoritemoor.dart';
 import '../state_management/hivemobx.dart';
 import '../Flavors/app_config.dart';
 import '../Setting/resources.dart';
@@ -18,7 +19,9 @@ class FavoritePage extends StatelessWidget {
     var config = AppConfig.of(context);
     final _favoriteHive = Provider.of<FavoriteHive>(context);
     final favorite = Provider.of<Favorite>(context);
+    final _favoriteMoor = Provider.of<FavoritesMoor>(context);
     favorite.getAllData();
+    _favoriteMoor.getAllData();
     switch (config?.appInternalId.toString()) {
       case "1":
         return Observer(builder: (_) {
@@ -79,8 +82,8 @@ class FavoritePage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                child:
-                                    CardPage(articles: favorite.data![index]),
+                                child: CardPage(
+                                    articles: favorite.data![index], mode: 1),
                               ),
                             ),
                           ),
@@ -136,7 +139,64 @@ class FavoritePage extends StatelessWidget {
                             ],
                           ),
                           child: CardPage(
-                              articles: _favoriteHive.response![index]),
+                              articles: _favoriteHive.response![index],
+                              mode: 1),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+        });
+      case "3":
+        return Observer(builder: (_) {
+          return (_favoriteMoor.data?.isEmpty ?? true)
+              ? Image.network(kEmptyCartImage)
+              : Column(
+                  children: [
+                    const SearchBar(),
+                    const SizedBox(height: 20),
+                    Container(
+                      alignment: Alignment.topCenter,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: _favoriteMoor.data?.length,
+                        itemBuilder: (context, index) => Slidable(
+                          startActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (BuildContext context) {
+                                  _favoriteMoor.getDeleteData(
+                                      _favoriteMoor.data![index]);
+                                },
+                                backgroundColor: kDeleteButtonBGColor,
+                                foregroundColor: kDeleteButtonTextColor,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                            ],
+                          ),
+                          endActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            children: [
+                              SlidableAction(
+                                onPressed: (BuildContext context) {
+                                  _favoriteMoor.getDeleteData(
+                                      _favoriteMoor.data![index]);
+                                },
+                                backgroundColor: kDeleteButtonBGColor,
+                                foregroundColor: kDeleteButtonTextColor,
+                                icon: Icons.delete,
+                                label: 'Delete',
+                              ),
+                            ],
+                          ),
+                          child: CardPage(
+                            favoriteMoorData: _favoriteMoor.data![index],
+                            mode: 2,
+                          ),
                         ),
                       ),
                     ),

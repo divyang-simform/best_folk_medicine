@@ -1,6 +1,5 @@
-import 'package:best_folk_medicine/data_fetching/Articles.dart';
+import 'package:best_folk_medicine/state_management/favoritemoor.dart';
 import 'package:best_folk_medicine/state_management/hivemobx.dart';
-
 import 'state_management/favoritemobx.dart';
 import 'package:provider/provider.dart';
 import 'setting/resources.dart';
@@ -23,6 +22,7 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<Favorite>(create: (context) => Favorite()),
         Provider<FavoriteHive>(create: (context) => FavoriteHive()),
+        Provider<FavoritesMoor>(create: (context) => FavoritesMoor()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -44,6 +44,9 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) => DetailPage(
                 articles: args.articles,
+                favoriteMoorData: args.favoriteMoorData,
+                mode: args.mode,
+
               ),
             );
           } else if (settings.name == ShowAllArticales.showArticalesdata) {

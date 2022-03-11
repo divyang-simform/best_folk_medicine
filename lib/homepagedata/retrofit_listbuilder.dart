@@ -41,6 +41,6 @@ ListView _buildPosts(BuildContext context, DataFile data, int page) {
     itemBuilder: (context, index) => (page == 1)
         ? MyCardPage(articles: data.getData?.articles[index] as Articles)
         : CardPage(
-    articles: data.getData?.articles[index] as Articles),
+    articles: data.getData?.articles[index] as Articles , mode: 1),
   );
 }
