@@ -1,5 +1,5 @@
-import 'package:best_folk_medicine/state_management/favoritemoor.dart';
-import 'package:best_folk_medicine/state_management/hivemobx.dart';
+import 'state_management/favoritemoor.dart';
+import 'state_management/hivemobx.dart';
 import 'state_management/favoritemobx.dart';
 import 'package:provider/provider.dart';
 import 'setting/resources.dart';
@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
                 articles: args.articles,
                 favoriteMoorData: args.favoriteMoorData,
                 mode: args.mode,
-
               ),
             );
           } else if (settings.name == ShowAllArticales.showArticalesdata) {

@@ -1,5 +1,3 @@
-import 'package:best_folk_medicine/state_management/hivemobx.dart';
-
 import '../Favorite/favoritepage.dart';
 import '../Inc_And_DecPage/increment&decrement.dart';
 import 'package:badges/badges.dart';
@@ -51,9 +49,6 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     final _favorite = Provider.of<Favorite>(context);
-    final _favoriteHive = Provider.of<FavoriteHive>(context);
-    print(_favoriteHive.response);
-    print(_favorite.data?.length);
     final config = AppConfig.of(context);
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +64,7 @@ class _BottomBarState extends State<BottomBar> {
                 icon: Icon(Icons.home_outlined),
                 activeIcon: Icon(Icons.home),
                 label: 'Home'),
-            config?.appInternalId == 1
+            (config?.appInternalId == 1)
                 ? BottomNavigationBarItem(
                     icon: Observer(
                       builder: (context) => (_favorite.data?.isEmpty ?? true)
@@ -81,12 +76,15 @@ class _BottomBarState extends State<BottomBar> {
                     ),
                     activeIcon: const Icon(Icons.favorite,
                         color: kBottomNavigationBarFavoriteColor),
-                    label: 'Shop')
-                : const BottomNavigationBarItem(
+                label: 'favorite'
+                  )
+                :
+            const BottomNavigationBarItem(
                     icon: Icon(Icons.favorite_border),
                     activeIcon: Icon(Icons.favorite,
                         color: kBottomNavigationBarFavoriteColor),
-                    label: 'Shop'),
+                label: 'favorite'
+                  ),
             const BottomNavigationBarItem(
                 icon: Icon(Icons.shop_outlined),
                 activeIcon: Icon(Icons.shop),
@@ -101,7 +99,7 @@ class _BottomBarState extends State<BottomBar> {
           currentIndex: _selectedIndex,
           selectedItemColor: _selectedIndex == 1
               ? kBottomNavigationBarFavoriteColor
-              : config!.color,
+              : config?.color,
           unselectedItemColor: kBottomNavigationBarUnSelectedColor,
           onTap: _onItemTapped),
     );

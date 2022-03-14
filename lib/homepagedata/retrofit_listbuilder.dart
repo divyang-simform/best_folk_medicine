@@ -1,5 +1,4 @@
-import 'package:best_folk_medicine/data_fetching/Articles.dart';
-
+import '../data_fetching/Articles.dart';
 import '../state_management/mobxretofit.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
@@ -41,6 +40,6 @@ ListView _buildPosts(BuildContext context, DataFile data, int page) {
     itemBuilder: (context, index) => (page == 1)
         ? MyCardPage(articles: data.getData?.articles[index] as Articles)
         : CardPage(
-    articles: data.getData?.articles[index] as Articles , mode: 1),
+            articles: data.getData?.articles[index] as Articles, mode: 1),
   );
 }

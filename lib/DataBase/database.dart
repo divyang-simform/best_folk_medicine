@@ -1,5 +1,5 @@
 import 'dart:core';
-import 'package:best_folk_medicine/data_fetching/Articles.dart';
+import '../data_fetching/Articles.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

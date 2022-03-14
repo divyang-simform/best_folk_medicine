@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 import '../setting/resources.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'Source.dart';
 
 part 'Articles.g.dart';
 
@@ -26,7 +25,6 @@ class Articles {
     this.urlToImage = kUrlToImage,
     this.content = kContent,
     this.author = kAuthorName,
-    // this.source,
     this.url = kUrl});
 
   int? id;
@@ -44,7 +42,6 @@ class Articles {
   String? publishedAt;
   @HiveField(6)
   String? content;
-  // final Source? source;
 
   Articles copy({
     int? id,
@@ -64,7 +61,6 @@ class Articles {
         url: url ?? this.url,
         urlToImage: urlToImage ?? this.urlToImage,
         content: content ?? this.content,
-        // source: source ?? this.source,
       );
 
   factory Articles.fromJson(Map<String, dynamic> json) =>

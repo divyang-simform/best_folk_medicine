@@ -1,3 +1,4 @@
+import '../SharedPreferences/favoritesharedpreferences.dart';
 import '../state_management/favoritemoor.dart';
 import '../state_management/hivemobx.dart';
 import '../Flavors/app_config.dart';
@@ -11,8 +12,29 @@ import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import '../homepagedata/card.dart';
 
-class FavoritePage extends StatelessWidget {
+class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
+
+  @override
+  _FavoritePageState createState() => _FavoritePageState();
+}
+
+class _FavoritePageState extends State<FavoritePage> {
+  final _preferences = Preferences();
+  String? url;
+
+  void _fields() async {
+    final settings = await _preferences.getSetting();
+    setState(() {
+      url = settings.urlToImage;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fields();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +59,11 @@ class FavoritePage extends StatelessWidget {
                     alignment: Alignment.center,
                     child: const CircularProgressIndicator.adaptive())
                 : (favorite.data?.isEmpty ?? true)
-                    ? Image.network(kEmptyCartImage)
+                    ? Image.network(
+                        url ?? kEmptyCartImage,
+                        errorBuilder: (_, __, ___) =>
+                            Image.network(kUrlToImage),
+                      )
                     : Column(
                         children: [
                           const SearchBar(),

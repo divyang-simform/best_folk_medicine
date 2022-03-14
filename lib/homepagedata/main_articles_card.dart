@@ -1,15 +1,11 @@
-import 'package:best_folk_medicine/Setting/resources.dart';
-
+import '../Setting/resources.dart';
 import '../data_fetching/Articles.dart';
 import '../data_fetching/parsingdata.dart';
 import 'detail.dart';
 import 'package:flutter/material.dart';
 
 class MyCardPage extends StatelessWidget {
-  MyCardPage(
-      {Key? key,
-      required this.articles})
-      : super(key: key);
+  MyCardPage({Key? key, required this.articles}) : super(key: key);
 
   Articles articles;
 
@@ -26,7 +22,10 @@ class MyCardPage extends StatelessWidget {
                 Hero(
                   tag: articles.publishedAt as Object,
                   child: Image.network(articles.urlToImage.toString(),
-                      // errorBuilder: (_, __ ,___) => Image.network(kUrlToImage),
+                      errorBuilder: (_, __, ___) => Image.network(kUrlToImage,
+                          fit: BoxFit.fill,
+                          height: MediaQuery.of(context).size.height * .24,
+                          width: MediaQuery.of(context).size.width * .8),
                       fit: BoxFit.fill,
                       height: MediaQuery.of(context).size.height * .24,
                       width: MediaQuery.of(context).size.width * .8),
@@ -64,15 +63,7 @@ class MyCardPage extends StatelessWidget {
         ),
         onTap: () {
           Navigator.pushNamed(context, DetailPage.detailPagedata,
-              arguments: Product(
-                articles: articles,
-                  mode: 1
-                  // image: 'hi.jpg',
-                  // name: 'divyang',
-                  // description: 'done',
-                  // title: 'ok',
-                  // time: 'today'
-              ));
+              arguments: Product(articles: articles, mode: 1));
         },
       ),
     );
