@@ -50,6 +50,8 @@ dependencies:
   hive_flutter: ^1.1.0
   path:
   badges: ^2.0.2
+  permission_handler: ^9.2.0
+  app_settings: ^4.1.1
 
 
 dev_dependencies:
