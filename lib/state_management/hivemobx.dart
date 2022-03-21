@@ -1,8 +1,6 @@
 import 'package:hive/hive.dart';
-// import 'package:hive/hive.dart';
 import 'package:mobx/mobx.dart';
-
-import '../data_fetching/Articles.dart';
+import '../data_fetching/articles.dart';
 
 part 'hivemobx.g.dart';
 

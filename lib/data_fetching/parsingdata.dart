@@ -1,4 +1,4 @@
-import 'package:best_folk_medicine/data_fetching/Articles.dart';
+import 'articles.dart';
 
 import '../DataBase/moor_database.dart';
 

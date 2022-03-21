@@ -23,7 +23,6 @@ class _SettingsPageState extends State<SettingsPage> {
   PermissionStatus? cameraPermission;
   PermissionStatus? storagePermission;
 
-
   void checkCondition() async {
     cameraPermission = await Permission.camera.status;
     locationPermission = await Permission.location.status;
@@ -32,7 +31,8 @@ class _SettingsPageState extends State<SettingsPage> {
         (locationPermission == PermissionStatus.granted) ? true : false;
     switchCameraBool =
         (cameraPermission == PermissionStatus.granted) ? true : false;
-    switchStorageBool = (storagePermission == PermissionStatus.granted)? true : false ;
+    switchStorageBool =
+        (storagePermission == PermissionStatus.granted) ? true : false;
     setState(() {});
   }
 
@@ -157,19 +157,21 @@ class _SettingsPageState extends State<SettingsPage> {
                   }),
             ],
           ),
-          (Platform.isAndroid) ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Storage Permission :",
-                  style: TextStyle(fontSize: 20.0)),
-              const SizedBox(width: 20),
-              Switch.adaptive(
-                  value: switchStorageBool,
-                  onChanged: (switchBool) {
-                    getPermission("storage");
-                  }),
-            ],
-          ) : const SizedBox(),
+          (Platform.isAndroid)
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Storage Permission :",
+                        style: TextStyle(fontSize: 20.0)),
+                    const SizedBox(width: 20),
+                    Switch.adaptive(
+                        value: switchStorageBool,
+                        onChanged: (switchBool) {
+                          getPermission("storage");
+                        }),
+                  ],
+                )
+              : const SizedBox(),
         ],
       ),
     );

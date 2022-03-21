@@ -1,5 +1,5 @@
 import '../DataBase/database.dart';
-import '../data_fetching/Articles.dart';
+import '../data_fetching/articles.dart';
 import 'package:mobx/mobx.dart';
 
 part 'favoritemobx.g.dart';

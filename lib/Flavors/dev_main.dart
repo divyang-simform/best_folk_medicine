@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import '../Setting/resources.dart';
 import 'package:path_provider/path_provider.dart' as path;
 import 'package:flutter/material.dart';
-import '../data_fetching/Articles.dart';
+import '../data_fetching/articles.dart';
 import 'app_config.dart';
 import '../main.dart';
 

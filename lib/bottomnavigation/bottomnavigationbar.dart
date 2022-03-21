@@ -1,12 +1,12 @@
 import '../Favorite/favoritepage.dart';
-import '../Inc_And_DecPage/increment&decrement.dart';
+import '../Inc_And_DecPage/increment_and_decrement.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import '../Setting/resources.dart';
 import '../Flavors/app_config.dart';
 import '../shoppage/shop.dart';
-import '../homepagedata/frontPage.dart';
+import '../homepagedata/front_page.dart';
 import '../Settingpagedata/settingpage.dart';
 import 'package:flutter/material.dart';
 import '../state_management/favoritemobx.dart';

@@ -1,6 +1,6 @@
 import '../DataBase/moor_database.dart';
 import '../Setting/resources.dart';
-import '../data_fetching/Articles.dart';
+import '../data_fetching/articles.dart';
 import '../data_fetching/parsingdata.dart';
 import 'detail.dart';
 import 'package:flutter/material.dart';

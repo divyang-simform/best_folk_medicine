@@ -1,3 +1,4 @@
+import 'package:best_folk_medicine/data_fetching/articles.dart';
 import 'package:moor_flutter/moor_flutter.dart';
 
 part 'moor_database.g.dart';
@@ -30,6 +31,7 @@ class FavoriteDataBase extends _$FavoriteDataBase {
   int get schemaVersion => 1;
 
   Future<List<FavoriteMoorData>> getAllTasks() => select(favoriteMoor).get();
+
 
   Stream<List<FavoriteMoorData>> watchAllTasks() =>
       select(favoriteMoor).watch();

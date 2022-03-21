@@ -6,7 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../Flavors/app_config.dart';
 import '../state_management/favoritemobx.dart';
 import 'package:provider/provider.dart';
-import '../data_fetching/Articles.dart';
+import '../data_fetching/articles.dart';
 import '../Setting/resources.dart';
 import 'row.dart';
 import 'package:flutter/material.dart';
@@ -37,13 +37,8 @@ class _DetailPageState extends State<DetailPage> {
         final _favoriteHive = Provider.of<FavoriteHive>(context);
         final _favorite = Provider.of<Favorite>(context);
         final _moor = Provider.of<FavoritesMoor>(context);
-        _moor.getAllData();
-        var k = _moor.data?.length as num;
-        for (var i = 0; i < k; i++) {
-          if (widget.articles?.title == _moor.data?[i].title) {
-            _moor.check = true;
-          }
-        }
+        _moor.checkData((widget.articles?.title).toString());
+        print(_moor.check);
         _favorite.getCheckData((widget.articles?.title).toString());
         List<String>? time1 = widget.articles?.publishedAt?.split('T');
         return Scaffold(
@@ -109,51 +104,45 @@ class _DetailPageState extends State<DetailPage> {
                         },
                       );
                     case 3:
-                      return (_moor.check ?? false)
-                          ? IconButton(
-                              icon:
-                                  const Icon(Icons.favorite, color: Colors.red),
-                              onPressed: () {
-                                final _favoritemoordata = FavoriteMoorData(
-                                    title: (widget.articles?.title).toString(),
-                                    urlToImage: (widget.articles?.urlToImage)
-                                        .toString(),
-                                    url: (widget.articles?.url).toString(),
-                                    publishedAt: (widget.articles?.publishedAt)
-                                        .toString(),
-                                    description: (widget.articles?.description)
-                                        .toString(),
-                                    author:
-                                        (widget.articles?.author).toString(),
-                                    content:
-                                        (widget.articles?.content).toString());
-                                _moor.getDeleteData(_favoritemoordata);
-                                _moor.check = false;
-                              },
-                            )
-                          : IconButton(
-                              icon: const Icon(Icons.favorite_border,
-                                  color: Colors.black),
-                              onPressed: () {
-                                final _favoritemoordata = FavoriteMoorData(
-                                    title: (widget.articles?.title).toString(),
-                                    urlToImage: (widget.articles?.urlToImage)
-                                        .toString(),
-                                    url: (widget.articles?.url).toString(),
-                                    publishedAt: (widget.articles?.publishedAt)
-                                        .toString(),
-                                    description: (widget.articles?.description)
-                                        .toString(),
-                                    author:
-                                        (widget.articles?.author).toString(),
-                                    content:
-                                        (widget.articles?.content).toString());
+                      return (_moor.check)?  IconButton(
+                        icon: const Icon(Icons.favorite_border,
+                            color: Colors.red),
+                        onPressed: () {
+                          final _favoritemoordata = FavoriteMoorData(
+                              title: (widget.articles?.title).toString(),
+                              urlToImage:
+                              (widget.articles?.urlToImage).toString(),
+                              url: (widget.articles?.url).toString(),
+                              publishedAt:
+                              (widget.articles?.publishedAt).toString(),
+                              description:
+                              (widget.articles?.description).toString(),
+                              author: (widget.articles?.author).toString(),
+                              content: (widget.articles?.content).toString());
 
-                                _moor.setData(_favoritemoordata);
+                          _moor.getDeleteData(_favoritemoordata);
+                          },
+                      ):  IconButton(
+                        icon: const Icon(Icons.favorite_border,
+                            color: Colors.black),
+                        onPressed: () {
+                          final _favoritemoordata = FavoriteMoorData(
+                              title: (widget.articles?.title).toString(),
+                              urlToImage:
+                                  (widget.articles?.urlToImage).toString(),
+                              url: (widget.articles?.url).toString(),
+                              publishedAt:
+                                  (widget.articles?.publishedAt).toString(),
+                              description:
+                                  (widget.articles?.description).toString(),
+                              author: (widget.articles?.author).toString(),
+                              content: (widget.articles?.content).toString());
 
-                                _moor.check = true;
-                              },
-                            );
+                          _moor.setData(_favoritemoordata);
+                          _moor.checkData((widget.articles?.title).toString());
+
+                        },
+                      );
                     default:
                       {
                         return Container();

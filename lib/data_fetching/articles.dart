@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import '../setting/resources.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'Articles.g.dart';
+part 'articles.g.dart';
 
 class ArticlesFields {
   static const String id = 'id';

@@ -1,10 +1,10 @@
-import 'decrementPage.dart';
+import 'decrement_page.dart';
 import 'counter.dart';
 import 'package:provider/provider.dart';
 import '../Setting/utils.dart';
 import '../Setting/transition.dart';
 import 'package:flutter/material.dart';
-import 'incrementPage.dart';
+import 'increment_page.dart';
 
 int count = 0;
 

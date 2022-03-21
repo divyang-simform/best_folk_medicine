@@ -1,4 +1,4 @@
-import '../data_fetching/Articles.dart';
+import '../data_fetching/articles.dart';
 import '../state_management/mobxretofit.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';

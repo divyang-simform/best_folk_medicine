@@ -8,7 +8,7 @@ abstract class _FavoritesMoor with Store {
 
   final database = FavoriteDataBase();
   @observable
-  bool? check;
+  bool check = false;
 
   @observable
   List? data;
@@ -20,14 +20,26 @@ abstract class _FavoritesMoor with Store {
     data = await database.getAllTasks();
   }
 
+  checkData(String title) async{
+    getAllData();
+    print(data?.length);
+    for (int i =0 ;i< ((data?.length ?? 1 )); i++){
+      if( title == data![i].title){
+        return check = true;
+      }
+    }
+  }
+
   @action
   setData(FavoriteMoorData favoriteMoorData) async {
     database.insert(favoriteMoorData);
     getAllData();
+    checkData(favoriteMoorData.title);
   }
   @action
   getDeleteData(FavoriteMoorData favoriteMoorData) async {
     database.deletedata(favoriteMoorData);
     getAllData();
+    check = false;
   }
 }

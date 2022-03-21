@@ -12,11 +12,11 @@ class ShopingPage extends StatefulWidget {
 
 class _ShopingPageState extends State<ShopingPage> {
   String? shopData;
-  late var sData;
+  late var shopsData;
 
   loadJson() async {
     shopData = await rootBundle.loadString("asset/data/shop.json");
-    sData = await jsonDecode(shopData!);
+    shopsData = await jsonDecode(shopData!);
     setState(() {});
   }
 
@@ -33,11 +33,12 @@ class _ShopingPageState extends State<ShopingPage> {
     } else {
       return Container(
         child: GridView.builder(
-            itemCount: sData.length,
+            itemCount: shopsData.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2),
             itemBuilder: (context, index) => ShopCardPage(
-                image: sData[index]["image"], name: sData[index]["name"])),
+                image: shopsData[index]["image"],
+                name: shopsData[index]["name"])),
       );
     }
   }
