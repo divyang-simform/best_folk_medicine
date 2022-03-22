@@ -1,4 +1,3 @@
-import 'package:best_folk_medicine/data_fetching/articles.dart';
 import 'package:moor_flutter/moor_flutter.dart';
 
 part 'moor_database.g.dart';

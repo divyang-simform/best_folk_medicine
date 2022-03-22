@@ -5,6 +5,7 @@ const String kShopPageAppTitle = "Shop";
 const String kIncDecAppTitle = "Increment & decrement";
 const String kFavoriteAppTitle = "Favorite";
 const String kSettingPageAppTitle = "Settings";
+const String kAnimationPageAppTitle = "animations";
 const String kDetailPageAppTitle = "Articale";
 const String kAllArticalesPageAppTitle = "All Articale";
 const String kAuthorName = "";

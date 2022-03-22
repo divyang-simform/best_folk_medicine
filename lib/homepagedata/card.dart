@@ -27,12 +27,15 @@ class CardPage extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: Image.network((articles?.urlToImage).toString(),
-                          errorBuilder: (_, __, ___) => Image.network(
-                              kUrlToImage,
-                              fit: BoxFit.fill,
-                              height: MediaQuery.of(context).size.height * .11,
-                              width: MediaQuery.of(context).size.width * .3),
+                      child: FadeInImage.assetNetwork(
+                          placeholder: "asset/photo/No_Image.jpeg",
+                          fadeInDuration: const Duration(seconds: 2),
+                          image: (articles?.urlToImage).toString(),
+                          imageErrorBuilder: (_, __, ___) {
+                            return Image.asset("asset/photo/No_Image.jpeg",
+                                height: MediaQuery.of(context).size.height * .11,
+                                width: MediaQuery.of(context).size.width * .3);
+                          },
                           fit: BoxFit.fill,
                           height: MediaQuery.of(context).size.height * .11,
                           width: MediaQuery.of(context).size.width * .3),

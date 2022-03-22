@@ -1,3 +1,4 @@
+import '../Animations/animation_page.dart';
 import '../Favorite/favoritepage.dart';
 import '../Inc_And_DecPage/increment_and_decrement.dart';
 import 'package:badges/badges.dart';
@@ -26,6 +27,7 @@ class _BottomBarState extends State<BottomBar> {
     FavoritePage(),
     ShopingPage(),
     IncrementDecrementPage(),
+    AnimationPage(),
     SettingsPage()
   ];
 
@@ -38,10 +40,12 @@ class _BottomBarState extends State<BottomBar> {
     } else if (_selectedIndex == 1) {
       title = kFavoriteAppTitle;
     } else if (_selectedIndex == 2) {
-      title = kIncDecAppTitle;
+      title = kShopPageAppTitle;
     } else if (_selectedIndex == 3) {
-      title = kSettingPageAppTitle;
+      title = kIncDecAppTitle;
     } else if (_selectedIndex == 4) {
+      title = kAnimationPageAppTitle;
+    } else if (_selectedIndex == 5) {
       title = kSettingPageAppTitle;
     }
   }
@@ -91,6 +95,8 @@ class _BottomBarState extends State<BottomBar> {
                 label: 'Shop'),
             const BottomNavigationBarItem(
                 icon: Icon(Icons.add), label: 'Increment'),
+            const BottomNavigationBarItem(
+                icon: Icon(Icons.animation), label: 'Animation'),
             const BottomNavigationBarItem(
                 icon: Icon(Icons.settings_outlined),
                 activeIcon: Icon(Icons.settings),

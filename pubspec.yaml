@@ -96,6 +96,10 @@ flutter:
     - asset/photo/shop/s4.png
     - asset/photo/shop/s5.png
     - asset/photo/shop/s6.png
+    - asset/photo/No_Image.jpeg
+    - asset/animation/earth.png
+    - asset/animation/moon.png
+    - asset/animation/moon.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -22,7 +22,6 @@ abstract class _FavoritesMoor with Store {
 
   checkData(String title) async{
     getAllData();
-    print(data?.length);
     for (int i =0 ;i< ((data?.length ?? 1 )); i++){
       if( title == data![i].title){
         return check = true;

@@ -38,7 +38,6 @@ class _DetailPageState extends State<DetailPage> {
         final _favorite = Provider.of<Favorite>(context);
         final _moor = Provider.of<FavoritesMoor>(context);
         _moor.checkData((widget.articles?.title).toString());
-        print(_moor.check);
         _favorite.getCheckData((widget.articles?.title).toString());
         List<String>? time1 = widget.articles?.publishedAt?.split('T');
         return Scaffold(
@@ -76,7 +75,7 @@ class _DetailPageState extends State<DetailPage> {
                           (_favorite.check ?? false)
                               ? IconButton(
                                   icon: const Icon(Icons.favorite,
-                                      color: Colors.red),
+                                      color: kFavoriteColor),
                                   onPressed: () {
                                     _favorite.getDeleteData(int.parse(
                                         _favorite.id?.id.toString() ?? "1"));
@@ -86,7 +85,7 @@ class _DetailPageState extends State<DetailPage> {
                                 )
                               : IconButton(
                                   icon: const Icon(Icons.favorite_border,
-                                      color: Colors.black),
+                                      color: kFavoriteBorderColor),
                                   onPressed: () {
                                     _favorite.setData(widget.articles!);
                                     _favorite.getCheckData(
@@ -98,51 +97,57 @@ class _DetailPageState extends State<DetailPage> {
                     case 2:
                       return IconButton(
                         icon: const Icon(Icons.favorite_border,
-                            color: Colors.black),
+                            color: kFavoriteBorderColor),
                         onPressed: () {
                           _favoriteHive.setData(widget.articles!);
                         },
                       );
                     case 3:
-                      return (_moor.check)?  IconButton(
-                        icon: const Icon(Icons.favorite_border,
-                            color: Colors.red),
-                        onPressed: () {
-                          final _favoritemoordata = FavoriteMoorData(
-                              title: (widget.articles?.title).toString(),
-                              urlToImage:
-                              (widget.articles?.urlToImage).toString(),
-                              url: (widget.articles?.url).toString(),
-                              publishedAt:
-                              (widget.articles?.publishedAt).toString(),
-                              description:
-                              (widget.articles?.description).toString(),
-                              author: (widget.articles?.author).toString(),
-                              content: (widget.articles?.content).toString());
+                      return (_moor.check)
+                          ? IconButton(
+                              icon: const Icon(Icons.favorite,
+                                  color: kFavoriteColor),
+                              onPressed: () {
+                                final _favoritemoordata = FavoriteMoorData(
+                                    title: (widget.articles?.title).toString(),
+                                    urlToImage: (widget.articles?.urlToImage)
+                                        .toString(),
+                                    url: (widget.articles?.url).toString(),
+                                    publishedAt: (widget.articles?.publishedAt)
+                                        .toString(),
+                                    description: (widget.articles?.description)
+                                        .toString(),
+                                    author:
+                                        (widget.articles?.author).toString(),
+                                    content:
+                                        (widget.articles?.content).toString());
 
-                          _moor.getDeleteData(_favoritemoordata);
-                          },
-                      ):  IconButton(
-                        icon: const Icon(Icons.favorite_border,
-                            color: Colors.black),
-                        onPressed: () {
-                          final _favoritemoordata = FavoriteMoorData(
-                              title: (widget.articles?.title).toString(),
-                              urlToImage:
-                                  (widget.articles?.urlToImage).toString(),
-                              url: (widget.articles?.url).toString(),
-                              publishedAt:
-                                  (widget.articles?.publishedAt).toString(),
-                              description:
-                                  (widget.articles?.description).toString(),
-                              author: (widget.articles?.author).toString(),
-                              content: (widget.articles?.content).toString());
+                                _moor.getDeleteData(_favoritemoordata);
+                              },
+                            )
+                          : IconButton(
+                              icon: const Icon(Icons.favorite_border,
+                                  color: kFavoriteBorderColor),
+                              onPressed: () {
+                                final _favoritemoordata = FavoriteMoorData(
+                                    title: (widget.articles?.title).toString(),
+                                    urlToImage: (widget.articles?.urlToImage)
+                                        .toString(),
+                                    url: (widget.articles?.url).toString(),
+                                    publishedAt: (widget.articles?.publishedAt)
+                                        .toString(),
+                                    description: (widget.articles?.description)
+                                        .toString(),
+                                    author:
+                                        (widget.articles?.author).toString(),
+                                    content:
+                                        (widget.articles?.content).toString());
 
-                          _moor.setData(_favoritemoordata);
-                          _moor.checkData((widget.articles?.title).toString());
-
-                        },
-                      );
+                                _moor.setData(_favoritemoordata);
+                                _moor.checkData(
+                                    (widget.articles?.title).toString());
+                              },
+                            );
                     default:
                       {
                         return Container();
@@ -156,9 +161,16 @@ class _DetailPageState extends State<DetailPage> {
               child: Column(
                 children: [
                   Hero(
-                      tag: widget.articles?.publishedAt as Object,
-                      child: Image.network(
-                          (widget.articles?.urlToImage).toString())),
+                    tag: widget.articles?.publishedAt as Object,
+                    child: FadeInImage.assetNetwork(
+                      placeholder: "asset/photo/No_Image.jpeg",
+                      fadeInDuration: const Duration(seconds: 2),
+                      image: (widget.articles?.urlToImage).toString(),
+                      imageErrorBuilder: (_, __, ___) {
+                        return Image.asset("asset/photo/No_Image.jpeg");
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   RowPage(
                       title: (widget.articles?.author).toString(),
@@ -187,7 +199,8 @@ class _DetailPageState extends State<DetailPage> {
               backgroundColor: kappBarBgcolor,
               elevation: 0.0,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+                icon: const Icon(Icons.arrow_back_ios,
+                    color: kFavoriteBorderColor),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -195,8 +208,8 @@ class _DetailPageState extends State<DetailPage> {
               actions: [
                 Observer(builder: (context) {
                   return IconButton(
-                    icon:
-                        const Icon(Icons.favorite_border, color: Colors.black),
+                    icon: const Icon(Icons.favorite_border,
+                        color: kFavoriteBorderColor),
                     onPressed: () {
                       final _favoritemoordata = FavoriteMoorData(
                           title: (widget.favoriteMoorData?.title).toString(),
@@ -221,9 +234,18 @@ class _DetailPageState extends State<DetailPage> {
               child: Column(
                 children: [
                   Hero(
-                      tag: widget.favoriteMoorData?.publishedAt as Object,
-                      child: Image.network(
-                          (widget.favoriteMoorData?.urlToImage).toString())),
+                    tag: widget.favoriteMoorData?.publishedAt as Object,
+                    child: FadeInImage.assetNetwork(
+                      placeholder: "asset/photo/No_Image.jpeg",
+                      fadeInDuration: const Duration(seconds: 2),
+                      image: (widget.favoriteMoorData?.urlToImage).toString(),
+                      imageErrorBuilder: (_, __, ___) {
+                        return Image.asset(
+                          "asset/photo/No_Image.jpeg",
+                        );
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   RowPage(
                       title: (widget.favoriteMoorData?.author).toString(),
