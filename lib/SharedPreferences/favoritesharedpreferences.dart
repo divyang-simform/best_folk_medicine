@@ -1,4 +1,4 @@
-import 'package:best_folk_medicine/data_fetching/articles.dart';
+import '../data_fetching/articles.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

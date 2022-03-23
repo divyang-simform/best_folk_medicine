@@ -1,5 +1,4 @@
 import 'articles.dart';
-
 import '../DataBase/moor_database.dart';
 
 class Product {

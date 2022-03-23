@@ -38,6 +38,6 @@ class FavoriteDataBase extends _$FavoriteDataBase {
   Future insert(FavoriteMoorData favoriteMoorData) =>
       into(favoriteMoor).insert(favoriteMoorData);
 
-  Future deletedata(FavoriteMoorData favoriteMoorData) =>
+  Future deleteData(FavoriteMoorData favoriteMoorData) =>
       delete(favoriteMoor).delete(favoriteMoorData);
 }

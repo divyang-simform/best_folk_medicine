@@ -64,17 +64,16 @@ class _DetailPageState extends State<DetailPage> {
                               onPressed: () {
                                 _preferences.cleanArtical();
                               },
-                              icon: const Icon(Icons.delete,
-                                  color: Colors.redAccent)),
+                              icon: const Icon(kDeleteButtonIcon)),
                           IconButton(
                               onPressed: () {
                                 saveSetting();
                               },
-                              icon:
-                                  const Icon(Icons.share, color: Colors.black)),
+                              icon: const Icon(kSharePreferenceIcon,
+                                  color: Colors.black)),
                           (_favorite.check ?? false)
                               ? IconButton(
-                                  icon: const Icon(Icons.favorite,
+                                  icon: const Icon(kFavoriteSelectedIcon,
                                       color: kFavoriteColor),
                                   onPressed: () {
                                     _favorite.getDeleteData(int.parse(
@@ -84,7 +83,7 @@ class _DetailPageState extends State<DetailPage> {
                                   },
                                 )
                               : IconButton(
-                                  icon: const Icon(Icons.favorite_border,
+                                  icon: const Icon(kFavoriteIcon,
                                       color: kFavoriteBorderColor),
                                   onPressed: () {
                                     _favorite.setData(widget.articles!);
@@ -96,7 +95,7 @@ class _DetailPageState extends State<DetailPage> {
                       );
                     case 2:
                       return IconButton(
-                        icon: const Icon(Icons.favorite_border,
+                        icon: const Icon(kFavoriteIcon,
                             color: kFavoriteBorderColor),
                         onPressed: () {
                           _favoriteHive.setData(widget.articles!);
@@ -105,7 +104,7 @@ class _DetailPageState extends State<DetailPage> {
                     case 3:
                       return (_moor.check)
                           ? IconButton(
-                              icon: const Icon(Icons.favorite,
+                              icon: const Icon(kFavoriteSelectedIcon,
                                   color: kFavoriteColor),
                               onPressed: () {
                                 final _favoritemoordata = FavoriteMoorData(
@@ -126,7 +125,7 @@ class _DetailPageState extends State<DetailPage> {
                               },
                             )
                           : IconButton(
-                              icon: const Icon(Icons.favorite_border,
+                              icon: const Icon(kFavoriteIcon,
                                   color: kFavoriteBorderColor),
                               onPressed: () {
                                 final _favoritemoordata = FavoriteMoorData(
@@ -208,8 +207,8 @@ class _DetailPageState extends State<DetailPage> {
               actions: [
                 Observer(builder: (context) {
                   return IconButton(
-                    icon: const Icon(Icons.favorite_border,
-                        color: kFavoriteBorderColor),
+                    icon:
+                        const Icon(kFavoriteIcon, color: kFavoriteBorderColor),
                     onPressed: () {
                       final _favoritemoordata = FavoriteMoorData(
                           title: (widget.favoriteMoorData?.title).toString(),

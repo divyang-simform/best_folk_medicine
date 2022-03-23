@@ -16,3 +16,4 @@ const String kContent = 'No Content';
 const String kUrl = 'No Url';
 const String kId = 'No Id';
 const String kName = 'Divyang';
+const String kSolorSystemTitle = "it is a solar system";

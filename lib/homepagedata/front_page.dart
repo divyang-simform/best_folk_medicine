@@ -1,4 +1,5 @@
 import 'dart:convert';
+import '../Setting/resources.dart';
 import 'retrofit_listbuilder.dart';
 import '../Flavors/app_config.dart';
 import 'chopper_listbuilder.dart';
@@ -56,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         itemCount: categaryDetail.length,
                         itemBuilder: (context, index) => Container(
                           decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
+                              border: Border.all(color: kItemColor),
                               borderRadius: BorderRadius.circular(10)),
                           margin: const EdgeInsets.only(
                               top: 20, right: 10, bottom: 20),

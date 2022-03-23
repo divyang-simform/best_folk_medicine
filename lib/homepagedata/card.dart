@@ -33,7 +33,8 @@ class CardPage extends StatelessWidget {
                           image: (articles?.urlToImage).toString(),
                           imageErrorBuilder: (_, __, ___) {
                             return Image.asset("asset/photo/No_Image.jpeg",
-                                height: MediaQuery.of(context).size.height * .11,
+                                height:
+                                    MediaQuery.of(context).size.height * .11,
                                 width: MediaQuery.of(context).size.width * .3);
                           },
                           fit: BoxFit.fill,

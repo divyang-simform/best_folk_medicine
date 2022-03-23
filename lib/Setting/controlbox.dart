@@ -14,3 +14,7 @@ const kDeleteButtonBGColor = Color(0xFFFE4A49);
 const kDeleteButtonTextColor = Colors.white;
 const kFavoriteColor =  Colors.red;
 const kFavoriteBorderColor =  Colors.black;
+const kSolorSystmBGColor = Colors.black;
+const kSolorSystmTextColor = Colors.white;
+const kSolorSystemColor = Colors.blueGrey;
+const kItemColor = Colors.grey;

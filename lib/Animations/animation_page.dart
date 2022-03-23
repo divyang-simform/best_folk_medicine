@@ -1,3 +1,4 @@
+import '../Setting/resources.dart';
 import 'rotation_animation_page.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,7 @@ class _AnimationPageState extends State<AnimationPage> {
   double width = 250;
   double textOpacity = 1;
   double imageOpacity = 0;
+  Color bgColor = kSolorSystemColor;
 
   animationContainer() async {
     await Future.delayed(const Duration(seconds: 1));
@@ -26,6 +28,7 @@ class _AnimationPageState extends State<AnimationPage> {
     width = MediaQuery.of(context).size.height * 1;
     textOpacity = 0;
     imageOpacity = 1;
+    bgColor = kSolorSystmBGColor;
     setState(() {});
   }
 
@@ -39,7 +42,7 @@ class _AnimationPageState extends State<AnimationPage> {
             duration: const Duration(seconds: 3),
             height: height,
             width: width,
-            color: Colors.black,
+            color: bgColor,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -54,7 +57,7 @@ class _AnimationPageState extends State<AnimationPage> {
                         alignment: Alignment.centerLeft,
                       ),
                       Image.asset(
-                        "asset/animation/earth.png",
+                        kEarthImage,
                         height: 200,
                         width: 200,
                       ),
@@ -65,8 +68,8 @@ class _AnimationPageState extends State<AnimationPage> {
                   duration: const Duration(seconds: 3),
                   opacity: textOpacity,
                   child: const Text(
-                    "it is a solar system",
-                    style: TextStyle(color: Colors.white, fontSize: 30),
+                    kSolorSystemTitle,
+                    style: TextStyle(color: kSolorSystmTextColor, fontSize: 30),
                   ),
                 ),
               ],

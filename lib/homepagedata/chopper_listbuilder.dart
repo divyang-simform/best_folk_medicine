@@ -1,12 +1,10 @@
-import 'package:best_folk_medicine/state_management/mobx.dart';
+import '../state_management/mobx.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import '../data_fetching/data.dart';
 import 'package:flutter/material.dart';
 import 'card.dart';
 import 'main_articles_card.dart';
-
-/// this is not a comment this is other method
 
 FutureBuilder<Postt> buildCard(BuildContext context) {
   Data data = Data();

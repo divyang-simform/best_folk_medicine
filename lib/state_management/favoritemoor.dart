@@ -37,7 +37,7 @@ abstract class _FavoritesMoor with Store {
   }
   @action
   getDeleteData(FavoriteMoorData favoriteMoorData) async {
-    database.deletedata(favoriteMoorData);
+    database.deleteData(favoriteMoorData);
     getAllData();
     check = false;
   }

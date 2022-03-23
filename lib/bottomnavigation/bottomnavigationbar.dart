@@ -65,41 +65,42 @@ class _BottomBarState extends State<BottomBar> {
           showUnselectedLabels: false,
           items: <BottomNavigationBarItem>[
             const BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                activeIcon: Icon(Icons.home),
+                icon: Icon(kBottomNavigationbarHomeIcon),
+                activeIcon: Icon(kBottomNavigationbarHomeSelectedIcon),
                 label: 'Home'),
             (config?.appInternalId == 1)
                 ? BottomNavigationBarItem(
                     icon: Observer(
                       builder: (context) => (_favorite.data?.isEmpty ?? true)
-                          ? const Icon(Icons.favorite_border)
+                          ? const Icon(kBottomNavigationbarFavoriteIcon)
                           : Badge(
                               badgeContent:
                                   Text((_favorite.data?.length).toString()),
-                              child: const Icon(Icons.favorite_border)),
+                              child:
+                                  const Icon(kBottomNavigationbarFavoriteIcon)),
                     ),
-                    activeIcon: const Icon(Icons.favorite,
+                    activeIcon: const Icon(
+                        kBottomNavigationbarFavoriteSelectedIcon,
                         color: kBottomNavigationBarFavoriteColor),
-                label: 'favorite'
-                  )
-                :
-            const BottomNavigationBarItem(
-                    icon: Icon(Icons.favorite_border),
-                    activeIcon: Icon(Icons.favorite,
+                    label: 'favorite')
+                : const BottomNavigationBarItem(
+                    icon: Icon(kBottomNavigationbarFavoriteIcon),
+                    activeIcon: Icon(kBottomNavigationbarFavoriteSelectedIcon,
                         color: kBottomNavigationBarFavoriteColor),
-                label: 'favorite'
-                  ),
+                    label: 'favorite'),
             const BottomNavigationBarItem(
-                icon: Icon(Icons.shop_outlined),
-                activeIcon: Icon(Icons.shop),
+                icon: Icon(kBottomNavigationbarShopIcon),
+                activeIcon: Icon(kBottomNavigationbarShopSelectedIcon),
                 label: 'Shop'),
             const BottomNavigationBarItem(
-                icon: Icon(Icons.add), label: 'Increment'),
+                icon: Icon(kBottomNavigationbarIncrementIcon),
+                label: 'Increment'),
             const BottomNavigationBarItem(
-                icon: Icon(Icons.animation), label: 'Animation'),
+                icon: Icon(kBottomNavigationbarAnimationIcon),
+                label: 'Animation'),
             const BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined),
-                activeIcon: Icon(Icons.settings),
+                icon: Icon(kBottomNavigationbarSettingIcon),
+                activeIcon: Icon(kBottomNavigationbarSettingSelectedIcon),
                 label: 'Settings'),
           ],
           currentIndex: _selectedIndex,
