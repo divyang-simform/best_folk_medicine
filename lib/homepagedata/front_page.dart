@@ -84,72 +84,69 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: buildAllArticles(context, 1),
                     ),
-              Column(
-                children: [
-                  RowPage(
-                      title: "You have not finished reading",
-                      endtitle: "show more",
-                      link: true),
-                  (article == null)
-                      ? const CircularProgressIndicator.adaptive()
-                      : Container(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: 3,
-                            itemBuilder: (context, index) => Column(
-                              children: [
-                                Card(
-                                  elevation: 10,
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex: 1,
-                                        child: Image.network(
-                                            article1[index]["image"],
-                                            fit: BoxFit.fill,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .11,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .3),
-                                      ),
-                                      Flexible(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(article1[index]["title"],
-                                                  maxLines: 2,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1),
-                                              Text(article1[index]["pastime"]),
-                                              Text(
-                                                  article1[index]
-                                                      ["description"],
-                                                  overflow:
-                                                      TextOverflow.ellipsis),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+              RowPage(
+                  title: "You have not finished reading",
+                  endtitle: "show more",
+                  link: true),
+              (article == null)
+                  ? const CircularProgressIndicator.adaptive()
+                  : Container(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: 3,
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            Card(
+                              elevation: 10,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 1,
+                                    child: Image.network(
+                                        article1[index]["image"],
+                                        fit: BoxFit.fill,
+                                        height: MediaQuery.of(context)
+                                                .size
+                                                .height *
+                                            .11,
+                                        width: MediaQuery.of(context)
+                                                .size
+                                                .width *
+                                            .3),
                                   ),
-                                ),
-                                const Divider(thickness: 2)
-                              ],
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(article1[index]["title"],
+                                              maxLines: 2,
+                                              overflow:
+                                                  TextOverflow.ellipsis,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1),
+                                          Text(article1[index]["pastime"]),
+                                          Text(
+                                              article1[index]
+                                                  ["description"],
+                                              overflow:
+                                                  TextOverflow.ellipsis),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
+                            const Divider(thickness: 2)
+                          ],
                         ),
-                ],
-              ),
+                      ),
+                    ),
             ],
           ),
         ),

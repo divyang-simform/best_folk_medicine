@@ -12,7 +12,7 @@ class ShopingPage extends StatefulWidget {
 
 class _ShopingPageState extends State<ShopingPage> {
   String? shopData;
-  late var shopsData;
+   var shopsData;
 
   loadJson() async {
     shopData = await rootBundle.loadString("asset/data/shop.json");

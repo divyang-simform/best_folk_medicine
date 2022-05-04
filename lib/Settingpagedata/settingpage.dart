@@ -84,94 +84,96 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.all(25),
-            child: MaterialButton(
-              child:
-                  const Text('Alert Button', style: TextStyle(fontSize: 20.0)),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (ctx) =>
-                        AlertPage(title: "title", content: "content"));
-              },
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: MaterialButton(
+                child: const Text('Alert Button',
+                    style: TextStyle(fontSize: 20.0)),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) =>
+                          AlertPage(title: "title", content: "content"));
+                },
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(25),
-            child: MaterialButton(
-              child:
-                  const Text('Simple Buttom', style: TextStyle(fontSize: 20.0)),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (ctx) =>
-                        DialogPage(title: "delete", content: "helloo"));
-              },
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: MaterialButton(
+                child: const Text('Simple Bottom',
+                    style: TextStyle(fontSize: 20.0)),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (ctx) =>
+                          DialogPage(title: "delete", content: "hello"));
+                },
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(25),
-            child: MaterialButton(
-              child:
-                  const Text('Bottom Button', style: TextStyle(fontSize: 20.0)),
-              onPressed: () {
-                showCupertinoModalPopup<void>(
-                    context: context,
-                    builder: (BuildContext context) => BottomSheets(
-                        title: "title",
-                        message: "testing purpose",
-                        button1: "thanks",
-                        button2: "have a nice day"));
-              },
+            Container(
+              margin: const EdgeInsets.all(25),
+              child: MaterialButton(
+                child: const Text('Bottom Button',
+                    style: TextStyle(fontSize: 20.0)),
+                onPressed: () {
+                  showCupertinoModalPopup<void>(
+                      context: context,
+                      builder: (BuildContext context) => BottomSheets(
+                          title: "title",
+                          message: "testing purpose",
+                          button1: "thanks",
+                          button2: "have a nice day"));
+                },
+              ),
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Location Permission :",
-                  style: TextStyle(fontSize: 20.0)),
-              const SizedBox(width: 20),
-              Switch.adaptive(
-                  value: switchLocationBool,
-                  onChanged: (switchBool) {
-                    getPermission("location");
-                  }),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("Camera Permission :",
-                  style: TextStyle(fontSize: 20.0)),
-              const SizedBox(width: 20),
-              Switch.adaptive(
-                  value: switchCameraBool,
-                  onChanged: (switchBool) {
-                    getPermission("camera");
-                  }),
-            ],
-          ),
-          (Platform.isAndroid)
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text("Storage Permission :",
-                        style: TextStyle(fontSize: 20.0)),
-                    const SizedBox(width: 20),
-                    Switch.adaptive(
-                        value: switchStorageBool,
-                        onChanged: (switchBool) {
-                          getPermission("storage");
-                        }),
-                  ],
-                )
-              : const SizedBox(),
-        ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Location Permission :",
+                    style: TextStyle(fontSize: 20.0)),
+                const SizedBox(width: 20),
+                Switch.adaptive(
+                    value: switchLocationBool,
+                    onChanged: (switchBool) {
+                      getPermission("location");
+                    }),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Camera Permission :",
+                    style: TextStyle(fontSize: 20.0)),
+                const SizedBox(width: 20),
+                Switch.adaptive(
+                    value: switchCameraBool,
+                    onChanged: (switchBool) {
+                      getPermission("camera");
+                    }),
+              ],
+            ),
+            (Platform.isAndroid)
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Storage Permission :",
+                          style: TextStyle(fontSize: 20.0)),
+                      const SizedBox(width: 20),
+                      Switch.adaptive(
+                          value: switchStorageBool,
+                          onChanged: (switchBool) {
+                            getPermission("storage");
+                          }),
+                    ],
+                  )
+                : const SizedBox(),
+          ],
+        ),
       ),
     );
   }

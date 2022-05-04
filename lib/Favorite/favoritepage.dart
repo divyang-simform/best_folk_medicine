@@ -64,57 +64,59 @@ class _FavoritePageState extends State<FavoritePage> {
                         errorBuilder: (_, __, ___) =>
                             Image.network(kUrlToImage),
                       )
-                    : Column(
-                        children: [
-                          const SearchBar(),
-                          const SizedBox(height: 20),
-                          Container(
-                            alignment: Alignment.topCenter,
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: favorite.data?.length,
-                              itemBuilder: (context, index) => Slidable(
-                                startActionPane: ActionPane(
-                                  motion: const ScrollMotion(),
-                                  children: [
-                                    SlidableAction(
-                                      onPressed: (BuildContext context) {
-                                        favorite.getDeleteData(int.parse(
-                                            favorite.data![index].id
-                                                .toString()));
-                                      },
-                                      backgroundColor: kDeleteButtonBGColor,
-                                      foregroundColor: kDeleteButtonTextColor,
-                                      icon: kDeleteButtonIcon,
-                                      label: 'Delete',
-                                    ),
-                                  ],
+                    : SingleChildScrollView(
+                      child: Column(
+                          children: [
+                            const SearchBar(),
+                            const SizedBox(height: 20),
+                            Container(
+                              alignment: Alignment.topCenter,
+                              child: ListView.builder(
+                                scrollDirection: Axis.vertical,
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: favorite.data?.length,
+                                itemBuilder: (context, index) => Slidable(
+                                  startActionPane: ActionPane(
+                                    motion: const ScrollMotion(),
+                                    children: [
+                                      SlidableAction(
+                                        onPressed: (BuildContext context) {
+                                          favorite.getDeleteData(int.parse(
+                                              favorite.data![index].id
+                                                  .toString()));
+                                        },
+                                        backgroundColor: kDeleteButtonBGColor,
+                                        foregroundColor: kDeleteButtonTextColor,
+                                        icon: kDeleteButtonIcon,
+                                        label: 'Delete',
+                                      ),
+                                    ],
+                                  ),
+                                  endActionPane: ActionPane(
+                                    motion: const ScrollMotion(),
+                                    children: [
+                                      SlidableAction(
+                                        onPressed: (BuildContext context) {
+                                          favorite.getDeleteData(int.parse(
+                                              favorite.data![index].id
+                                                  .toString()));
+                                        },
+                                        backgroundColor: kDeleteButtonBGColor,
+                                        foregroundColor: kDeleteButtonTextColor,
+                                        icon: kDeleteButtonIcon,
+                                        label: 'Delete',
+                                      ),
+                                    ],
+                                  ),
+                                  child: CardPage(
+                                      articles: favorite.data![index], mode: 1),
                                 ),
-                                endActionPane: ActionPane(
-                                  motion: const ScrollMotion(),
-                                  children: [
-                                    SlidableAction(
-                                      onPressed: (BuildContext context) {
-                                        favorite.getDeleteData(int.parse(
-                                            favorite.data![index].id
-                                                .toString()));
-                                      },
-                                      backgroundColor: kDeleteButtonBGColor,
-                                      foregroundColor: kDeleteButtonTextColor,
-                                      icon: kDeleteButtonIcon,
-                                      label: 'Delete',
-                                    ),
-                                  ],
-                                ),
-                                child: CardPage(
-                                    articles: favorite.data![index], mode: 1),
                               ),
                             ),
-                          ),
-                        ],
-                      );
+                          ],
+                        ),
+                    );
           }
         });
       case "2":
@@ -124,110 +126,114 @@ class _FavoritePageState extends State<FavoritePage> {
           });
           return (_favoriteHive.response?.isEmpty ?? true)
               ? Image.network(kEmptyCartImage)
-              : Column(
-                  children: [
-                    const SearchBar(),
-                    const SizedBox(height: 20),
-                    Container(
-                      alignment: Alignment.topCenter,
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: _favoriteHive.response?.length,
-                        itemBuilder: (context, index) => Slidable(
-                          startActionPane: ActionPane(
-                            motion: const ScrollMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (BuildContext context) {
-                                  _favoriteHive.getDeleteData(index);
-                                },
-                                backgroundColor: kDeleteButtonBGColor,
-                                foregroundColor: kDeleteButtonTextColor,
-                                icon: kDeleteButtonIcon,
-                                label: 'Delete',
-                              ),
-                            ],
+              : SingleChildScrollView(
+                child: Column(
+                    children: [
+                      const SearchBar(),
+                      const SizedBox(height: 20),
+                      Container(
+                        alignment: Alignment.topCenter,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: _favoriteHive.response?.length,
+                          itemBuilder: (context, index) => Slidable(
+                            startActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (BuildContext context) {
+                                    _favoriteHive.getDeleteData(index);
+                                  },
+                                  backgroundColor: kDeleteButtonBGColor,
+                                  foregroundColor: kDeleteButtonTextColor,
+                                  icon: kDeleteButtonIcon,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (BuildContext context) {
+                                    _favoriteHive.getDeleteData(index);
+                                  },
+                                  backgroundColor: kDeleteButtonBGColor,
+                                  foregroundColor: kDeleteButtonTextColor,
+                                  icon: kDeleteButtonIcon,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            child: CardPage(
+                                articles: _favoriteHive.response![index],
+                                mode: 1),
                           ),
-                          endActionPane: ActionPane(
-                            motion: const ScrollMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (BuildContext context) {
-                                  _favoriteHive.getDeleteData(index);
-                                },
-                                backgroundColor: kDeleteButtonBGColor,
-                                foregroundColor: kDeleteButtonTextColor,
-                                icon: kDeleteButtonIcon,
-                                label: 'Delete',
-                              ),
-                            ],
-                          ),
-                          child: CardPage(
-                              articles: _favoriteHive.response![index],
-                              mode: 1),
                         ),
                       ),
-                    ),
-                  ],
-                );
+                    ],
+                  ),
+              );
         });
       case "3":
         return Observer(builder: (_) {
           return (_favoriteMoor.data?.isEmpty ?? true)
               ? Image.network(kEmptyCartImage)
-              : Column(
-                  children: [
-                    const SearchBar(),
-                    const SizedBox(height: 20),
-                    Container(
-                      alignment: Alignment.topCenter,
-                      child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: _favoriteMoor.data?.length,
-                        itemBuilder: (context, index) => Slidable(
-                          startActionPane: ActionPane(
-                            motion: const ScrollMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (BuildContext context) {
-                                  _favoriteMoor.getDeleteData(
-                                      _favoriteMoor.data![index]);
-                                },
-                                backgroundColor: kDeleteButtonBGColor,
-                                foregroundColor: kDeleteButtonTextColor,
-                                icon: kDeleteButtonIcon,
-                                label: 'Delete',
-                              ),
-                            ],
-                          ),
-                          endActionPane: ActionPane(
-                            motion: const ScrollMotion(),
-                            children: [
-                              SlidableAction(
-                                onPressed: (BuildContext context) {
-                                  _favoriteMoor.getDeleteData(
-                                      _favoriteMoor.data![index]);
-                                },
-                                backgroundColor: kDeleteButtonBGColor,
-                                foregroundColor: kDeleteButtonTextColor,
-                                icon: kDeleteButtonIcon,
-                                label: 'Delete',
-                              ),
-                            ],
-                          ),
-                          child: CardPage(
-                            favoriteMoorData: _favoriteMoor.data![index],
-                            mode: 2,
+              : SingleChildScrollView(
+                child: Column(
+                    children: [
+                      const SearchBar(),
+                      const SizedBox(height: 20),
+                      Container(
+                        alignment: Alignment.topCenter,
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: _favoriteMoor.data?.length,
+                          itemBuilder: (context, index) => Slidable(
+                            startActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (BuildContext context) {
+                                    _favoriteMoor.getDeleteData(
+                                        _favoriteMoor.data![index]);
+                                  },
+                                  backgroundColor: kDeleteButtonBGColor,
+                                  foregroundColor: kDeleteButtonTextColor,
+                                  icon: kDeleteButtonIcon,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            endActionPane: ActionPane(
+                              motion: const ScrollMotion(),
+                              children: [
+                                SlidableAction(
+                                  onPressed: (BuildContext context) {
+                                    _favoriteMoor.getDeleteData(
+                                        _favoriteMoor.data![index]);
+                                  },
+                                  backgroundColor: kDeleteButtonBGColor,
+                                  foregroundColor: kDeleteButtonTextColor,
+                                  icon: kDeleteButtonIcon,
+                                  label: 'Delete',
+                                ),
+                              ],
+                            ),
+                            child: CardPage(
+                              favoriteMoorData: _favoriteMoor.data![index],
+                              mode: 2,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                );
+                    ],
+                  ),
+              );
         });
       default:
         {

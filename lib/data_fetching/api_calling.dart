@@ -15,31 +15,31 @@ abstract class ApiService extends ChopperService {
 
   static ApiService create() {
     final client = ChopperClient(
-      baseUrl: 'https://newsapi.org',
-      services: [_$ApiService()],
-      converter: ApiConvertor(),
-      errorConverter: const JsonConverter(),
-      interceptors: [
-        HttpLoggingInterceptor(),
-        const HeadersInterceptor({
-          'Content-Type': 'Application/Json',
-        }),
-        RequestsInterceptor(),
-        (Response response) async {
-          if (response.statusCode != 200) {
-            throw AllException(code: response.statusCode);
+        baseUrl: 'https://newsapi.org',
+        services: [_$ApiService()],
+        converter: ApiConvertor(),
+        errorConverter: const JsonConverter(),
+        interceptors: [
+          HttpLoggingInterceptor(),
+          MobileDataInterceptor(),
+          const HeadersInterceptor({'Content-Type': 'Application/Json'}),
+
+          ///Request token
+          RequestsInterceptor(),
+          (Response response) async {
+            if (response.statusCode != 200) {
+              throw AllException(code: response.statusCode);
+            }
+            return response;
           }
-          return response;
-        },
-        MobileDataInterceptor(),
-      ],
-    );
+        ]);
     return _$ApiService(client);
   }
 }
 
 class AllException implements Exception {
-  AllException({ required this.code});
+  AllException({required this.code});
+
   int? code;
 
   @override
