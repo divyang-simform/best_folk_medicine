@@ -53,6 +53,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     final _favorite = Provider.of<Favorite>(context);
+    _favorite.getAllData();
     final config = AppConfig.of(context);
     return Scaffold(
       appBar: AppBar(
