@@ -1,0 +1,6 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+#include "Generated-stage.xcconfig"
+DEFINEEXAMPLE_APP_NAME=stage
+// the name displayed below the app icon on the home screen
+DEFINEEXAMPLE_APP_SUFFIX=.stage
+//#include "Defineexample.xcconfig"

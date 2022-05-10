@@ -1,0 +1,70 @@
+import '../state_management/mobx.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
+import '../data_fetching/data.dart';
+import 'package:flutter/material.dart';
+import 'card.dart';
+import 'main_articles_card.dart';
+
+FutureBuilder<Postt> buildCard(BuildContext context) {
+  Data data = Data();
+  return FutureBuilder<Postt>(
+    future: data.onData(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              snapshot.error.toString(),
+              textAlign: TextAlign.center,
+              textScaleFactor: 1.3,
+            ),
+          );
+        }
+        final posts = snapshot.data;
+        return _buildPosts(context, posts, 1);
+      } else {
+        return Container(
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator.adaptive());
+      }
+    },
+  );
+}
+
+buildCards(BuildContext context) {
+  Data data = Data();
+  data.onDatas();
+  return Observer(builder: (_) {
+    try {
+      if (data.response == null) {
+        return Container(
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator.adaptive());
+      }
+      if (data.response?.status == FutureStatus.pending) {
+        return Container(
+            alignment: Alignment.center,
+            child: const CircularProgressIndicator.adaptive());
+      } else if (data.response?.status == FutureStatus.rejected) {
+        return const Text("Error :(");
+      } else {
+        return _buildPosts(context, data, 2);
+      }
+    } catch (exe) {
+      return Text(exe.toString());
+    }
+  });
+}
+
+ListView _buildPosts(BuildContext context, dynamic data, int page) {
+  return ListView.builder(
+    scrollDirection: (page == 1) ? Axis.horizontal : Axis.vertical,
+    physics: (page == 2) ? const NeverScrollableScrollPhysics() : null,
+    shrinkWrap: true,
+    itemCount: (page == 1) ? 5 : data.getData?.body?.articles.length,
+    itemBuilder: (context, index) => (page == 1)
+        ? MyCardPage(articles: data?.articles[index])
+        : CardPage(articles: data.getData?.body?.articles[index], mode: 1),
+  );
+}
